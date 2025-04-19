@@ -166,15 +166,41 @@ function getNextCard() {
     return null;
   }
 
-  // Track if the previous card was an info card (add this at the top)
+  // Oynanmış kart ID'lerini takip etmek için global değişken oluştur
+  if (!window.playedCardIds) {
+    window.playedCardIds = [];
+  }
+
+  // Track if the previous card was an info card
   const previousCardWasInfo = currentCard && currentCard.isInfoOnly;
 
   // 1. Check delayed cards first
   if (delayedCards.length > 0) {
+    // Önce ebeveyn kartı gösterilmiş olan takip kartlarını ara
+    const readyFollowupIndex = delayedCards.findIndex(item =>
+      item.showOnDay <= resources.day &&
+      item.parentCardId &&
+      window.playedCardIds.includes(item.parentCardId));
+
+    if (readyFollowupIndex !== -1) {
+      const readyFollowup = delayedCards[readyFollowupIndex];
+      if (checkRequirements(readyFollowup.card.requirements, resources)) {
+        delayedCards.splice(readyFollowupIndex, 1);
+        // Increment uses for delayed cards as well if they have maxUses
+        if (readyFollowup.card.maxUses) {
+          if (!readyFollowup.card.uses) readyFollowup.card.uses = 0;
+          readyFollowup.card.uses++;
+        }
+        return readyFollowup.card;
+      }
+    }
+
     // If previous card was info, find the first non-info delayed card that's ready
     if (previousCardWasInfo) {
       const readyNonInfoCardIndex = delayedCards.findIndex(item =>
-        item.showOnDay <= resources.day && !item.card.isInfoOnly);
+        item.showOnDay <= resources.day &&
+        !item.card.isInfoOnly &&
+        (!item.parentCardId || window.playedCardIds.includes(item.parentCardId)));
 
       if (readyNonInfoCardIndex !== -1) {
         const readyCard = delayedCards[readyNonInfoCardIndex];
@@ -191,8 +217,11 @@ function getNextCard() {
       }
       // If no non-info delayed cards are ready, we'll proceed to pick from regular deck
     } else {
-      // Regular delayed card check (previous code)
-      const readyCardIndex = delayedCards.findIndex(item => item.showOnDay <= resources.day);
+      // Regular delayed card check - önce takip kartları olanları kontrol et
+      const readyCardIndex = delayedCards.findIndex(item =>
+        item.showOnDay <= resources.day &&
+        (!item.parentCardId || window.playedCardIds.includes(item.parentCardId)));
+
       if (readyCardIndex !== -1) {
         const readyCard = delayedCards[readyCardIndex];
         if (checkRequirements(readyCard.card.requirements, resources)) {
@@ -231,6 +260,9 @@ function getNextCard() {
     // Filter 3: Prevent consecutive info cards
     if (previousCardWasInfo && card.isInfoOnly) return false;
 
+    // Filter 4: Takip kartı ise ebeveyn kartının oynanmış olması gerekir
+    if (card.parentCardId && !window.playedCardIds.includes(card.parentCardId)) return false;
+
     return true;
   });
 
@@ -251,13 +283,17 @@ function getNextCard() {
       const requirementsOk = checkRequirements(card.requirements, resources);
       if (!requirementsOk) return false;
 
+      // Takip kartı ise ebeveyn kartının oynanmış olması gerekir
+      if (card.parentCardId && !window.playedCardIds.includes(card.parentCardId)) return false;
+
       // Only apply info card prevention if we have other options
       if (previousCardWasInfo && card.isInfoOnly) {
         // Count how many non-info cards we have that meet other requirements
         const nonInfoOptions = potentialCards.filter(c =>
           (!c.maxUses || (c.uses || 0) < c.maxUses) &&
           checkRequirements(c.requirements, resources) &&
-          !c.isInfoOnly
+          !c.isInfoOnly &&
+          (!c.parentCardId || window.playedCardIds.includes(c.parentCardId))
         ).length;
 
         // If we have non-info options, exclude this info card
@@ -287,17 +323,23 @@ function getNextCard() {
     // Otherwise, we'll reluctantly use an info card if that's all we have
   }
 
-  // 6. Select a random card from the valid list
+  // 6. Öncelik olarak takip kartlarını seç
+  const followupCards = validCards.filter(card => card.parentCardId && window.playedCardIds.includes(card.parentCardId));
+  if (followupCards.length > 0) {
+    validCards = followupCards;
+  }
+
+  // 7. Select a random card from the valid list
   const randomIndex = Math.floor(Math.random() * validCards.length);
   const selectedCard = validCards[randomIndex];
 
-  // 7. Remove the selected card from the main available list for this cycle
+  // 8. Remove the selected card from the main available list for this cycle
   const cardIndexInAvailable = availableCards.indexOf(selectedCard);
   if (cardIndexInAvailable > -1) {
     availableCards.splice(cardIndexInAvailable, 1);
   }
 
-  // 8. Increment uses count for the selected card
+  // 9. Increment uses count for the selected card
   if (!selectedCard.uses) selectedCard.uses = 0;
   selectedCard.uses++;
 
@@ -452,13 +494,15 @@ function showGameOver() {
   gameOverElement.style.display = "flex";
 }
 
-function queueFollowupCard(followupCards, delay) {
+function queueFollowupCard(followupCards, delay, parentCardId) {
   if (!followupCards) return;
 
   let cardsToQueue = [];
 
   // Handle single followup card object (backward compatibility or specific case)
   if (!Array.isArray(followupCards)) {
+    // Takip kartına ebeveyn kart ID'sini ekle
+    followupCards.parentCardId = parentCardId;
     cardsToQueue.push(followupCards);
   } else {
     // Handle array of followups with probabilities
@@ -472,6 +516,8 @@ function queueFollowupCard(followupCards, delay) {
       for (const card of followupCards) {
         cumulativeProbability += (card.probability || 0);
         if (random <= cumulativeProbability) {
+          // Takip kartına ebeveyn kart ID'sini ekle
+          card.parentCardId = parentCardId;
           cardsToQueue.push(card);
           selected = true;
           break;
@@ -482,7 +528,10 @@ function queueFollowupCard(followupCards, delay) {
     // If no probabilities defined, total is 0, or random selection failed, select one randomly
     if (!selected && followupCards.length > 0) {
       const randomIndex = Math.floor(Math.random() * followupCards.length);
-      cardsToQueue.push(followupCards[randomIndex]);
+      const selectedCard = followupCards[randomIndex];
+      // Takip kartına ebeveyn kart ID'sini ekle
+      selectedCard.parentCardId = parentCardId;
+      cardsToQueue.push(selectedCard);
     }
   }
 
@@ -493,10 +542,10 @@ function queueFollowupCard(followupCards, delay) {
       // Queue the nested followup to appear after this card
       // Use nested delay if available, otherwise use parent's delay or default
       const nestedDelay = card.followup.delay || card.delay || delay || 1;
-      queueFollowupCard(card.followup, nestedDelay);
+      queueFollowupCard(card.followup, nestedDelay, card.id || parentCardId);
     } else if (card.followups) { // Handle nested array followups
       const nestedDelay = card.delay || delay || 1; // Use current card's delay if available
-      queueFollowupCard(card.followups, nestedDelay);
+      queueFollowupCard(card.followups, nestedDelay, card.id || parentCardId);
     }
 
     // Get the actual delay value
@@ -512,7 +561,8 @@ function queueFollowupCard(followupCards, delay) {
       const showOnDay = resources.day + actualDelay;
       delayedCards.push({
         card: card,
-        showOnDay: showOnDay
+        showOnDay: showOnDay,
+        parentCardId: card.parentCardId // Ebeveyn kart ID'sini saklayın
       });
     }
   });
@@ -701,82 +751,111 @@ function processCard(isYes) {
   // Track if the current card is an info card before processing
   const wasInfoCard = currentCard.isInfoOnly;
 
-  // İşlem sonrası yapılacaklar
   const processAfterSwipe = () => {
+    // Şu anki kartın ID'sini saklayın
+    const currentCardId = currentCard.id || null;
+
     if (currentCard.isInfoOnly) {
       // Bilgilendirme kartı - Apply effects using the dictionary structure
-      applyInfoCardEffects(currentCard.effects); // Pass the effects object directly
+      applyInfoCardEffects(currentCard.effects);
 
-      // Takip kartı varsa ekle (Handles single 'followup' or array 'followups')
+      // Takip kartı varsa ekle
       if (currentCard.followup) {
-        queueFollowupCard(currentCard.followup, currentCard.followup.delay);
+        queueFollowupCard(currentCard.followup, currentCard.followup.delay, currentCardId);
       } else if (currentCard.followups) {
-        queueFollowupCard(currentCard.followups); // Pass the array
+        queueFollowupCard(currentCard.followups, null, currentCardId);
       }
-      // Day is incremented inside applyInfoCardEffects (which calls updateResources)
     } else {
       // Normal karar kartı
       if (isYes) {
         // Apply 'yes' effects using the dictionary structure
-        updateResources(currentCard.yesEffects); // Pass the yesEffects object
+        updateResources(currentCard.yesEffects);
 
-        // Takip kartı varsa ekle (Handles single 'yesFollowup' or array 'yesFollowups')
+        // Takip kartı varsa ekle
         if (currentCard.yesFollowup) {
-          queueFollowupCard(currentCard.yesFollowup, currentCard.yesFollowup.delay);
+          queueFollowupCard(currentCard.yesFollowup, currentCard.yesFollowup.delay, currentCardId);
         } else if (currentCard.yesFollowups) {
-          queueFollowupCard(currentCard.yesFollowups); // Pass the array
+          queueFollowupCard(currentCard.yesFollowups, null, currentCardId);
         }
       } else {
         // Apply 'no' effects using the dictionary structure
-        updateResources(currentCard.noEffects); // Pass the noEffects object
+        updateResources(currentCard.noEffects);
 
-        // Takip kartı varsa ekle (Handles single 'noFollowup' or array 'noFollowups')
+        // Takip kartı varsa ekle
         if (currentCard.noFollowup) {
-          queueFollowupCard(currentCard.noFollowup, currentCard.noFollowup.delay);
+          queueFollowupCard(currentCard.noFollowup, currentCard.noFollowup.delay, currentCardId);
         } else if (currentCard.noFollowups) {
-          queueFollowupCard(currentCard.noFollowups); // Pass the array
+          queueFollowupCard(currentCard.noFollowups, null, currentCardId);
         }
       }
-      // Day is incremented inside updateResources
     }
 
-    // Check for immediate followups first
-    if (window.immediateFollowups && window.immediateFollowups.length > 0) {
-      // If previous card was info, try to find a non-info immediate followup
-      if (wasInfoCard) {
-        // Find first non-info card in immediate followups
-        const nonInfoIndex = window.immediateFollowups.findIndex(card => !card.isInfoOnly);
+    // Oynanmış kartların ID'lerini saklamak için bir dizi oluşturun
+    if (!window.playedCardIds) {
+      window.playedCardIds = [];
+    }
 
-        if (nonInfoIndex !== -1) {
-          // Found a non-info card, use it
-          currentCard = window.immediateFollowups[nonInfoIndex];
-          // Remove it from the queue
-          window.immediateFollowups.splice(nonInfoIndex, 1);
-        } else {
-          // No non-info cards, use the first card (reluctantly allowing consecutive info)
-          currentCard = window.immediateFollowups.shift();
+    // Şu anki kartın ID'sini oynanmış kartlar listesine ekleyin
+    if (currentCardId) {
+      window.playedCardIds.push(currentCardId);
+    }
+
+    // Önce immediate followups'ları kontrol edin
+    if (window.immediateFollowups && window.immediateFollowups.length > 0) {
+      // Uygun bir takip kartı bulun
+      let selectedFollowup = null;
+      let selectedFollowupIndex = -1;
+
+      // Ebeveyn kartı oynanmış takip kartlarını arayın
+      for (let i = 0; i < window.immediateFollowups.length; i++) {
+        const followup = window.immediateFollowups[i];
+        if (followup.parentCardId && window.playedCardIds.includes(followup.parentCardId)) {
+          selectedFollowup = followup;
+          selectedFollowupIndex = i;
+          break;
         }
-      } else {
-        // Previous was not info, so just take the first followup
-        currentCard = window.immediateFollowups.shift();
       }
 
-      // If this was the last immediate followup, clean up
+      // Uygun bir takip kartı bulduysak, kullanın
+      if (selectedFollowup) {
+        currentCard = selectedFollowup;
+        window.immediateFollowups.splice(selectedFollowupIndex, 1);
+      } else {
+        // Eğer uygun bir takip kartı yoksa, normal bir sonraki kartı alın
+        currentCard = getNextCard();
+      }
+
+      // Son immediate followup ise, temizleyin
       if (window.immediateFollowups.length === 0) {
         window.immediateFollowups = null;
       }
     } else {
-      // No immediate followups, get the next card normally
-      // getNextCard already has logic to avoid consecutive info cards
-      currentCard = getNextCard();
+      // Immediate followups yok, normal olarak bir sonraki kartı alın
+      // Ama önce delayedCards içinden uygun takip kartlarını kontrol edin
+      let foundDelayedFollowup = false;
+
+      for (let i = 0; i < delayedCards.length; i++) {
+        const delayedItem = delayedCards[i];
+        if (delayedItem.showOnDay <= resources.day &&
+          delayedItem.parentCardId &&
+          window.playedCardIds.includes(delayedItem.parentCardId)) {
+          // Uygun takip kartı bulundu, kullanın
+          currentCard = delayedItem.card;
+          delayedCards.splice(i, 1);
+          foundDelayedFollowup = true;
+          break;
+        }
+      }
+
+      // Uygun bir takip kartı bulunamadıysa, normal bir sonraki kartı alın
+      if (!foundDelayedFollowup) {
+        currentCard = getNextCard();
+      }
     }
 
     // Oyun bitmediyse yeni kart göster
     if (!gameOver) {
       updateCardUI(currentCard);
-
-      // Add a new card to the stack
-      // addNewCardToStack();
     } else {
       currentCard = null;
     }
