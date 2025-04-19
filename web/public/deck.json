@@ -969,7 +969,7 @@
     },
     {
         "id": "LUNCH_TABLE_CONFRONTATION",
-        "text": "Öğle yemeği sırasında arkadaşlarınızla oturuyorsunuz. Bir arkadaşınız aniden sizi hedef gösterecek şekilde bir konuşma başlattı ve herkesin önünde sizi eleştirmeye başladı. Bu durum sizi sinirlendirdi. Nasıl tepki vereceksiniz?",
+        "text": "Öğle yemeği sırasında arkadaşlarınızla sohbet ederken bir arkadaşınız aniden sizi hedef gösterecek şekilde bir fikir ortaya attı ve sizi eleştirmeye başladı. Bu durum sizi rahatsız ediyor, nasıl tepki vereceksiniz?",
         "yesEffects": {
             "motivation": -10,
             "performance": -15,
@@ -3410,7 +3410,7 @@
     },
     {
         "id": "INFO_OFFICE_RENOVATION",
-        "text": "Ofis binasında tadilat başladı. Önümüzdeki hafta boyunca gürültü ve toz nedeniyle çalışma ortamı etkilenecek.",
+        "text": "Ofis binasında tadilat başladı. Önümüzdeki hafta boyunca sürecek gürültü ve toz sizi olumsuz yönde etkiliyor.",
         "effects": {
             "motivation": -15,
             "performance": -10,
