@@ -2851,7 +2851,7 @@
         "noFollowups": [
             {
                 "id": "MISSED_CONNECTION",
-                "text": "İlerleyen günlerde o kişinin bir başkasıyla konuştuğunu gördünüz. Fırsatı kaçırdığınızı düşünüyorsunuz.",
+                "text": "Kafetaryada sürekli göz göze geldiğiniz ama konuşmaya çekindiğiniz o kişinin bir başkasıyla konuştuğunu gördünüz. Bir fırsatı kaçırdığınızı düşünüyorsunuz.",
                 "effects": {
                     "motivation": -10,
                     "performance": -5,
@@ -2864,7 +2864,7 @@
             },
             {
                 "id": "FUTURE_OPPORTUNITY",
-                "text": "Birkaç gün sonra şirket içi bir etkinlikte aynı kişiyle tanışma fırsatı buldunuz ve iyi anlaştınız.",
+                "text": "Birkaç gün sonra şirket içi bir etkinlikte kafetaryada sürekli göz göze geldiğiniz ama konuşmaya çekindiğiniz kişiyle tanışma fırsatı buldunuz ve iyi anlaştınız.",
                 "effects": {
                     "motivation": 10,
                     "performance": 5,
@@ -5801,21 +5801,8 @@
                 "probability": 50
             },
             {
-                "id": "LEADERSHIP_VISIBILITY",
-                "text": "Toplantıda yaptığınız katkılar proje lideri tarafından fark edildi. Proaktif tutumunuz ve kavrayış hızınız takdir edildi, bu da sizi potansiyel ilerleme fırsatları için görünür kıldı.",
-                "effects": {
-                    "motivation": 15,
-                    "performance": 5,
-                    "colleagues": 5,
-                    "boss": 15
-                },
-                "isInfoOnly": true,
-                "delay": 2,
-                "probability": 30
-            },
-            {
                 "id": "TIME_WASTE",
-                "text": "Toplantı beklediğinizden uzun sürdü ve çok verimli geçmedi. Konuşulan konuların çoğu sizin görev alanınızla doğrudan ilgili değildi ve değerli zamanınızı aldı.",
+                "text": "Ayaküstü toplantı beklediğinizden uzun sürdü ve çok verimli geçmedi. Konuşulan konuların çoğu sizin görev alanınızla doğrudan ilgili değildi ve değerli zamanınızı aldı.",
                 "effects": {
                     "motivation": -10,
                     "performance": -10,
@@ -5824,7 +5811,7 @@
                 },
                 "isInfoOnly": true,
                 "delay": 0,
-                "probability": 20
+                "probability": 50
             }
         ],
         "noFollowups": [
@@ -5838,7 +5825,7 @@
                     "boss": -10
                 },
                 "isInfoOnly": true,
-                "delay": 1,
+                "delay": 0,
                 "probability": 55
             },
             {
@@ -5864,7 +5851,7 @@
                     "boss": -5
                 },
                 "isInfoOnly": true,
-                "delay": 5,
+                "delay": 0,
                 "probability": 10
             }
         ]
