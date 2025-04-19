@@ -80,6 +80,14 @@ function initializeGame() {
       console.log("Cards loaded successfully.");
       cards = loadedCards; // Assign loaded cards to the global variable
 
+      cards.forEach(card => {
+        if (card.maxUses === undefined) {
+          card.maxUses = 1;
+        }
+        // Note: Followup cards defined inline will have their default set
+        // when they are processed by queueFollowupCard.
+      });
+
       // --- Initialize game state that depends on cards ---
       availableCards = [...cards]; // Populate available cards
       cards.forEach(card => { // Ensure uses count is reset
@@ -178,14 +186,13 @@ function getNextCard() {
   if (meetWinConditions) {
     const winChanceCard = cards.find(card => card.id === winChanceCardId);
     if (winChanceCard) {
-      // Check if this card hasn't been used yet (maxUses: 1)
-      if (!winChanceCard.uses || winChanceCard.uses < winChanceCard.maxUses) {
+      // Check if this card hasn't been used yet (maxUses is now guaranteed to exist)
+      if ((winChanceCard.uses || 0) < winChanceCard.maxUses) { // Simplified check
         console.log("Win conditions met, presenting WIN_CHANCE_CARD.");
         // Increment uses *before* returning to prevent re-selection if declined
         winChanceCard.uses = (winChanceCard.uses || 0) + 1;
 
         // Remove from availableCards pool for this cycle if it's there
-        // (though it might not be if it wasn't selected randomly before)
         const cardIndexInAvailable = availableCards.indexOf(winChanceCard);
         if (cardIndexInAvailable > -1) {
           availableCards.splice(cardIndexInAvailable, 1);
@@ -221,19 +228,24 @@ function getNextCard() {
 
     if (readyFollowupIndex !== -1) {
       const readyFollowup = delayedCards[readyFollowupIndex];
-      // Takip kartına maxUses varsayılan değerini ata
-      if (readyFollowup.card.parentCardId && readyFollowup.card.maxUses === undefined) {
-        readyFollowup.card.maxUses = 1;
-      }
+      // Takip kartına maxUses varsayılan değerini ata (Handled by queueFollowupCard)
+      // if (readyFollowup.card.parentCardId && readyFollowup.card.maxUses === undefined) {
+      //   readyFollowup.card.maxUses = 1;
+      // }
 
       if (checkRequirements(readyFollowup.card.requirements, resources)) {
-        delayedCards.splice(readyFollowupIndex, 1);
-        // Increment uses for delayed cards as well if they have maxUses
-        if (readyFollowup.card.maxUses) {
+        // Check maxUses for delayed card before returning
+        if ((readyFollowup.card.uses || 0) < readyFollowup.card.maxUses) {
+          delayedCards.splice(readyFollowupIndex, 1);
+          // Increment uses for delayed cards as well
           if (!readyFollowup.card.uses) readyFollowup.card.uses = 0;
           readyFollowup.card.uses++;
+          return readyFollowup.card;
+        } else {
+          // console.log(`Delayed card ${readyFollowup.card.id} maxUses reached, skipping.`);
+          // Optionally remove it if it shouldn't be checked again
+          // delayedCards.splice(readyFollowupIndex, 1);
         }
-        return readyFollowup.card;
       }
     }
 
@@ -246,20 +258,24 @@ function getNextCard() {
 
       if (readyNonInfoCardIndex !== -1) {
         const readyCard = delayedCards[readyNonInfoCardIndex];
-        // Takip kartına maxUses varsayılan değerini ata
-        if (readyCard.card.parentCardId && readyCard.card.maxUses === undefined) {
-          readyCard.card.maxUses = 1;
-        }
+        // Takip kartına maxUses varsayılan değerini ata (Handled by queueFollowupCard)
+        // if (readyCard.card.parentCardId && readyCard.card.maxUses === undefined) {
+        //   readyCard.card.maxUses = 1;
+        // }
 
         // Check requirements for delayed cards too
         if (checkRequirements(readyCard.card.requirements, resources)) {
-          delayedCards.splice(readyNonInfoCardIndex, 1);
-          // Increment uses for delayed cards as well if they have maxUses
-          if (readyCard.card.maxUses) {
+          // Check maxUses for delayed card before returning
+          if ((readyCard.card.uses || 0) < readyCard.card.maxUses) {
+            delayedCards.splice(readyNonInfoCardIndex, 1);
+            // Increment uses for delayed cards as well
             if (!readyCard.card.uses) readyCard.card.uses = 0;
             readyCard.card.uses++;
+            return readyCard.card;
+          } else {
+            // console.log(`Delayed card ${readyCard.card.id} maxUses reached, skipping.`);
+            // delayedCards.splice(readyNonInfoCardIndex, 1);
           }
-          return readyCard.card;
         }
       }
       // If no non-info delayed cards are ready, we'll proceed to pick from regular deck
@@ -271,18 +287,22 @@ function getNextCard() {
 
       if (readyCardIndex !== -1) {
         const readyCard = delayedCards[readyCardIndex];
-        // Takip kartına maxUses varsayılan değerini ata
-        if (readyCard.card.parentCardId && readyCard.card.maxUses === undefined) {
-          readyCard.card.maxUses = 1;
-        }
+        // Takip kartına maxUses varsayılan değerini ata (Handled by queueFollowupCard)
+        // if (readyCard.card.parentCardId && readyCard.card.maxUses === undefined) {
+        //   readyCard.card.maxUses = 1;
+        // }
 
         if (checkRequirements(readyCard.card.requirements, resources)) {
-          delayedCards.splice(readyCardIndex, 1);
-          if (readyCard.card.maxUses) {
+          // Check maxUses for delayed card before returning
+          if ((readyCard.card.uses || 0) < readyCard.card.maxUses) {
+            delayedCards.splice(readyCardIndex, 1);
             if (!readyCard.card.uses) readyCard.card.uses = 0;
             readyCard.card.uses++;
+            return readyCard.card;
+          } else {
+            // console.log(`Delayed card ${readyCard.card.id} maxUses reached, skipping.`);
+            // delayedCards.splice(readyCardIndex, 1);
           }
-          return readyCard.card;
         }
       }
     }
@@ -297,19 +317,20 @@ function getNextCard() {
     cards.forEach(card => card.uses = 0); // Reset uses count on reshuffle
     availableCards = [...cards]; // Reset availableCards pool
     potentialCards = [...availableCards]; // Use the fresh pool
+    winCardShown = false; // Reset win card shown flag on reshuffle
   }
 
-  // 3. Tüm takip kartlarına varsayılan maxUses değeri atanıyor
-  potentialCards.forEach(card => {
-    if (card.parentCardId && card.maxUses === undefined) {
-      card.maxUses = 1;
-    }
-  });
+  // 3. REMOVED: Default maxUses setting here is redundant
+  // potentialCards.forEach(card => {
+  //   if (card.parentCardId && card.maxUses === undefined) {
+  //     card.maxUses = 1;
+  //   }
+  // });
 
   // 4. Filter the potential cards
   let validCards = potentialCards.filter(card => {
-    // Filter 1: Max Uses
-    const maxUsesOk = !card.maxUses || (card.uses || 0) < card.maxUses;
+    // Filter 1: Max Uses (maxUses is guaranteed to exist now)
+    const maxUsesOk = (card.uses || 0) < card.maxUses;
     if (!maxUsesOk) return false;
 
     // Filter 2: Requirements
@@ -333,30 +354,33 @@ function getNextCard() {
     cards.forEach(card => card.uses = 0);
     availableCards = [...cards];
     potentialCards = [...availableCards]; // Use the fresh pool
+    winCardShown = false; // Reset win card shown flag on reshuffle
 
-    // Tüm kartlara tekrar maxUses değeri atanıyor
-    potentialCards.forEach(card => {
-      if (card.parentCardId && card.maxUses === undefined) {
-        card.maxUses = 1;
-      }
-    });
+    // REMOVED: Default maxUses setting here is redundant
+    // potentialCards.forEach(card => {
+    //   if (card.parentCardId && card.maxUses === undefined) {
+    //     card.maxUses = 1;
+    //   }
+    // });
 
     // Re-apply filters, but if we're still getting no cards, relax the info card constraint
     validCards = potentialCards.filter(card => {
-      const maxUsesOk = !card.maxUses || (card.uses || 0) < card.maxUses;
+      // Max Uses check
+      const maxUsesOk = (card.uses || 0) < card.maxUses;
       if (!maxUsesOk) return false;
 
+      // Requirements check
       const requirementsOk = checkRequirements(card.requirements, resources);
       if (!requirementsOk) return false;
 
-      // Takip kartı ise ebeveyn kartının oynanmış olması gerekir
+      // Parent card check
       if (card.parentCardId && !window.playedCardIds.includes(card.parentCardId)) return false;
 
       // Only apply info card prevention if we have other options
       if (previousCardWasInfo && card.isInfoOnly) {
         // Count how many non-info cards we have that meet other requirements
         const nonInfoOptions = potentialCards.filter(c =>
-          (!c.maxUses || (c.uses || 0) < c.maxUses) &&
+          ((c.uses || 0) < c.maxUses) &&
           checkRequirements(c.requirements, resources) &&
           !c.isInfoOnly &&
           (!c.parentCardId || window.playedCardIds.includes(c.parentCardId))
@@ -389,9 +413,13 @@ function getNextCard() {
     // Otherwise, we'll reluctantly use an info card if that's all we have
   }
 
-  // 7. Öncelik olarak takip kartlarını seç
+  // 7. Öncelik olarak takip kartlarını seç (if available after other filters)
   const followupCards = validCards.filter(card => card.parentCardId && window.playedCardIds.includes(card.parentCardId));
   if (followupCards.length > 0) {
+    // Check if there are non-followup options available too
+    const nonFollowupCards = validCards.filter(card => !card.parentCardId || !window.playedCardIds.includes(card.parentCardId));
+    // If there are ONLY followup cards, use them. If there's a mix, maybe prioritize followups?
+    // Current logic: If any followups are valid, pick ONLY from them.
     validCards = followupCards;
   }
 
@@ -411,7 +439,6 @@ function getNextCard() {
 
   return selectedCard;
 }
-
 
 function updateCardUI(card) {
   if (!card) {
