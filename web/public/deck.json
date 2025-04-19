@@ -1,5 +1,106 @@
 [
     {
+        "id": "PERFORMANCE_CRITICISM",
+        "text": "Takım lideriniz birebir görüşme için sizi odasına çağırdı. Görüşme sırasında potansiyelinizin altında performans gösterdiğinizi ve elinizden geleni yapmadığınızı düşündüğünü söyledi. Bu geri bildirime nasıl tepki vereceksiniz?",
+        "yesEffects": {
+            "motivation": -5,
+            "performance": 10,
+            "colleagues": 0,
+            "boss": 15
+        },
+        "noEffects": {
+            "motivation": -10,
+            "performance": -5,
+            "colleagues": 0,
+            "boss": -10
+        },
+        "yesText": "Eleştiriyi kabul edip iyileşme sözü vereceğim",
+        "noText": "Performansımın yeterli olduğunu düşünüyorum",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "IMPROVEMENT_PLAN",
+                "text": "Üç gün önce takım liderinizin eleştirisini kabul etmiş ve gelişme sözü vermiştiniz. Bu yaklaşımınız olumlu karşılandı. Birlikte somut bir iyileştirme planı oluşturdunuz ve lideriniz gelişiminizi destekleyeceğini belirtti.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 15,
+                    "colleagues": 5,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 3,
+                "probability": 60
+            },
+            {
+                "id": "INCREASED_SCRUTINY",
+                "text": "Beş gün önce takım liderinizin performans eleştirisini kabul etmiştiniz. Yaklaşımınız olumlu karşılansa da, artık performansınız daha yakından takip ediliyor. Bu durum üzerinizde ek bir baskı oluşturuyor ve iş stresini artırıyor.",
+                "effects": {
+                    "motivation": -10,
+                    "performance": 5,
+                    "colleagues": 0,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 5,
+                "probability": 30
+            },
+            {
+                "id": "RENEWED_MOTIVATION",
+                "text": "Bir hafta önce takım liderinizin performans eleştirisini kabul etmiş ve iyileşme sözü vermiştiniz. Bu açık konuşma sizi motive etti. Eleştirileri yapıcı bir şekilde kabul etmeniz kendinizi kanıtlama arzusu yarattı ve performansınızda gözle görülür bir iyileşme sağladınız.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 20,
+                    "colleagues": 10,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 7,
+                "probability": 10
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "EVIDENCE_DISCUSSION",
+                "text": "Performansınızın yeterli olduğunu ifade etmeniz üzerine, takım lideriniz somut örnekler ve verilerle görüşünü destekledi. Bu karşılıklı değerlendirme, bakış açınızda bazı kör noktaları fark etmenizi sağladı.",
+                "effects": {
+                    "motivation": -5,
+                    "performance": 5,
+                    "colleagues": 0,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 0,
+                "probability": 50
+            },
+            {
+                "id": "EXPECTATION_MISMATCH",
+                "text": "Beş gün önce takım liderinize performansınızın yeterli olduğunu düşündüğünüzü söylemiştiniz. O görüşmeden sonra, liderin sizden beklentileri ile kendi değerlendirmeniz arasında önemli bir uyumsuzluk olduğunu fark ettiniz. Bu durum, gelecekteki performans değerlendirmelerinizde sorun yaratabilir.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": 0,
+                    "boss": -15
+                },
+                "isInfoOnly": true,
+                "delay": 5,
+                "probability": 35
+            },
+            {
+                "id": "CONSTRUCTIVE_DIALOGUE",
+                "text": "İki gün önce takım liderinize performansınızın yeterli olduğunu düşündüğünüzü söylemiştiniz. Görüşünüzü profesyonelce ifade etmeniz, performans beklentileri hakkında yapıcı bir diyalog başlattı. Takım lideriniz bakış açınızı dinledi ve bazı noktalarda size hak verdi. Bu karşılıklı anlayış, iş ilişkinizi olumlu yönde etkiledi.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 0,
+                    "boss": 10
+                },
+                "isInfoOnly": true,
+                "delay": 2,
+                "probability": 15
+            }
+        ]
+    },
+    {
         "id": "COMPANY_FAIR_REPRESENTATIVE",
         "text": "Şirket ürünlerinin tanıtımı için düzenlenecek önemli bir sektör fuarına katılım planlanıyor. Şirket temsilcisi olarak ilk olarak size teklif yapıldı. Fuara katılmak seyahat gerektiriyor ve birkaç günlük yoğun bir program anlamına geliyor. Teklifi kabul edecek misiniz?",
         "yesEffects": {
