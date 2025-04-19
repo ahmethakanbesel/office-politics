@@ -493,35 +493,52 @@ function showWelcomeCard() {
   updateCardUI(welcomeCard);
 }
 
-function showGameOver() {
+function showGameOver(winReason = null) { // Add optional parameter winReason
   let reason = "";
-  if (resources.motivation <= resources.minValue) {
-    reason = "Motivasyonunuz tükendi. İşi bıraktınız.";
-  } else if (resources.motivation >= resources.maxValue) {
-    reason = "Aşırı motivasyon sizi tüketti. Burnout oldunuz.";
-  } else if (resources.performance <= resources.minValue) {
-    reason = "Performansınız çok düşük. Kovuldunuz.";
-  } else if (resources.performance >= resources.maxValue) {
-    reason = "Çok fazla çalıştınız. Tükenmişlik sendromu yaşadınız.";
-  } else if (resources.colleagues <= resources.minValue) {
-    reason = "İş arkadaşlarınız sizden nefret ediyor. Yalnız kaldınız ve istifa ettiniz.";
-  } else if (resources.colleagues >= resources.maxValue) {
-    reason = "İş arkadaşlarınızla çok yakınsınız. İş yerine sosyal kulüp muamelesi yaptığınız için kovuldunuz.";
-  } else if (resources.boss <= resources.minValue) {
-    reason = "Patronunuz sizi sevmiyor. Kovuldunuz.";
-  } else if (resources.boss >= resources.maxValue) {
-    reason = "Patronunuz sizi çok seviyor. Terfi ettiniz ve oyunu kazandınız!";
+  let isWin = false;
+
+  if (winReason) { // If a specific win reason is provided, use it
+    reason = winReason;
+    isWin = true;
+  } else {
+    if (resources.motivation <= resources.minValue) {
+      reason = "Motivasyonunuz tükendi. İşi bıraktınız.";
+    } else if (resources.motivation >= resources.maxValue) {
+      reason = "Aşırı motivasyon sizi tüketti. Burnout oldunuz.";
+    } else if (resources.performance <= resources.minValue) {
+      reason = "Performansınız çok düşük. Kovuldunuz.";
+    } else if (resources.performance >= resources.maxValue) {
+      reason = "Çok fazla çalıştınız. Tükenmişlik sendromu yaşadınız.";
+    } else if (resources.colleagues <= resources.minValue) {
+      reason = "İş arkadaşlarınız sizden nefret ediyor. Yalnız kaldınız ve istifa ettiniz.";
+    } else if (resources.colleagues >= resources.maxValue) {
+      reason = "İş arkadaşlarınızla çok yakınsınız. İş yerine sosyal kulüp muamelesi yaptığınız için kovuldunuz.";
+    } else if (resources.boss <= resources.minValue) {
+      reason = "Patronunuz sizi sevmiyor. Kovuldunuz.";
+    } else if (resources.boss >= resources.maxValue) {
+      // This is the original win condition
+      reason = "Patronunuz sizi çok seviyor. Terfi ettiniz ve oyunu kazandınız!";
+      isWin = true; // Patronun sizi çok sevmesi durumu bir kazanma durumudur
+    } else {
+      // Fallback if somehow called without a specific reason or boundary hit
+      reason = "Oyun sona erdi.";
+    }
   }
 
   // Add the days lasted text to the reason
-  const daysLasted = `${resources.day - 1} gün dayanabildiniz.`;
+  // Duruma göre farklı mesaj göster
+  const daysMessage = isWin
+    ? `${resources.day - 1} günde kendinizi kurtardınız.`
+    : `${resources.day - 1} gün dayanabildiniz.`;
 
-  // Update game over text with both the reason and days lasted
-  gameOverReasonElement.innerHTML = `${reason}<br><br>${daysLasted}`;
+  // Update game over text with both the reason and days message
+  gameOverReasonElement.innerHTML = `${reason}<br><br>${daysMessage}`;
 
   // Show the game over screen
   gameOverElement.style.display = "flex";
+  gameOver = true; // IMPORTANT: Ensure the gameOver flag is set here too
 }
+
 
 function queueFollowupCard(followupCards, delay, parentCardId) {
   if (!followupCards) return;
@@ -737,179 +754,217 @@ function animateStackForward() {
   }
 }
 
+// Assuming showGameOver, updateResources, queueFollowupCard, applyInfoCardEffects,
+// checkGameOver, getNextCard, updateCardUI, cardElement, gameOverElement,
+// gameOverReasonElement, resources, currentCard, delayedCards, gameOver,
+// window.playedCardIds, window.immediateFollowups, etc. are defined elsewhere
+// as in your original main.js
+
 function processCard(isYes) {
-  if (currentCard && currentCard.text === "Hazırsanız başlayalım") {
-    // Kartı tamamen kaydır
-    const direction = isYes ? 1 : -1;
-    cardElement.style.transition = 'all 0.5s ease';
-    cardElement.style.transform = `translateX(${direction * window.innerWidth}px) rotate(${direction * 45}deg)`;
-    cardElement.style.opacity = "0";
+  // Handle welcome card separately if needed (assuming it's handled before calling this)
+  // if (currentCard && currentCard.id === 'WELCOME') { ... }
 
-    // After animation, start the actual game with the first card
-    setTimeout(() => {
-      // Get the first actual game card
-      currentCard = getNextCard();
-      if (currentCard) {
-        updateCardUI(currentCard);
-      } else {
-        cardTextElement.textContent = "Başlangıç kartı bulunamadı veya gereksinimler karşılanmıyor.";
-        console.error("No initial card found or requirements not met after loading.");
-      }
-      updateUI(); // Update initial resource display
-
-      // Add a new card to the stack
-      //  addNewCardToStack();
-    }, 500);
-
+  // Don't process if card is null or game is already over
+  if (!currentCard || gameOver) {
+    console.log("ProcessCard called with null card or game over state.");
     return;
   }
 
-  // Handle the special case where currentCard is null (no available card)
-  if (!currentCard) {
-    console.log("Processing 'null' card (skipping day).");
-    // Just advance the day and get the next card without applying effects
-    resources.day++;
-    updateUI();
-
-    if (!checkGameOver()) { // Check if skipping the day caused game over
-      currentCard = getNextCard();
-      updateCardUI(currentCard); // Show the next available card
-    }
-    // Reset card position after the "skip"
-    cardElement.style.transition = 'all 0.3s ease';
-    cardElement.style.transform = 'rotate(0) translateX(0)';
-    cardElement.style.opacity = '1'; // Make it fully visible again for the next card
-    cardElement.style.background = 'white'; // Reset background explicitly
-
-    // Add a new card to the stack
-    // addNewCardToStack();
-
-    return;
-  }
-
-  if (gameOver) return; // Don't process if game over
-
-  // Track if the current card is an info card before processing
+  // Store card details before potential changes during processing
+  const cardIdBeforeProcessing = currentCard.id;
   const wasInfoCard = currentCard.isInfoOnly;
 
+  // Define the win message for the competitor offer scenario
+  const competitorWinMessage = "Rakip firmadan gelen teklifi kabul ettiniz ve yeni bir başlangıç yaptınız. Oyunu kazandınız!";
+
+  // --- Inner function to handle logic after swipe animation ---
   const processAfterSwipe = () => {
-    // Şu anki kartın ID'sini saklayın
-    const currentCardId = currentCard.id || null;
+    // Use the stored ID for checks, as currentCard might change
+    const currentCardId = cardIdBeforeProcessing;
 
-    if (currentCard.isInfoOnly) {
-      // Bilgilendirme kartı - Apply effects using the dictionary structure
-      applyInfoCardEffects(currentCard.effects);
+    // --- Check for Competitor Win Condition (Scenario B: Reject Counteroffer) ---
+    let competitorWinTriggered = false;
+    if (currentCardId === 'COUNTEROFFER' && isYes) {
+      // Player chose "Yine de rakip firmaya geçeceksiniz" on the COUNTEROFFER card
+      showGameOver(competitorWinMessage); // Trigger custom win
+      competitorWinTriggered = true;
+      // Game is won, stop further processing for this turn
+      return;
+    }
+    // --- End Competitor Win Check (Scenario B) ---
 
-      // Takip kartı varsa ekle
-      if (currentCard.followup) {
-        queueFollowupCard(currentCard.followup, currentCard.followup.delay, currentCardId);
-      } else if (currentCard.followups) {
-        queueFollowupCard(currentCard.followups, null, currentCardId);
-      }
-    } else {
-      // Normal karar kartı
-      if (isYes) {
-        // Apply 'yes' effects using the dictionary structure
-        updateResources(currentCard.yesEffects);
+    // If the game didn't end with the competitor win, proceed with normal logic
+    if (!competitorWinTriggered) {
 
-        // Takip kartı varsa ekle
-        if (currentCard.yesFollowup) {
-          queueFollowupCard(currentCard.yesFollowup, currentCard.yesFollowup.delay, currentCardId);
-        } else if (currentCard.yesFollowups) {
-          queueFollowupCard(currentCard.yesFollowups, null, currentCardId);
+      // --- Apply Effects and Queue Followups ---
+      if (wasInfoCard) {
+        // Apply effects for info-only cards
+        applyInfoCardEffects(currentCard.effects); // Assuming this function exists
+        // Queue followups for info-only cards
+        if (currentCard.followup) {
+          queueFollowupCard(currentCard.followup, currentCard.followup.delay, currentCardId);
+        } else if (currentCard.followups) {
+          queueFollowupCard(currentCard.followups, null, currentCardId);
         }
       } else {
-        // Apply 'no' effects using the dictionary structure
-        updateResources(currentCard.noEffects);
+        // Apply effects and queue followups for decision cards
+        if (isYes) {
+          updateResources(currentCard.yesEffects); // Update resources first
 
-        // Takip kartı varsa ekle
-        if (currentCard.noFollowup) {
-          queueFollowupCard(currentCard.noFollowup, currentCard.noFollowup.delay, currentCardId);
-        } else if (currentCard.noFollowups) {
-          queueFollowupCard(currentCard.noFollowups, null, currentCardId);
+          // --- Check for Competitor Win Condition (Scenario A: Direct Leave) ---
+          if (currentCardId === 'COMPETITOR_JOB_OFFER') {
+            // Queue the 'yes' followups for the competitor offer
+            if (currentCard.yesFollowup) {
+              queueFollowupCard(currentCard.yesFollowup, currentCard.yesFollowup.delay, currentCardId);
+            } else if (currentCard.yesFollowups) {
+              queueFollowupCard(currentCard.yesFollowups, null, currentCardId);
+            }
+
+            // Check if COUNTEROFFER was NOT queued immediately (delay 0)
+            // This implies the player is leaving directly (either COUNTEROFFER has delay > 0,
+            // wasn't chosen by probability, or GRASS_NOT_GREENER was chosen instead)
+            const counterOfferQueuedImmediately = window.immediateFollowups && window.immediateFollowups.some(f => f.id === 'COUNTEROFFER');
+
+            if (!counterOfferQueuedImmediately) {
+              // Trigger custom win because they accepted the offer and aren't getting an immediate counteroffer
+              showGameOver(competitorWinMessage);
+              competitorWinTriggered = true;
+              return; // Exit early, game is won
+            }
+            // If counter offer *was* queued immediately, the game continues to that card.
+
+          } else {
+            // If it wasn't the competitor offer card, queue 'yes' followups normally
+            if (currentCard.yesFollowup) {
+              queueFollowupCard(currentCard.yesFollowup, currentCard.yesFollowup.delay, currentCardId);
+            } else if (currentCard.yesFollowups) {
+              queueFollowupCard(currentCard.yesFollowups, null, currentCardId);
+            }
+          }
+        } else { // Player chose 'no'
+          updateResources(currentCard.noEffects);
+          // Queue 'no' followups
+          if (currentCard.noFollowup) {
+            queueFollowupCard(currentCard.noFollowup, currentCard.noFollowup.delay, currentCardId);
+          } else if (currentCard.noFollowups) {
+            queueFollowupCard(currentCard.noFollowups, null, currentCardId);
+          }
         }
-      }
-    }
+      } // End of effect/followup logic for decision vs info cards
 
-    // Oynanmış kartların ID'lerini saklamak için bir dizi oluşturun
-    if (!window.playedCardIds) {
-      window.playedCardIds = [];
-    }
+      // If the game didn't end via competitor win, continue processing
+      if (!competitorWinTriggered) {
 
-    // Şu anki kartın ID'sini oynanmış kartlar listesine ekleyin
-    if (currentCardId) {
-      window.playedCardIds.push(currentCardId);
-    }
-
-    // Önce immediate followups'ları kontrol edin
-    if (window.immediateFollowups && window.immediateFollowups.length > 0) {
-      // Uygun bir takip kartı bulun
-      let selectedFollowup = null;
-      let selectedFollowupIndex = -1;
-
-      // Ebeveyn kartı oynanmış takip kartlarını arayın
-      for (let i = 0; i < window.immediateFollowups.length; i++) {
-        const followup = window.immediateFollowups[i];
-        if (followup.parentCardId && window.playedCardIds.includes(followup.parentCardId)) {
-          selectedFollowup = followup;
-          selectedFollowupIndex = i;
-          break;
+        // --- Add to Played Cards ---
+        if (!window.playedCardIds) {
+          window.playedCardIds = [];
         }
-      }
-
-      // Uygun bir takip kartı bulduysak, kullanın
-      if (selectedFollowup) {
-        currentCard = selectedFollowup;
-        window.immediateFollowups.splice(selectedFollowupIndex, 1);
-      } else {
-        // Eğer uygun bir takip kartı yoksa, normal bir sonraki kartı alın
-        currentCard = getNextCard();
-      }
-
-      // Son immediate followup ise, temizleyin
-      if (window.immediateFollowups.length === 0) {
-        window.immediateFollowups = null;
-      }
-    } else {
-      // Immediate followups yok, normal olarak bir sonraki kartı alın
-      // Ama önce delayedCards içinden uygun takip kartlarını kontrol edin
-      let foundDelayedFollowup = false;
-
-      for (let i = 0; i < delayedCards.length; i++) {
-        const delayedItem = delayedCards[i];
-        if (delayedItem.showOnDay <= resources.day &&
-          delayedItem.parentCardId &&
-          window.playedCardIds.includes(delayedItem.parentCardId)) {
-          // Uygun takip kartı bulundu, kullanın
-          currentCard = delayedItem.card;
-          delayedCards.splice(i, 1);
-          foundDelayedFollowup = true;
-          break;
+        // Only add if it's not an info card that might reappear or if tracking is desired
+        // (Adjust this logic based on whether info cards should block future occurrences)
+        if (currentCardId) { // Add the ID of the card just processed
+          window.playedCardIds.push(currentCardId);
         }
-      }
 
-      // Uygun bir takip kartı bulunamadıysa, normal bir sonraki kartı alın
-      if (!foundDelayedFollowup) {
-        currentCard = getNextCard();
-      }
-    }
+        // --- Check Standard Game Over Conditions ---
+        // This check happens AFTER resource updates and potential competitor win
+        if (checkGameOver()) {
+          // showGameOver() was called inside checkGameOver()
+          currentCard = null; // Ensure no new card is processed or UI updated
+          return; // Exit, game ended by resource limits
+        }
 
-    // Oyun bitmediyse yeni kart göster
-    if (!gameOver) {
-      updateCardUI(currentCard);
-    } else {
-      currentCard = null;
-    }
-  };
+        // --- Get Next Card ---
+        let nextCardToShow = null;
 
-  // Kartı tamamen kaydır
+        // 1. Check for Immediate Followups first
+        if (window.immediateFollowups && window.immediateFollowups.length > 0) {
+          let selectedFollowup = null;
+          let selectedFollowupIndex = -1;
+          // Find the first valid immediate followup (respecting parentCardId if needed)
+          for (let i = 0; i < window.immediateFollowups.length; i++) {
+            const followup = window.immediateFollowups[i];
+            // Ensure parent card was played if specified (important for branching)
+            if (!followup.parentCardId || (followup.parentCardId && window.playedCardIds.includes(followup.parentCardId))) {
+              // Basic requirement check for the followup itself
+              if (checkRequirements(followup.requirements)) {
+                selectedFollowup = followup;
+                selectedFollowupIndex = i;
+                break;
+              }
+            }
+          }
+
+          if (selectedFollowup) {
+            nextCardToShow = selectedFollowup;
+            // Remove the selected followup from the immediate queue
+            window.immediateFollowups.splice(selectedFollowupIndex, 1);
+          }
+          // Clean up the global variable if the queue is now empty
+          if (window.immediateFollowups.length === 0) {
+            window.immediateFollowups = null;
+          }
+        }
+
+        // 2. If no immediate followup, check for due Delayed Followups
+        if (!nextCardToShow) {
+          let foundDelayedFollowup = false;
+          // Iterate backwards to allow safe removal with splice
+          for (let i = delayedCards.length - 1; i >= 0; i--) {
+            const delayedItem = delayedCards[i];
+            if (delayedItem.showOnDay <= resources.day) {
+              // Ensure parent card was played if specified
+              if (!delayedItem.parentCardId || (delayedItem.parentCardId && window.playedCardIds.includes(delayedItem.parentCardId))) {
+                // Basic requirement check for the delayed card
+                if (checkRequirements(delayedItem.card.requirements)) {
+                  nextCardToShow = delayedItem.card;
+                  delayedCards.splice(i, 1); // Remove from delayed queue
+                  foundDelayedFollowup = true;
+                  break; // Show only one delayed card per turn if multiple are due
+                } else {
+                  // Requirement not met, potentially discard or keep checking?
+                  // For now, let's assume we just skip it this turn.
+                  // console.log(`Delayed card ${delayedItem.card.id} requirements not met.`);
+                  // Optionally remove it if it should only be checked once:
+                  // delayedCards.splice(i, 1);
+                }
+              } else {
+                // Parent card not played, this delayed card is invalid, remove it.
+                // console.log(`Parent card ${delayedItem.parentCardId} not played for delayed card ${delayedItem.card.id}. Removing.`);
+                // delayedCards.splice(i, 1);
+              }
+            }
+          }
+        }
+
+        // 3. If still no card, get the next card from the general deck logic
+        if (!nextCardToShow) {
+          nextCardToShow = getNextCard(); // This function handles deck logic, requirements, shuffling etc.
+        }
+
+        // --- Update Game State and UI ---
+        currentCard = nextCardToShow; // Update the global currentCard
+
+        if (!gameOver) { // Double-check game isn't over before UI update
+          updateCardUI(currentCard); // Update UI with the new card (or null/calm day message)
+        } else {
+          // If somehow gameOver became true between checkGameOver and here, ensure UI doesn't update
+          updateCardUI(null); // Or handle appropriately
+        }
+
+      } // End of check for !competitorWinTriggered (after effects/followups)
+    } // End of check for !competitorWinTriggered (before effects/followups)
+  }; // --- End of processAfterSwipe function ---
+
+  // --- Trigger Swipe Animation ---
   const direction = isYes ? 1 : -1;
-  cardElement.style.transition = 'all 0.5s ease'; // Use 'all' for smooth opacity + transform
-  cardElement.style.transform = `translateX(${direction * window.innerWidth}px) rotate(${direction * 45}deg)`;
+  cardElement.style.transition = 'transform 0.5s ease, opacity 0.5s ease'; // Ensure opacity transition
+  cardElement.style.transform = `translateX(${direction * (window.innerWidth / 1.5)}px) rotate(${direction * 30}deg)`; // Adjust distance/rotation as needed
   cardElement.style.opacity = "0";
 
-  setTimeout(processAfterSwipe, 500); // Wait for animation to finish
+  // --- Wait for animation, then process logic ---
+  setTimeout(processAfterSwipe, 500); // Match timeout to animation duration
 }
+
 
 // Card dragging logic
 cardElement.addEventListener('mousedown', startDrag);
