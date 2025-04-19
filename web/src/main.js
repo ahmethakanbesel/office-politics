@@ -565,7 +565,7 @@ function showGameOver(winReason = null) { // Add optional parameter winReason
   // Add the days lasted text to the reason
   // Duruma göre farklı mesaj göster
   const daysMessage = isWin
-    ? `${resources.day - 1} günde kendinizi kurtardınız.`
+    ? `${resources.day - 1} günde kariyerinizde yeni bir dönüm noktasına ulaştınız.`
     : `${resources.day - 1} gün dayanabildiniz.`;
 
   // Update game over text with both the reason and days message
