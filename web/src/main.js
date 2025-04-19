@@ -461,10 +461,10 @@ function updateResources(effects) {
   if (!effects) return; // No effects to apply
 
   // Get current values or 0 if not specified in effects
-  const motivationChange = effects.motivation * 0.5 || 0;
-  const performanceChange = effects.performance * 0.5 || 0;
-  const colleaguesChange = effects.colleagues * 0.5 || 0;
-  const bossChange = effects.boss * 0.5 || 0;
+  const motivationChange = effects.motivation * 0.50 || 0;
+  const performanceChange = effects.performance * 0.50 || 0;
+  const colleaguesChange = effects.colleagues * 0.35 || 0;
+  const bossChange = effects.boss * 0.50 || 0;
 
   // Update resources, clamping between minValue and maxValue
   resources.motivation = Math.max(Math.min(resources.motivation + motivationChange, resources.maxValue), resources.minValue);
@@ -549,7 +549,7 @@ function showGameOver(winReason = null) { // Add optional parameter winReason
     } else if (resources.colleagues <= resources.minValue) {
       reason = "İş arkadaşlarınız sizden nefret ediyor. Yalnız kaldınız ve istifa ettiniz.";
     } else if (resources.colleagues >= resources.maxValue) {
-      reason = "İş arkadaşlarınızla çok yakınsınız. İş yerine sosyal kulüp muamelesi yaptığınız için kovuldunuz.";
+      reason = "İş arkadaşlarınızla çok yakınsınız. Bu aranızdaki sosyalliğin artmasına ve işyerine sosyal kulüp muamelesi yapmanıza sebep oldu. Kovuldunuz.";
     } else if (resources.boss <= resources.minValue) {
       reason = "Patronunuz sizi sevmiyor. Kovuldunuz.";
     } else if (resources.boss >= (resources.maxValue + 100)) {
