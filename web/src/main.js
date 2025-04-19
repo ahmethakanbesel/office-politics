@@ -184,6 +184,11 @@ function getNextCard() {
 
     if (readyFollowupIndex !== -1) {
       const readyFollowup = delayedCards[readyFollowupIndex];
+      // Takip kartına maxUses varsayılan değerini ata
+      if (readyFollowup.card.parentCardId && readyFollowup.card.maxUses === undefined) {
+        readyFollowup.card.maxUses = 1;
+      }
+
       if (checkRequirements(readyFollowup.card.requirements, resources)) {
         delayedCards.splice(readyFollowupIndex, 1);
         // Increment uses for delayed cards as well if they have maxUses
@@ -204,6 +209,11 @@ function getNextCard() {
 
       if (readyNonInfoCardIndex !== -1) {
         const readyCard = delayedCards[readyNonInfoCardIndex];
+        // Takip kartına maxUses varsayılan değerini ata
+        if (readyCard.card.parentCardId && readyCard.card.maxUses === undefined) {
+          readyCard.card.maxUses = 1;
+        }
+
         // Check requirements for delayed cards too
         if (checkRequirements(readyCard.card.requirements, resources)) {
           delayedCards.splice(readyNonInfoCardIndex, 1);
@@ -224,6 +234,11 @@ function getNextCard() {
 
       if (readyCardIndex !== -1) {
         const readyCard = delayedCards[readyCardIndex];
+        // Takip kartına maxUses varsayılan değerini ata
+        if (readyCard.card.parentCardId && readyCard.card.maxUses === undefined) {
+          readyCard.card.maxUses = 1;
+        }
+
         if (checkRequirements(readyCard.card.requirements, resources)) {
           delayedCards.splice(readyCardIndex, 1);
           if (readyCard.card.maxUses) {
@@ -247,7 +262,14 @@ function getNextCard() {
     potentialCards = [...availableCards]; // Use the fresh pool
   }
 
-  // 3. Filter the potential cards
+  // 3. Tüm takip kartlarına varsayılan maxUses değeri atanıyor
+  potentialCards.forEach(card => {
+    if (card.parentCardId && card.maxUses === undefined) {
+      card.maxUses = 1;
+    }
+  });
+
+  // 4. Filter the potential cards
   let validCards = potentialCards.filter(card => {
     // Filter 1: Max Uses
     const maxUsesOk = !card.maxUses || (card.uses || 0) < card.maxUses;
@@ -266,7 +288,7 @@ function getNextCard() {
     return true;
   });
 
-  // 4. Handle case where filtering results in no valid cards
+  // 5. Handle case where filtering results in no valid cards
   if (validCards.length === 0) {
     console.log("No cards meet requirements/maxUses from current pool. Trying full reshuffle and re-filter...");
 
@@ -274,6 +296,13 @@ function getNextCard() {
     cards.forEach(card => card.uses = 0);
     availableCards = [...cards];
     potentialCards = [...availableCards]; // Use the fresh pool
+
+    // Tüm kartlara tekrar maxUses değeri atanıyor
+    potentialCards.forEach(card => {
+      if (card.parentCardId && card.maxUses === undefined) {
+        card.maxUses = 1;
+      }
+    });
 
     // Re-apply filters, but if we're still getting no cards, relax the info card constraint
     validCards = potentialCards.filter(card => {
@@ -311,7 +340,7 @@ function getNextCard() {
     }
   }
 
-  // 5. Prioritize non-info cards if the previous was info
+  // 6. Prioritize non-info cards if the previous was info
   if (previousCardWasInfo && validCards.length > 0) {
     // Try to find non-info cards first
     const nonInfoCards = validCards.filter(card => !card.isInfoOnly);
@@ -323,23 +352,23 @@ function getNextCard() {
     // Otherwise, we'll reluctantly use an info card if that's all we have
   }
 
-  // 6. Öncelik olarak takip kartlarını seç
+  // 7. Öncelik olarak takip kartlarını seç
   const followupCards = validCards.filter(card => card.parentCardId && window.playedCardIds.includes(card.parentCardId));
   if (followupCards.length > 0) {
     validCards = followupCards;
   }
 
-  // 7. Select a random card from the valid list
+  // 8. Select a random card from the valid list
   const randomIndex = Math.floor(Math.random() * validCards.length);
   const selectedCard = validCards[randomIndex];
 
-  // 8. Remove the selected card from the main available list for this cycle
+  // 9. Remove the selected card from the main available list for this cycle
   const cardIndexInAvailable = availableCards.indexOf(selectedCard);
   if (cardIndexInAvailable > -1) {
     availableCards.splice(cardIndexInAvailable, 1);
   }
 
-  // 9. Increment uses count for the selected card
+  // 10. Increment uses count for the selected card
   if (!selectedCard.uses) selectedCard.uses = 0;
   selectedCard.uses++;
 
@@ -503,6 +532,10 @@ function queueFollowupCard(followupCards, delay, parentCardId) {
   if (!Array.isArray(followupCards)) {
     // Takip kartına ebeveyn kart ID'sini ekle
     followupCards.parentCardId = parentCardId;
+    // Takip kartlarına varsayılan maxUses=1 atanıyor
+    if (followupCards.maxUses === undefined) {
+      followupCards.maxUses = 1;
+    }
     cardsToQueue.push(followupCards);
   } else {
     // Handle array of followups with probabilities
@@ -518,6 +551,10 @@ function queueFollowupCard(followupCards, delay, parentCardId) {
         if (random <= cumulativeProbability) {
           // Takip kartına ebeveyn kart ID'sini ekle
           card.parentCardId = parentCardId;
+          // Takip kartlarına varsayılan maxUses=1 atanıyor
+          if (card.maxUses === undefined) {
+            card.maxUses = 1;
+          }
           cardsToQueue.push(card);
           selected = true;
           break;
@@ -531,6 +568,10 @@ function queueFollowupCard(followupCards, delay, parentCardId) {
       const selectedCard = followupCards[randomIndex];
       // Takip kartına ebeveyn kart ID'sini ekle
       selectedCard.parentCardId = parentCardId;
+      // Takip kartlarına varsayılan maxUses=1 atanıyor
+      if (selectedCard.maxUses === undefined) {
+        selectedCard.maxUses = 1;
+      }
       cardsToQueue.push(selectedCard);
     }
   }
