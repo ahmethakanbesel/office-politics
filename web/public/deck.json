@@ -7306,7 +7306,7 @@
     },
     {
         "id": "INFO_OFFICE_RENOVATION",
-        "text": "Yeni satın alınan klimaların yerleşimi konusunda sizin görüşünüz alınmamış ve sizi rahatsız eden bir konumda yerleştirilmiş.",
+        "text": "Yeni satın alınan klimaların yerleşimi konusunda sizin görüşünüz alınmamış ve sizi rahatsız eden bir konumda yerleştirilmiş. Bu performansınızı olumsuz etkiliyor.",
         "effects": {
             "motivation": -5,
             "performance": -10,
