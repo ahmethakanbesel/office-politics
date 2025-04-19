@@ -4395,7 +4395,7 @@
     },
     {
         "id": "HOME_REPAIR",
-        "text": "Bugün evden çalışıyordunuz ve su tesisatınızda bir sorun oluştu ve tamirci çağırmanız gerekiyor. Bu durumu ekibinize bildirir misiniz?",
+        "text": "Bugün evinizden çalışıyorsunuz ve su tesisatınızda bir sorun oluştu ve tamirci çağırmanız gerekiyor. Bu durumu ekibinize bildirir misiniz?",
         "yesEffects": {
             "motivation": 5,
             "performance": -5,
@@ -4470,7 +4470,7 @@
     },
     {
         "id": "CHILD_CARE_EMERGENCY",
-        "text": "Bugün uzaktan çalışıyordunuz ve çocuğunuzun okulundan aradılar, acilen gelip çocuğunuzu almanızı istediler. Önemli bir toplantıdasınız. Ne yaparsınız?",
+        "text": "Bugün ofise gitmediniz, uzaktan çalışıyorsunuz ve çocuğunuzun okulundan aradılar. Acilen gelip çocuğunuzu almanızı istediler. Önemli bir toplantıdasınız. Ne yaparsınız?",
         "yesEffects": {
             "motivation": 5,
             "performance": -10,
