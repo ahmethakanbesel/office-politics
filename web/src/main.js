@@ -1092,7 +1092,7 @@ function endDrag(e) {
   if (!dragging || gameOver) return;
   dragging = false;
 
-  const threshold = 150; // kaydırma eşiği
+  const threshold = 50; // kaydırma eşiği
 
   if (Math.abs(currentX) > threshold) {
     // Karar verildi (or day skip triggered if currentCard is null)
