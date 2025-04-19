@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Office Politics</title>
+  <link rel="stylesheet" href="/src/style.css?v=1.0.0-alpha1">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+  <meta name="theme-color" content="#374151">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="/manifest.json">
+</head>
+
+<body>
+  <div id="game-container">
+    <div id="day-counter">Gün 1</div>
+
+    <div class="stats-container">
+      <div class="stat-icon" id="motivation-icon">
+        <div class="stat-fill motivation-fill" style="height: 40%;"></div>
+        <div class="stat-symbol" title="Motivasyon">❤️</div>
+        <div class="stat-tooltip">Motivasyon</div>
+      </div>
+      <div class="stat-icon" id="performance-icon">
+        <div class="stat-fill performance-fill" style="height: 40%;"></div>
+        <div class="stat-symbol" title="Performans">📈</div>
+        <div class="stat-tooltip">Performans</div>
+      </div>
+      <div class="stat-icon" id="colleagues-icon">
+        <div class="stat-fill colleagues-fill" style="height: 40%;"></div>
+        <div class="stat-symbol" title="İş Arkadaşları">👥</div>
+        <div class="stat-tooltip">İş Arkadaşları</div>
+      </div>
+      <div class="stat-icon" id="boss-icon">
+        <div class="stat-fill boss-fill" style="height: 40%;"></div>
+        <div class="stat-symbol" title="Patron">👔</div>
+        <div class="stat-tooltip">Patron</div>
+      </div>
+    </div>
+
+    <div id="card-area">
+      <div class="card-stack-item"></div>
+      <div class="card-stack-item"></div>
+
+      <div id="card">
+        <div id="card-text">Yükleniyor...</div>
+        <div class="decision-options">
+          <div id="no-option">Hayır</div>
+          <div id="yes-option">Evet</div>
+        </div>
+        <div id="swipe-indicator">Kaydırmak için sürükle</div>
+      </div>
+    </div>
+
+
+    <div id="about-icon">i</div>
+    <div id="copyright">©2025 Office Politics.</div>
+  </div>
+
+  <div id="about-modal">
+    <div id="about-content">
+      <h2 id="about-title">Office Politics Hakkında</h2>
+      <p id="about-text">
+        Bu oyun, Reigns oyunundan ilham alınarak yapılmıştır.<br>
+        <br><br>
+
+        Office Politics, ofis hayatındaki kararları simüle eden bir oyundur.<br>
+        Kartları sağa veya sola kaydırarak kararlar verin ve<br>
+        ❤️motivasyon, 📈performans, 👥iş arkadaşları ve 👔patron memnuniyetini<br>
+        dengelemeye çalışın.<br><br>
+
+        Kapatmak için herhangi bir yere tıklayın.
+      </p>
+    </div>
+  </div>
+
+  <div id="game-over">
+    <h2 id="game-over-title">Oyun Bitti!</h2>
+    <p id="game-over-reason"></p>
+    <button id="restart-button">Yeniden Başla</button>
+  </div>
+
+  <script type="module" src="/src/main.js?v=1.0.0-alpha8"></script>
+</body>
+
+</html>
