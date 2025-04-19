@@ -305,12 +305,12 @@
                     "boss": 20
                 },
                 "isInfoOnly": true,
-                "delay": 60,
+                "delay": 20,
                 "probability": 70
             },
             {
                 "id": "KNOWLEDGE_SHARING",
-                "text": "Sertifika programında edindiğiniz bilgileri ekibinizle paylaşarak kısa bir eğitim düzenlediniz. Bu girişiminiz, ekibin gelişimine katkı sağladı ve liderlik vasıflarınızı gösterdi.",
+                "text": "Geçen ay sertifika programında edindiğiniz bilgileri ekibinizle paylaşarak kısa bir eğitim düzenlediniz. Bu girişiminiz, ekibin gelişimine katkı sağladı ve liderlik vasıflarınızı gösterdi.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
@@ -318,7 +318,7 @@
                     "boss": 15
                 },
                 "isInfoOnly": true,
-                "delay": 75,
+                "delay": 35,
                 "probability": 30
             }
         ],
@@ -334,11 +334,11 @@
                 },
                 "isInfoOnly": true,
                 "delay": 30,
-                "probability": 65
+                "probability": 25
             },
             {
                 "id": "IMPROVED_PROGRAM",
-                "text": "Bekleyişiniz meyvesini verdi. Ertelediğiniz programın daha kapsamlı ve şirket tarafından desteklenen bir versiyonu duyuruldu. Şimdi hem mesai saatlerinde katılabilecek hem de masraflarınız karşılanacak.",
+                "text": "Geçtiğimiz ay karşınıza çıkan bir sertifika programına daha sonra katılırım düşüncesiyle katılmamayı tercih etmiştiniz. Ertelediğiniz programın daha kapsamlı ve şirket tarafından desteklenen bir versiyonu duyuruldu. Şimdi hem mesai saatlerinde katılabileceksiniz hem de masraflarınız karşılanacak.",
                 "effects": {
                     "motivation": 15,
                     "performance": 5,
@@ -346,7 +346,7 @@
                     "boss": 10
                 },
                 "isInfoOnly": true,
-                "delay": 90,
+                "delay": 30,
                 "probability": 35
             }
         ]
@@ -385,7 +385,7 @@
             },
             {
                 "id": "MUTUAL_LEARNING",
-                "text": "Mentorluk ilişkisi beklenmedik şekilde iki yönlü bir öğrenme deneyimine dönüştü. Yeni çalışan taze perspektifiyle size de yeni teknolojiler ve yaklaşımlar konusunda ilham verdi.",
+                "text": "Yeni çalışana mentorluk yaparken, mentorluk ilişkisi beklenmedik şekilde iki yönlü bir öğrenme deneyimine dönüştü. Yeni çalışan taze perspektifiyle size de yeni teknolojiler ve yaklaşımlar konusunda ilham verdi.",
                 "effects": {
                     "motivation": 20,
                     "performance": 15,
@@ -400,7 +400,7 @@
         "noFollowups": [
             {
                 "id": "FOCUSED_ACHIEVEMENTS",
-                "text": "Mentorluğu reddetme kararınız, kendi işlerinize odaklanmanızı sağladı. Bu sayede önemli bir projeyi zamanından önce tamamladınız ve takdir topladınız.",
+                "text": "Yeni çalışana mentorluk yapmayı reddetme kararınız, kendi işlerinize odaklanmanızı sağladı. Bu sayede önemli bir projeyi zamanından önce tamamladınız ve takdir topladınız.",
                 "effects": {
                     "motivation": 10,
                     "performance": 15,
@@ -409,7 +409,7 @@
                 },
                 "isInfoOnly": true,
                 "delay": 21,
-                "probability": 60
+                "probability": 5
             },
             {
                 "id": "FUTURE_OPPORTUNITY",
@@ -422,7 +422,7 @@
                 },
                 "isInfoOnly": true,
                 "delay": 45,
-                "probability": 40
+                "probability": 20
             }
         ]
     },
@@ -447,7 +447,7 @@
         "yesFollowups": [
             {
                 "id": "CAREER_ADVANCEMENT",
-                "text": "Başarınızı sahiplenmeniz ve becerilerinizi göstermeniz, yönetim kademesinde olumlu bir izlenim bıraktı. İki hafta sonra, şirkette daha üst düzey bir pozisyon için düşünüldüğünüzü öğrendiniz.",
+                "text": "İki hafta önce, başarınızı sahiplenip teşekkür etmeyi seçmiştiniz. Bu yaklaşımınız yönetim kademesinde olumlu bir izlenim bıraktı ve şirkette daha üst düzey bir pozisyon için düşünüldüğünüzü öğrendiniz.",
                 "effects": {
                     "motivation": 20,
                     "performance": 15,
@@ -460,7 +460,7 @@
             },
             {
                 "id": "MENTORSHIP_OPPORTUNITY",
-                "text": "Gösterdiğiniz profesyonellik ve uzmanlık, üst düzey bir yöneticinin dikkatini çekti. Size mentorluk teklif etti ve kariyer gelişiminize katkıda bulunmak istediğini belirtti.",
+                "text": "Bir hafta önce, başarınızı sahiplenip teşekkür etmeyi seçmiştiniz. Gösterdiğiniz profesyonellik ve uzmanlık, üst düzey bir yöneticinin dikkatini çekti. Size mentorluk teklif etti ve kariyer gelişiminize katkıda bulunmak istediğini belirtti.",
                 "effects": {
                     "motivation": 15,
                     "performance": 15,
@@ -475,7 +475,7 @@
         "noFollowups": [
             {
                 "id": "TEAM_ADMIRATION",
-                "text": "Başarıyı ekibe mal etmeniz, takım arkadaşlarınız arasında büyük takdir topladı. Ekip içindeki dayanışma güçlendi ve herkes sizinle çalışmaktan keyif aldığını ifade etti.",
+                "text": "Beş gün önce, alçakgönüllü kalıp ekip çalışmasını vurgulamayı seçmiştiniz. Bu yaklaşımınız takım arkadaşlarınız arasında büyük takdir topladı. Ekip içindeki dayanışma güçlendi ve herkes sizinle çalışmaktan keyif aldığını ifade etti.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
@@ -488,7 +488,7 @@
             },
             {
                 "id": "LEADERSHIP_QUALITIES",
-                "text": "Alçakgönüllü tavrınız ve ekip çalışmasını vurgulamanız, yöneticiniz tarafından güçlü bir liderlik özelliği olarak değerlendirildi. Gelecekte bir ekip liderliği pozisyonu için sizi düşünmeye başladı.",
+                "text": "Üç hafta önce, alçakgönüllü kalıp ekip çalışmasını vurgulamayı seçmiştiniz. Bu alçakgönüllü tavrınız ve ekip çalışmasını vurgulamanız, yöneticiniz tarafından güçlü bir liderlik özelliği olarak değerlendirildi. Gelecekte bir ekip liderliği pozisyonu için sizi düşünmeye başladı.",
                 "effects": {
                     "motivation": 10,
                     "performance": 10,
@@ -692,7 +692,7 @@
     },
     {
         "id": "NEW_TEAMMATE_CRITICISM",
-        "text": "Ekibe yeni katılan bir takım arkadaşınız, sizi çok tanımadan, sadece gözlemlerine dayanarak sizin 'empatiden yoksun biri gibi gözüktüğünüzü' söyledi. Bu beklenmedik yorum karşısında nasıl tepki vereceksiniz?",
+        "text": "Ekibe yeni katılan bir takım arkadaşınız, sizi çok tanımadan, sadece gözlemlerine dayanarak bazı kişilik özelliklerinizi eleştirdi. Bu beklenmedik yorum karşısında nasıl tepki vereceksiniz?",
         "yesEffects": {
             "motivation": -10,
             "performance": -5,
@@ -711,7 +711,7 @@
         "yesFollowups": [
             {
                 "id": "WORSENED_REPUTATION",
-                "text": "Geçen hafta yeni ekip arkadaşınızın empatiden yoksun olduğunuz yorumuna sert bir şekilde karşılık vermiştiniz. Bu tepkiniz, onun söylediği şeyi kanıtlar nitelikte algılandı ve ekip içinde 'zor bir kişi' olarak etiketlenmenize yol açtı. Yeni takım üyeleriyle ilişki kurmanız zorlaştı.",
+                "text": "Beş gün önce, yeni ekip arkadaşınızın eleştirisine sert bir şekilde karşılık vermeyi seçmiştiniz. Bu tepkiniz, onun söylediği şeyi kanıtlar nitelikte algılandı ve ekip içinde 'zor bir kişi' olarak etiketlenmenize yol açtı. Yeni takım üyeleriyle ilişki kurmanız zorlaştı.",
                 "effects": {
                     "motivation": -15,
                     "performance": -10,
@@ -724,7 +724,7 @@
             },
             {
                 "id": "INTIMIDATED_COLLEAGUE",
-                "text": "Yeni ekip arkadaşınızın yorumuna verdiğiniz sert tepki onu korkuttu. Artık sizinle iletişim kurmaktan çekiniyor ve bu durum iş birliğinizi olumsuz etkiliyor. Diğer takım üyeleri de sizin tavırlarınız konusunda tedirgin olmaya başladı.",
+                "text": "İki gün önce, yeni ekip arkadaşınızın eleştirisine sert bir şekilde karşılık vermeyi seçmiştiniz. Bu sert tepkiniz onu korkuttu. Artık sizinle iletişim kurmaktan çekiniyor ve bu durum iş birliğinizi olumsuz etkiliyor. Diğer takım üyeleri de sizin tavırlarınız konusunda tedirgin olmaya başladı.",
                 "effects": {
                     "motivation": -5,
                     "performance": -15,
@@ -739,7 +739,7 @@
         "noFollowups": [
             {
                 "id": "CONSTRUCTIVE_DIALOGUE",
-                "text": "İki hafta önce, yeni ekip arkadaşınızın 'empatiden yoksun' yorumuna sakin kalıp onu anlamaya çalışarak yaklaşmıştınız. Bu yaklaşımınız sayesinde, onun aslında iş tarzınızı yanlış yorumladığını ve sizin bazı davranışlarınızı farklı algıladığını öğrendiniz. Açık iletişim kurarak bu yanlış anlaşılmayı giderdiniz ve şimdi daha iyi bir iş ilişkiniz var.",
+                "text": "İki hafta önce, yeni ekip arkadaşınızın kişilik özelliklerinize ilişkin yorumuna sakin kalıp onu anlamaya çalışarak yaklaşmıştınız. Bu yaklaşımınız sayesinde, onun aslında iş tarzınızı yanlış yorumladığını ve sizin bazı davranışlarınızı farklı algıladığını öğrendiniz. Açık iletişim kurarak bu yanlış anlaşılmayı giderdiniz ve şimdi daha iyi bir iş ilişkiniz var.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
@@ -765,7 +765,7 @@
             },
             {
                 "id": "RESPECTED_MATURITY",
-                "text": "Yeni ekip arkadaşınızın eleştirisine olgun tepkiniz, ekip içinde takdir topladı. İlerleyen günlerde bazı meslektaşlarınız bu durumu duyduklarını ve profesyonelliğinize hayran kaldıklarını belirttiler. Bu olay, ekip içindeki saygınlığınızı artırdı.",
+                "text": "On gün önce, yeni ekip arkadaşınızın eleştirisine sakin kalıp anlamaya çalışmayı seçmiştiniz. Bu olgun tepkiniz, ekip içinde takdir topladı. İlerleyen günlerde bazı meslektaşlarınız bu durumu duyduklarını ve profesyonelliğinize hayran kaldıklarını belirttiler. Bu olay, ekip içindeki saygınlığınızı artırdı.",
                 "effects": {
                     "motivation": 5,
                     "performance": 5,
@@ -812,7 +812,7 @@
             },
             {
                 "id": "GOSSIP_CIRCLE",
-                "text": "Dedikodulara katılmanızdan sonra, arkadaşınız diğer çalışanlarla da benzer konuşmalara girdiğinizi düşünmeye başladı. Zamanla bu davranış ofiste daha geniş bir dedikodu kültürünün parçası oldunuz ve profesyonel itibarınız zarar görmeye başladı.",
+                "text": "On gün önce, bir arkadaşınızın dedikodusuna katılmayı seçmiştiniz. Bu davranışınızdan sonra, arkadaşınız diğer çalışanlarla da benzer konuşmalara girdiğinizi düşünmeye başladı. Zamanla bu davranış ofiste daha geniş bir dedikodu kültürünün parçası olmanıza yol açtı ve profesyonel itibarınız zarar görmeye başladı.",
                 "effects": {
                     "motivation": -10,
                     "performance": -5,
@@ -825,7 +825,7 @@
             },
             {
                 "id": "FRIENDSHIP_ALLIANCE",
-                "text": "Dedikodulara katılmanız, bu arkadaşınızla aranızdaki bağı güçlendirdi ancak diğer arkadaşınızla olan ilişkinizde bir soğukluk hissediyorsunuz, sanki bir şeylerden şüpheleniyormuş gibi davranıyor.",
+                "text": "Üç gün önce, bir arkadaşınızın dedikodusuna katılmayı seçmiştiniz. Bu durum, dedikodu yapan arkadaşınızla aranızdaki bağı güçlendirdi ancak diğer arkadaşınızla olan ilişkinizde bir soğukluk hissediyorsunuz, sanki bir şeylerden şüpheleniyormuş gibi davranıyor.",
                 "effects": {
                     "motivation": -5,
                     "performance": 0,
@@ -853,7 +853,7 @@
             },
             {
                 "id": "MEDIATOR_ROLE",
-                "text": "Dedikodu yapmayı reddetmeniz ve arkadaşınıza sorunları doğrudan konuşmasını önermeniz sonucu, siz iki arkadaşınız arasında bir arabulucu rolü üstlendiniz. Yardımınızla iletişim kurdular ve aralarındaki sorunu çözmeye başladılar.",
+                "text": "Bir hafta önce, dedikodu yapmak istemediğinizi belirtmiştiniz. Bu tavrınız ve arkadaşınıza sorunları doğrudan konuşmasını önermeniz sonucu, siz iki arkadaşınız arasında bir arabulucu rolü üstlendiniz. Yardımınızla iletişim kurdular ve aralarındaki sorunu çözmeye başladılar.",
                 "effects": {
                     "motivation": 10,
                     "performance": 5,
@@ -866,7 +866,7 @@
             },
             {
                 "id": "TEMPORARY_FRICTION",
-                "text": "Dedikodu yapmak istemediğinizi söylediğinizde arkadaşınız bozuldu ve size karşı kısa süreli bir soğukluk yaşandı. Ancak zamanla tavrınızın doğruluğunu anladı ve size olan saygısı arttı.",
+                "text": "Dört gün önce, dedikodu yapmak istemediğinizi söylemiştiniz. Bu durum arkadaşınızın bozulmasına ve size karşı kısa süreli bir soğukluk yaşamasına neden oldu. Ancak zamanla tavrınızın doğruluğunu anladı ve size olan saygısı arttı.",
                 "effects": {
                     "motivation": 5,
                     "performance": 0,
@@ -988,7 +988,7 @@
         "yesFollowups": [
             {
                 "id": "PUBLIC_ARGUMENT",
-                "text": "Geçen hafta öğle yemeğinde bir arkadaşınızın sizi hedef alan konuşmasına karşılık vermiştiniz. Durum hızla yemek masasında büyük bir tartışmaya dönüştü. Diğer iş arkadaşlarınız rahatsız oldu ve ortam gerildi. Sonraki günlerde bu olayın dedikodusunun yapıldığını duydunuz.",
+                "text": "Geçen gün öğle yemeğinde bir arkadaşınızın sizi hedef alan konuşmasına karşılık vermiştiniz. Durum hızla yemek masasında büyük bir tartışmaya dönüştü. Diğer iş arkadaşlarınız rahatsız oldu ve ortam gerildi. Sonraki günlerde bu olayın dedikodusunun yapıldığını duydunuz.",
                 "effects": {
                     "motivation": -15,
                     "performance": -10,
@@ -1190,7 +1190,7 @@
             },
             {
                 "id": "ONGOING_TENSION",
-                "text": "Dini inançlarınızı savunmanız kısa süreli bir tartışmaya yol açmasa da, bazı iş arkadaşlarınız sizinle aynı fikirde değildi. Bu durum sonraki günlerde hafif bir gerginlik yarattı ve bazı iş arkadaşlarınız dinle ilgili konuşmalarında sizin yanınızda daha temkinli davranmaya başladı.",
+                "text": "İki gün önceki tartışma sırasında dini inançlarınızı savunmanız kısa süreli bir tartışmaya yol açmasa da, bazı iş arkadaşlarınız sizinle aynı fikirde değildi. Bu durum sonraki günlerde hafif bir gerginlik yarattı ve bazı iş arkadaşlarınız dinle ilgili konuşmalarında sizin yanınızda daha temkinli davranmaya başladı.",
                 "effects": {
                     "motivation": -5,
                     "performance": -5,
@@ -1340,7 +1340,7 @@
         "yesFollowups": [
             {
                 "id": "SILENCED_CRITICS",
-                "text": "Hakkınızdaki performans dedikodularına yanıt olarak işinize daha çok odaklanmıştınız. Üstün performansınız ve somut başarılarınız eleştirileri susturdu ve saygınlığınızı artırdı.",
+                "text": "Beş gün önce, hakkınızdaki dedikodulara performansınızı artırarak cevap vermeyi seçmiştiniz. Üstün performansınız ve somut başarılarınız eleştirileri susturdu ve saygınlığınızı artırdı.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
@@ -1353,7 +1353,7 @@
             },
             {
                 "id": "BURNOUT_RISK",
-                "text": "Hakkınızdaki dedikoduları susturmak için kendinizi fazla zorladınız. Performansınız arttı ama bu tempo sizi tüketiyor ve tükenmişlik belirtileri göstermeye başladınız.",
+                "text": "Bir hafta önce, hakkınızdaki dedikodulara performansınızı artırarak cevap vermeyi seçmiştiniz. Ancak kendinizi fazla zorladınız; performansınız artsa da bu tempo sizi tüketiyor ve tükenmişlik belirtileri göstermeye başladınız.",
                 "effects": {
                     "motivation": -10,
                     "performance": 5,
@@ -1368,7 +1368,7 @@
         "noFollowups": [
             {
                 "id": "CLEARED_AIR",
-                "text": "Performansınız hakkında dedikodu yapanlarla doğrudan konuşmuştunuz. Açık iletişim sayesinde yanlış anlaşılmalar giderildi ve bazı yapıcı geri bildirimler aldınız. İş ilişkileriniz iyileşti.",
+                "text": "İki gün önce, hakkınızdaki dedikodular üzerine dedikodu yapanları bulup konuşmayı seçmiştiniz. Açık iletişim sayesinde yanlış anlaşılmalar giderildi, bazı yapıcı geri bildirimler aldınız ve iş ilişkileriniz iyileşti.",
                 "effects": {
                     "motivation": 10,
                     "performance": 5,
@@ -1381,7 +1381,7 @@
             },
             {
                 "id": "WORSENED_REPUTATION",
-                "text": "Hakkınızdaki dedikodulara doğrudan karşılık verme çabanız ters tepti. Savunmacı tavrınız bazılarına göre performans sorunlarınızı kabul etmediğiniz şeklinde yorumlandı ve durum daha da kötüleşti.",
+                "text": "Üç gün önce, hakkınızdaki dedikodular üzerine dedikodu yapanları bulup konuşmayı seçmiştiniz. Ancak bu çabanız ters tepti; savunmacı tavrınız bazılarına göre performans sorunlarınızı kabul etmediğiniz şeklinde yorumlandı ve durum daha da kötüleşti.",
                 "effects": {
                     "motivation": -20,
                     "performance": -10,
@@ -1557,6 +1557,11 @@
                 },
                 {
                     "resource": "motivation",
+                    "comparison": "gte",
+                    "value": 80
+                },
+                {
+                    "resource": "colleagues",
                     "comparison": "gte",
                     "value": 80
                 },
@@ -1890,7 +1895,7 @@
             },
             {
                 "id": "DEFENSIVE_REACTION",
-                "text": "İş arkadaşınız konuyu gündeme getirdiğinizde savunmaya geçti ve abartıyorsunuz diyerek sizi suçladı. Ofiste gergin bir durum oluştu ve bazı iş arkadaşlarınız olay hakkında dedikodu yapmaya başladı.",
+                "text": "Bir gün önce, çekmecenizi karıştıran iş arkadaşınızla doğrudan konuşmayı seçmiştiniz. Ancak konuyu gündeme getirdiğinizde savunmaya geçti ve abartıyorsunuz diyerek sizi suçladı. Ofiste gergin bir durum oluştu ve bazı iş arkadaşlarınız olay hakkında dedikodu yapmaya başladı.",
                 "effects": {
                     "motivation": -10,
                     "performance": -10,
@@ -1918,7 +1923,7 @@
         "noFollowups": [
             {
                 "id": "REPEATED_BEHAVIOR",
-                "text": "Çekmecenizin karıştırılmasını görmezden geldiğiniz için, iş arkadaşınız bunu bir izin olarak algıladı. Artık düzenli olarak eşyalarınızı izinsiz kullanıyor ve bu durum sizi her geçen gün daha çok rahatsız ediyor.",
+                "text": "Üç gün önce, çekmecenizin karıştırılmasını görmezden gelmeyi seçmiştiniz. Ancak iş arkadaşınız bunu bir izin olarak algıladı. Artık düzenli olarak eşyalarınızı izinsiz kullanıyor ve bu durum sizi her geçen gün daha çok rahatsız ediyor.",
                 "effects": {
                     "motivation": -15,
                     "performance": -10,
@@ -1931,7 +1936,7 @@
             },
             {
                 "id": "ONE_TIME_INCIDENT",
-                "text": "Görmezden gelme stratejiniz işe yaradı. İş arkadaşınız bir daha çekmecenizi karıştırmadı ve olay unutulup gitti.",
+                "text": "İki gün önce, çekmecenizin karıştırılmasını görmezden gelmeyi seçmiştiniz. Bu stratejiniz işe yaradı; iş arkadaşınız bir daha çekmecenizi karıştırmadı ve olay unutulup gitti.",
                 "effects": {
                     "motivation": 5,
                     "performance": 5,
@@ -3178,7 +3183,7 @@
         "yesFollowups": [
             {
                 "id": "PROFESSIONAL_GROWTH",
-                "text": "Geri bildirimi yapıcı şekilde kullanarak işinizde önemli iyileştirmeler yaptınız, bu durum ekip içinde takdir topladı.",
+                "text": "Beş gün önce, iş arkadaşınızdan gelen geri bildirimi dikkate alıp iyileştirmeyi seçmiştiniz. Bu yapıcı yaklaşımınız sayesinde işinizde önemli iyileştirmeler yaptınız ve bu durum ekip içinde takdir topladı.",
                 "effects": {
                     "motivation": 15,
                     "performance": 20,
@@ -3191,7 +3196,7 @@
             },
             {
                 "id": "MISGUIDED_ADVICE",
-                "text": "Geri bildirimi uyguladınız ancak sonuçlar beklendiği gibi olmadı. Kendi yaklaşımınızın daha uygun olduğu ortaya çıktı.",
+                "text": "Dört gün önce, iş arkadaşınızdan gelen geri bildirimi dikkate alıp iyileştirmeyi seçmiştiniz. Ancak geri bildirimi uyguladığınızda sonuçlar beklendiği gibi olmadı ve kendi yaklaşımınızın daha uygun olduğu ortaya çıktı.",
                 "effects": {
                     "motivation": -5,
                     "performance": -10,
@@ -3206,7 +3211,7 @@
         "noFollowups": [
             {
                 "id": "PERSISTENT_ISSUES",
-                "text": "Eleştiriyi görmezden geldiğiniz için aynı sorunlar devam etti ve performans değerlendirmenizde belirtildi.",
+                "text": "Altı gün önce, iş arkadaşınızdan gelen eleştiriyi görmezden gelmeyi seçmiştiniz. Bu kararınız nedeniyle aynı sorunlar devam etti ve performans değerlendirmenizde belirtildi.",
                 "effects": {
                     "motivation": -15,
                     "performance": -15,
@@ -3219,7 +3224,7 @@
             },
             {
                 "id": "INDEPENDENT_IMPROVEMENT",
-                "text": "Kendi yöntemlerinizle çalışmaya devam ettiniz ve zamanla kendi yaklaşımınızı iyileştirerek başarılı oldunuz.",
+                "text": "Sekiz gün önce, iş arkadaşınızdan gelen eleştiriyi görmezden gelmeyi seçmiştiniz. Kendi yöntemlerinizle çalışmaya devam ederek zamanla kendi yaklaşımınızı iyileştirdiniz ve başarılı oldunuz.",
                 "effects": {
                     "motivation": 10,
                     "performance": 10,
@@ -3253,7 +3258,7 @@
         "yesFollowups": [
             {
                 "id": "EARLY_ADOPTER",
-                "text": "Yeni teknolojiye hızla adapte olarak ekipte öncü oldunuz ve diğerlerine de mentorluk yapmaya başladınız.",
+                "text": "eçilmesi planlanan yeni teknolojiye hızla adapte olarak ekipte öncü oldunuz ve diğerlerine de mentorluk yapmaya başladınız.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
@@ -3266,7 +3271,7 @@
             },
             {
                 "id": "LEARNING_CURVE_STRUGGLE",
-                "text": "Yeni teknolojiye adapte olmak düşündüğünüzden daha zor oldu ve bu süreçte veriminiz düştü.",
+                "text": "Geçilmesi planlanan yeni teknolojiye erkenden adapte olmak düşündüğünüzden daha zor oluyor ve bu süreçte veriminiz düştü.",
                 "effects": {
                     "motivation": -10,
                     "performance": -15,
@@ -3281,7 +3286,7 @@
         "noFollowups": [
             {
                 "id": "LEFT_BEHIND",
-                "text": "Adapte olmayı ertelediğiniz için ekipten geri kaldınız ve yeni projelerden dışlandınız.",
+                "text": "Kurumunuzda yeni bir teknolojiye geçiş yapılacağını öğrendikten sonra adapte olmayı ertelemeyi seçmiştiniz. Adapte olmayı ertelediğiniz için ekipten geri kaldınız ve yeni projelerden dışlandınız.",
                 "effects": {
                     "motivation": -20,
                     "performance": -15,
@@ -3294,7 +3299,7 @@
             },
             {
                 "id": "EFFICIENT_APPROACH",
-                "text": "Bekleme stratejiniz işe yaradı, başkalarının hatalarından öğrenerek daha verimli bir şekilde adapte oldunuz.",
+                "text": "Kurumunuzda yeni bir teknolojiye geçiş yapılacağını öğrendikten sonra adapte olmayı ertelemeyi seçmiştiniz. Bekleme stratejiniz işe yaradı, başkalarının hatalarından öğrenerek daha verimli bir şekilde adapte oldunuz.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
@@ -3322,12 +3327,12 @@
             "colleagues": 5,
             "boss": 0
         },
-        "yesText": "Pozisyonunu güçlü savun",
-        "noText": "Uzlaşma yoluna git",
+        "yesText": "Fikrimi savunacağım",
+        "noText": "Uzlaşma yoluna gideceğim",
         "yesFollowups": [
             {
                 "id": "PROVEN_RIGHT",
-                "text": "Zamanla bakış açınızın doğru olduğu kanıtlandı ve bu durum teknik uzmanlığınıza olan güveni artırdı.",
+                "text": "Birkaç gün önceki toplantıda fikrinizi ısrarla savunmanız işe yaradı. Bakış açınızın doğru olduğu kanıtlandı ve bu durum teknik uzmanlığınıza olan güveni artırdı.",
                 "effects": {
                     "motivation": 20,
                     "performance": 15,
@@ -3348,7 +3353,7 @@
                     "boss": -5
                 },
                 "isInfoOnly": true,
-                "delay": 2,
+                "delay": 0,
                 "probability": 50
             }
         ],
@@ -3363,12 +3368,12 @@
                     "boss": 10
                 },
                 "isInfoOnly": true,
-                "delay": 3,
+                "delay": 0,
                 "probability": 60
             },
             {
                 "id": "MISSED_OPPORTUNITY",
-                "text": "Uzlaşma yoluna gittiğiniz için haklı olduğunuz bir konuda geri adım attınız ve sonuçlar tatmin edici olmadı.",
+                "text": "Dört gün önceki toplantıda fikirlerinizi savunmayıp uzlaşma yoluna gittiğiniz için haklı olduğunuz bir konuda geri adım attınız ve sonuçlar tatmin edici olmadı.",
                 "effects": {
                     "motivation": -15,
                     "performance": -10,
@@ -3457,7 +3462,7 @@
         "yesFollowups": [
             {
                 "id": "LEADERSHIP_SUCCESS",
-                "text": "Yeni sorumluluklarınız altında başarıyla çalıştınız ve kariyerinizde bir sonraki adım için kendinizi kanıtladınız.",
+                "text": "On gün önce, üst yönetimin teklif ettiği yeni sorumlulukları kabul etmiştiniz. Yeni sorumluluklarınız altında başarıyla çalıştınız ve kariyerinizde bir sonraki adım için kendinizi kanıtladınız.",
                 "effects": {
                     "motivation": 20,
                     "performance": 15,
@@ -3470,7 +3475,7 @@
             },
             {
                 "id": "OVERWHELMED_LEADER",
-                "text": "Yeni sorumluluklarınız beklediğinizden çok daha zordu ve kendinizi aşırı yüklenmiş hissediyorsunuz.",
+                "text": "Bir hafta önce, üst yönetimin teklif ettiği yeni sorumlulukları kabul etmiştiniz. Ancak yeni sorumluluklarınız beklediğinizden çok daha zordu ve kendinizi aşırı yüklenmiş hissediyorsunuz.",
                 "effects": {
                     "motivation": -15,
                     "performance": -20,
@@ -3485,7 +3490,7 @@
         "noFollowups": [
             {
                 "id": "CAREER_STAGNATION",
-                "text": "Yeni sorumlulukları reddetmeniz kariyer ilerleyişinizi yavaşlattı ve gelecekteki fırsatlar için göz ardı edildiniz.",
+                "text": "On beş gün önce, üst yönetimin teklif ettiği yeni sorumlulukları reddedip mevcut rolünüzde kalmayı seçmiştiniz. Bu kararınız kariyer ilerleyişinizi yavaşlattı ve gelecekteki fırsatlar için göz ardı edildiniz.",
                 "effects": {
                     "motivation": -20,
                     "performance": -5,
@@ -3498,7 +3503,7 @@
             },
             {
                 "id": "WORK_LIFE_BALANCE",
-                "text": "Ek sorumlulukları reddetmeniz sayesinde iş-yaşam dengenizi koruyabildiniz ve mevcut görevlerinizde mükemmelleştiniz.",
+                "text": "On gün önce, üst yönetimin teklif ettiği ek sorumlulukları reddedip mevcut rolünüzde kalmayı seçmiştiniz. Bu kararınız sayesinde iş-yaşam dengenizi koruyabildiniz ve mevcut görevlerinizde mükemmelleştiniz.",
                 "effects": {
                     "motivation": 15,
                     "performance": 20,
@@ -3532,7 +3537,7 @@
         "yesFollowups": [
             {
                 "id": "ETHICAL_LEADERSHIP",
-                "text": "Endişelerinizi dile getirmeniz takdir gördü ve süreçte önemli iyileştirmeler yapıldı. Dürüstlüğünüz saygı uyandırdı.",
+                "text": "Beş gün önce, etik endişelerinizi dile getirmeyi seçmiştiniz. Bu yaklaşımınız takdir gördü ve süreçte önemli iyileştirmeler yapıldı. Dürüstlüğünüz saygı uyandırdı.",
                 "effects": {
                     "motivation": 20,
                     "performance": 5,
@@ -3545,7 +3550,7 @@
             },
             {
                 "id": "WHISTLEBLOWER_BACKLASH",
-                "text": "Etik endişelerinizi dile getirdiğiniz için bazı meslektaşlarınız tarafından 'sorun çıkaran' olarak görüldünüz ve dışlandınız.",
+                "text": "Üç gün önce, etik endişelerinizi dile getirmeyi seçmiştiniz. Ancak bu kararınız bazı meslektaşlarınız tarafından 'sorun çıkaran' olarak görülmenize ve dışlanmanıza yol açtı.",
                 "effects": {
                     "motivation": -15,
                     "performance": -5,
@@ -3560,7 +3565,7 @@
         "noFollowups": [
             {
                 "id": "GUILTY_CONSCIENCE",
-                "text": "Sessiz kalmanız vicdanınızı rahatsız ediyor ve bu durum iş motivasyonunuzu olumsuz etkiliyor.",
+                "text": "Dört gün önce, etik açıdan gri bir alan fark ettiğinizde sessiz kalıp devam etmeyi seçmiştiniz. Ancak bu sessiz kalmanız vicdanınızı rahatsız ediyor ve iş motivasyonunuzu olumsuz etkiliyor.",
                 "effects": {
                     "motivation": -25,
                     "performance": -10,
@@ -3573,7 +3578,7 @@
             },
             {
                 "id": "ISSUE_RESOLVES",
-                "text": "Endişelendiğiniz etik sorun, süreç ilerledikçe kendiliğinden çözüldü ve müdahale etmemeniz doğru bir karar oldu.",
+                "text": "Sekiz gün önce, etik açıdan gri bir alan fark ettiğinizde sessiz kalıp devam etmeyi seçmiştiniz. Endişelendiğiniz etik sorun süreç ilerledikçe kendiliğinden çözüldü ve müdahale etmemeniz doğru bir karar oldu.",
                 "effects": {
                     "motivation": 10,
                     "performance": 15,
@@ -3837,7 +3842,7 @@
             },
             {
                 "id": "RESEARCH_OPPORTUNITY",
-                "text": "Sessiz kalarak, piyasa araştırması yaptınız ve maaşınızın gerçekten de sektör ortalamasının altında olduğunu tespit ettiniz. Şimdi daha iyi bir müzakere pozisyonundasınız.",
+                "text": "Aynı pozisyonda çalıştığınız arkadaşınızın sizden daha yüksek maaş aldığını öğrendiğinizde sessiz kalmayı seçmiştiniz. Piyasa araştırması yaptınız ve maaşınızın gerçekten de sektör ortalamasının altında olduğunu tespit ettiniz. Şimdi daha iyi bir müzakere pozisyonundasınız.",
                 "effects": {
                     "motivation": 5,
                     "performance": 5,
@@ -4662,7 +4667,7 @@
         "noFollowups": [
             {
                 "id": "MISSED_EMERGENCY",
-                "text": "Toplantıda kaldığınız için durumu zamanında çözemediniz ve bu durum daha büyük bir soruna yol açtı.",
+                "text": "Bir gün önce, evdeki durumla ilgilenmek yerine toplantıda çevrimiçi kalmayı seçmiştiniz. Bu yüzden durumu zamanında çözemediniz ve bu durum daha büyük bir soruna yol açtı.",
                 "effects": {
                     "motivation": -15,
                     "performance": -20,
@@ -4869,7 +4874,7 @@
                 "yesFollowups": [
                     {
                         "id": "PROJECT_SUCCESS",
-                        "text": "Geç saatlere kadar çalıştınız ve projeyi tamamladınız. Proje sorumlusu çok memnun ve takdir ediyor!",
+                        "text": "İki gün önce, proje sorumlusunun acil yardım talebine geç saate rağmen 'Evet, yardım ederim' demiştiniz. Geç saatlere kadar çalıştınız ve projeyi tamamladınız. Proje sorumlusu çok memnun ve takdir ediyor!",
                         "effects": {
                             "motivation": -5,
                             "performance": 15,
@@ -4882,7 +4887,7 @@
                     },
                     {
                         "id": "PROJECT_EXHAUSTION",
-                        "text": "Projeyi tamamladınız ama gece boyunca çalışmak sizi bitkin düşürdü. Bugün kendinizi yorgun hissediyorsunuz.",
+                        "text": "İki gün önce, proje sorumlusunun acil yardım talebine geç saate rağmen 'Evet, yardım ederim' demiştiniz. Projeyi tamamladınız ama gece boyunca çalışmak sizi bitkin düşürdü. Bugün kendinizi yorgun hissediyorsunuz.",
                         "effects": {
                             "motivation": -20,
                             "performance": -10,
@@ -4917,7 +4922,7 @@
                 "yesFollowups": [
                     {
                         "id": "GOSSIP_BACKFIRED",
-                        "text": "Dedikodunun yayıldığı ve bazı iş arkadaşlarınızı rahatsız ettiği ortaya çıktı.",
+                        "text": "Üç gün önce, iş arkadaşınızın dedikodu sohbetine 'Evet, devam edelim' diyerek katılmıştınız. Dedikodunun yayıldığı ve bazı iş arkadaşlarınızı rahatsız ettiği ortaya çıktı.",
                         "effects": {
                             "motivation": -5,
                             "performance": 0,
@@ -4930,7 +4935,7 @@
                     },
                     {
                         "id": "GOSSIP_INSIDER",
-                        "text": "İş arkadaşınızla kurduğunuz yakınlık sayesinde önemli bir şirket değişikliğini önceden öğrendiniz ve hazırlıklı oldunuz.",
+                        "text": "Üç gün önce, iş arkadaşınızın dedikodu sohbetine 'Evet, devam edelim' diyerek katılmıştınız. İş arkadaşınızla kurduğunuz yakınlık sayesinde önemli bir şirket değişikliğini önceden öğrendiniz ve hazırlıklı oldunuz.",
                         "effects": {
                             "motivation": 10,
                             "performance": 15,
@@ -4960,7 +4965,7 @@
         "noFollowups": [
             {
                 "id": "MISSED_IMPORTANT_INFO",
-                "text": "Meğer o mesaj yarın yapılacak önemli bir toplantı hakkındaymış ve siz hazırlıksız yakalandınız.",
+                "text": "İki gün önce, mesai sonrası gelen mesajı okumamayı seçmiştiniz. Meğer o mesaj yarın yapılacak önemli bir toplantı hakkındaymış ve siz hazırlıksız yakalandınız.",
                 "effects": {
                     "motivation": -10,
                     "performance": -15,
@@ -5031,7 +5036,7 @@
                 "yesFollowups": [
                     {
                         "id": "PRESENTATION_SUCCESS",
-                        "text": "Yardım ettiğiniz iş arkadaşınızın sunumu mükemmel geçti. Size olan minnettarlığını tüm ofiste dile getiriyor.",
+                        "text": "İki gün önce, öğle molanızda arayan arkadaşınıza sunumu için yardım etmeyi kabul etmiştiniz. Yardımınız sayesinde sunumu mükemmel geçti ve size olan minnettarlığını tüm ofiste dile getiriyor.",
                         "effects": {
                             "motivation": 15,
                             "performance": 5,
@@ -5044,7 +5049,7 @@
                     },
                     {
                         "id": "NO_RECOGNITION",
-                        "text": "Yardım ettiğiniz iş arkadaşınız sunumda başarılı oldu ama katkınızdan hiç bahsetmedi. Biraz hayal kırıklığına uğradınız.",
+                        "text": "İki gün önce, öğle molanızda arayan arkadaşınıza sunumu için yardım etmeyi kabul etmiştiniz. Arkadaşınız sunumda başarılı oldu ama katkınızdan hiç bahsetmedi. Biraz hayal kırıklığına uğradınız.",
                         "effects": {
                             "motivation": -10,
                             "performance": 0,
@@ -5079,7 +5084,7 @@
                 "yesFollowups": [
                     {
                         "id": "DEEP_FRIENDSHIP",
-                        "text": "İş arkadaşınızla yaptığınız derin sohbet sonrası aranızda güçlü bir dostluk bağı oluştu.",
+                        "text": "Dört gün önce, öğle molanızda arayan ve kişisel bir kriz yaşayan arkadaşınızı dinlemeyi seçmiştiniz. Bu derin sohbet sonrası aranızda güçlü bir dostluk bağı oluştu.",
                         "effects": {
                             "motivation": 15,
                             "performance": 5,
@@ -5092,7 +5097,7 @@
                     },
                     {
                         "id": "EMOTIONAL_DRAIN",
-                        "text": "İş arkadaşınızın sorunları beklenenden daha karmaşıktı ve konuşma sizi duygusal olarak tüketti.",
+                        "text": "İki gün önce, öğle molanızda arayan ve kişisel bir kriz yaşayan arkadaşınızı dinlemeyi seçmiştiniz. Ancak sorunları beklenenden daha karmaşıktı ve konuşma sizi duygusal olarak tüketti.",
                         "effects": {
                             "motivation": -15,
                             "performance": -5,
@@ -5140,7 +5145,7 @@
                     },
                     {
                         "id": "LUNCH_GOSSIP",
-                        "text": "Öğle yemeğinde ortaya çıkan dedikodular düşündüğünüzden daha hızlı yayıldı ve bazı kişileri rahatsız etti.",
+                        "text": "Üç gün önce, öğle molanızda arayan arkadaşınızın yemek teklifini kabul etmiştiniz. Öğle yemeğinde ortaya çıkan dedikodular düşündüğünüzden daha hızlı yayıldı ve bazı kişileri rahatsız etti.",
                         "effects": {
                             "motivation": 0,
                             "performance": 0,
@@ -5157,7 +5162,7 @@
         "noFollowups": [
             {
                 "id": "MISSED_PROMOTION_INFO",
-                "text": "Üç gün önce öğle aranız sırasında arayan arkadaşınız daha iyi olduğunu düşündüğü açık pozisyon hakkında size bilgi vermek istemiş. Fırsatı kaçırdınız.",
+                "text": "Üç gün önce, öğle molanızda çalan telefonunuzu açmamayı seçmiştiniz. Meğer arayan arkadaşınız daha iyi olduğunu düşündüğü açık pozisyon hakkında size bilgi vermek istemiş. Fırsatı kaçırdınız.",
                 "effects": {
                     "motivation": -15,
                     "performance": -5,
@@ -5183,7 +5188,7 @@
             },
             {
                 "id": "COLLEAGUE_OFFENDED",
-                "text": "Telefonunu açmadığınız iş arkadaşınız alınmış ve bunu diğer arkadaşlarınıza anlatmış.",
+                "text": "İki gün önce, öğle molanızda çalan telefonunuzu açmamayı seçmiştiniz. Telefonunu açmadığınız iş arkadaşınız alınmış ve bunu diğer arkadaşlarınıza anlatmış.",
                 "effects": {
                     "motivation": -5,
                     "performance": 0,
@@ -5241,7 +5246,7 @@
                 "yesFollowups": [
                     {
                         "id": "PRESENTATION_SUCCESS",
-                        "text": "Yardımlarınız sayesinde sistem yeniden çalışmaya başladı. Arkadaşınız memnun kaldı ve size teşekkür etti.",
+                        "text": "İki gün önce, akşam yemeği sırasında arayan arkadaşınıza sistem sorunu için yardım etmeyi kabul etmiştiniz. Yardımlarınız sayesinde sistem yeniden çalışmaya başladı. Arkadaşınız memnun kaldı ve size teşekkür etti.",
                         "effects": {
                             "motivation": 15,
                             "performance": 5,
@@ -5254,7 +5259,7 @@
                     },
                     {
                         "id": "NO_RECOGNITION",
-                        "text": "Yardımlarınız sayesinde sistem yeniden çalışmaya başladı ama arkadaşınız teşekkür bile etmedi. Biraz hayal kırıklığına uğradınız.",
+                        "text": "İki gün önce, akşam yemeği sırasında arayan arkadaşınıza sistem sorunu için yardım etmeyi kabul etmiştiniz. Yardımlarınız sayesinde sistem yeniden çalışmaya başladı ama arkadaşınız teşekkür bile etmedi. Biraz hayal kırıklığına uğradınız.",
                         "effects": {
                             "motivation": -10,
                             "performance": 0,
@@ -5289,7 +5294,7 @@
                 "yesFollowups": [
                     {
                         "id": "DEEP_FRIENDSHIP",
-                        "text": "İş arkadaşınızla yaptığınız derin sohbet sonrası aranızda güçlü bir dostluk bağı oluştu.",
+                        "text": "Dört gün önce, akşam yemeği sırasında arayan ve kişisel bir kriz yaşayan arkadaşınızı dinlemeyi seçmiştiniz. Bu derin sohbet sonrası aranızda güçlü bir dostluk bağı oluştu.",
                         "effects": {
                             "motivation": 15,
                             "performance": 5,
@@ -5302,7 +5307,7 @@
                     },
                     {
                         "id": "EMOTIONAL_DRAIN",
-                        "text": "İş arkadaşınızın sorunları beklenenden daha karmaşıktı ve konuşma sizi duygusal olarak tüketti.",
+                        "text": "İki gün önce, akşam yemeği sırasında arayan ve kişisel bir kriz yaşayan arkadaşınızı dinlemeyi seçmiştiniz. Ancak sorunları beklenenden daha karmaşıktı ve konuşma sizi duygusal olarak tüketti.",
                         "effects": {
                             "motivation": -15,
                             "performance": -5,
@@ -5330,8 +5335,8 @@
                     "colleagues": -10,
                     "boss": 0
                 },
-                "yesText": "Evet, gidelim",
-                "noText": "Bugün başka planım var",
+                "yesText": "Evet, cevaplarım",
+                "noText": "Şimdi olmaz",
                 "delay": 0,
                 "probability": 25
             }
@@ -5339,7 +5344,7 @@
         "noFollowups": [
             {
                 "id": "MISSED_PROMOTION_INFO",
-                "text": "Meğer arkadaşınız açık pozisyon hakkında size bilgi vermek istiyormuş. Fırsat kaçtı.",
+                "text": "Üç gün önce, akşam yemeği sırasında çalan telefonunuzu açmamayı seçmiştiniz. Meğer arkadaşınız açık pozisyon hakkında size bilgi vermek istiyormuş. Fırsat kaçtı.",
                 "effects": {
                     "motivation": -15,
                     "performance": -5,
@@ -5365,7 +5370,7 @@
             },
             {
                 "id": "COLLEAGUE_OFFENDED",
-                "text": "Telefonunu açmadığınız iş arkadaşınız alınmış ve bunu diğer arkadaşlarınıza anlatmış.",
+                "text": "İki gün önce, akşam yemeği sırasında çalan telefonunuzu açmamayı seçmiştiniz. Telefonunu açmadığınız iş arkadaşınız alınmış ve bunu diğer arkadaşlarınıza anlatmış.",
                 "effects": {
                     "motivation": -5,
                     "performance": 0,
@@ -5527,7 +5532,7 @@
         "yesFollowups": [
             {
                 "id": "VINDICATED_ANALYSIS",
-                "text": "Eleştiriniz sonradan haklı çıktı. Proje yöneticiniz başlangıçta rahatsız olsa da, açık sözlülüğünüz ve teknik bilginiz için size saygı duymaya başladı.",
+                "text": "Beş gün önce, proje yöneticisinin fikrinin kusurlu olduğunu düşündüğünüzde fikrinizi belirtmeyi seçmiştiniz. Eleştiriniz sonradan haklı çıktı. Proje yöneticiniz başlangıçta rahatsız olsa da, açık sözlülüğünüz ve teknik bilginiz için size saygı duymaya başladı.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
@@ -5581,7 +5586,7 @@
         "noFollowups": [
             {
                 "id": "IDEA_FAILS",
-                "text": "Sessiz kaldınız ve proje yöneticisinin kusurlu fikri uygulamaya kondu. Öngördüğünüz sorunlar gerçekleşti ve proje gecikti. Bazı ekip üyeleri sizin neden uyarmadığınızı merak ediyor.",
+                "text": "Bir hafta önce, proje yöneticisinin fikrinin kusurlu olduğunu düşündüğünüzde sessiz kalmayı seçmiştiniz. Bu kararınızın ardından proje yöneticisinin kusurlu fikri uygulamaya kondu. Öngördüğünüz sorunlar gerçekleşti ve proje gecikti. Bazı ekip üyeleri sizin neden uyarmadığınızı merak ediyor.",
                 "effects": {
                     "motivation": -15,
                     "performance": -10,
@@ -5594,7 +5599,7 @@
             },
             {
                 "id": "UNEXPECTED_SUCCESS",
-                "text": "Endişelerinize rağmen, proje yöneticisinin fikri beklenmedik şekilde başarılı oldu. Belki de eleştirmemekle doğru kararı vermişsiniz.",
+                "text": "Beş gün önce, proje yöneticisinin fikrinin kusurlu olduğunu düşündüğünüzde sessiz kalmayı seçmiştiniz. Endişelerinize rağmen, proje yöneticisinin fikri beklenmedik şekilde başarılı oldu. Belki de eleştirmemekle doğru kararı vermişsiniz.",
                 "effects": {
                     "motivation": -5,
                     "performance": 5,
@@ -5676,7 +5681,7 @@
         "yesFollowups": [
             {
                 "id": "SKILL_ADVANCEMENT",
-                "text": "Eğitim kursuna katılmanız size değerli bir beceri kazandırdı. Bu yeni bilgiyi hemen işinizde uygulamaya başladınız ve verimliliğiniz gözle görülür şekilde arttı.",
+                "text": "Bir hafta önce, isteğe bağlı eğitim kursuna kaydolmayı seçmiştiniz. Bu kararınız size değerli bir beceri kazandırdı. Bu yeni bilgiyi hemen işinizde uygulamaya başladınız ve verimliliğiniz gözle görülür şekilde arttı.",
                 "effects": {
                     "motivation": 15,
                     "performance": 20,
@@ -5689,7 +5694,7 @@
             },
             {
                 "id": "NETWORKING_OPPORTUNITY",
-                "text": "Kurs sırasında farklı departmanlardan insanlarla tanıştınız ve profesyonel ağınızı genişlettiniz. Bu yeni bağlantılar, beklenmedik iş fırsatları yaratmaya başladı.",
+                "text": "On gün önce, isteğe bağlı eğitim kursuna kaydolmayı seçmiştiniz. Kurs sırasında farklı departmanlardan insanlarla tanıştınız ve profesyonel ağınızı genişlettiniz. Bu yeni bağlantılar, beklenmedik iş fırsatları yaratmaya başladı.",
                 "effects": {
                     "motivation": 10,
                     "performance": 5,
@@ -5702,7 +5707,7 @@
             },
             {
                 "id": "WORK_BACKLOG",
-                "text": "Kurs değerli bilgiler sunsa da, eğitim süresince biriken işleriniz üzerinde baskı yarattı. Şimdi bu gecikmeleri telafi etmek için ekstra çaba harcamanız gerekiyor.",
+                "text": "Üç gün önce, isteğe bağlı eğitim kursuna kaydolmayı seçmiştiniz. Kurs değerli bilgiler sunsa da, eğitim süresince biriken işleriniz üzerinde baskı yarattı. Şimdi bu gecikmeleri telafi etmek için ekstra çaba harcamanız gerekiyor.",
                 "effects": {
                     "motivation": -10,
                     "performance": -10,
@@ -5715,7 +5720,7 @@
             },
             {
                 "id": "DISAPPOINTING_COURSE",
-                "text": "Eğitim kursu beklentilerinizi karşılamadı. İçerik çok temel düzeydeydi ve zaten bildiğiniz konuları tekrarlıyordu. Zamanınızı daha verimli kullanabilirdiniz.",
+                "text": "Beş gün önce, isteğe bağlı eğitim kursuna kaydolmayı seçmiştiniz. Ancak eğitim kursu beklentilerinizi karşılamadı. İçerik çok temel düzeydeydi ve zaten bildiğiniz konuları tekrarlıyordu. Zamanınızı daha verimli kullanabilirdiniz.",
                 "effects": {
                     "motivation": -5,
                     "performance": -5,
@@ -5730,7 +5735,7 @@
         "noFollowups": [
             {
                 "id": "MISSED_OPPORTUNITY",
-                "text": "Kursa katılmama kararınızdan pişmanlık duymaya başladınız. Katılan iş arkadaşlarınız edindikleri yeni becerileri kullanarak öne çıkıyorlar.",
+                "text": "On iki gün önce, isteğe bağlı eğitim kursuna katılmayıp işinize odaklanmayı seçmiştiniz. Ancak şimdi bu kararınızdan pişmanlık duymaya başladınız. Katılan iş arkadaşlarınız edindikleri yeni becerileri kullanarak öne çıkıyorlar.",
                 "effects": {
                     "motivation": -15,
                     "performance": -10,
@@ -5743,7 +5748,7 @@
             },
             {
                 "id": "FOCUSED_PRODUCTIVITY",
-                "text": "Eğitim yerine işinize odaklanma kararınız sonuç verdi. Önemli bir projeyi zamanında tamamladınız ve yöneticinizin takdirini kazandınız.",
+                "text": "Beş gün önce, isteğe bağlı eğitim kursuna katılmayıp işinize odaklanmayı seçmiştiniz. Bu kararınız sonuç verdi; önemli bir projeyi zamanında tamamladınız ve yöneticinizin takdirini kazandınız.",
                 "effects": {
                     "motivation": 10,
                     "performance": 15,
@@ -5756,7 +5761,7 @@
             },
             {
                 "id": "SELF_LEARNING",
-                "text": "Resmi kursa katılmak yerine, aynı konuyu mesai dışında kendi kendinize öğrenmeye karar verdiniz. Bu kişisel inisiyatif hem becerilerinizi geliştirdi hem de iş-yaşam dengenizi korumanızı sağladı.",
+                "text": "İki hafta önce, isteğe bağlı eğitim kursuna katılmayıp işinize odaklanmayı seçmiştiniz. Resmi kursa katılmak yerine, aynı konuyu mesai dışında kendi kendinize öğrenmeye karar verdiniz. Bu kişisel inisiyatif hem becerilerinizi geliştirdi hem de iş-yaşam dengenizi korumanızı sağladı.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
@@ -5771,7 +5776,7 @@
     },
     {
         "id": "SKIP_DAILY_MEETING",
-        "text": "İş paketindeki birkaç kişinin ayak üstü toplantı yaptığını duyuyorsunuz. Katılacak mısınız?",
+        "text": "Projenizdeki birkaç kişinin ayak üstü toplantı yaptığını duyuyorsunuz. Katılacak mısınız?",
         "yesEffects": {
             "motivation": 0,
             "performance": 0,
