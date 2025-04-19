@@ -17,6 +17,7 @@ let dragging = false;
 let startX = 0;
 let currentX = 0;
 let gameOver = false;
+let winCardShown = false;
 
 // DOM elementleri
 const cardElement = document.getElementById('card');
@@ -164,6 +165,42 @@ function getNextCard() {
   if (!cards || cards.length === 0) {
     console.error("Attempted to get next card, but 'cards' array is empty or not loaded.");
     return null;
+  }
+
+  const winChanceCardId = 'COMPETITOR_JOB_OFFER';
+  const meetWinConditions = resources.day >= 100 &&
+    resources.motivation >= 80 &&
+    resources.performance >= 80 &&
+    resources.colleagues >= 80 &&
+    resources.boss >= 80 &&
+    !winCardShown;
+
+  if (meetWinConditions) {
+    const winChanceCard = cards.find(card => card.id === winChanceCardId);
+    if (winChanceCard) {
+      // Check if this card hasn't been used yet (maxUses: 1)
+      if (!winChanceCard.uses || winChanceCard.uses < winChanceCard.maxUses) {
+        console.log("Win conditions met, presenting WIN_CHANCE_CARD.");
+        // Increment uses *before* returning to prevent re-selection if declined
+        winChanceCard.uses = (winChanceCard.uses || 0) + 1;
+
+        // Remove from availableCards pool for this cycle if it's there
+        // (though it might not be if it wasn't selected randomly before)
+        const cardIndexInAvailable = availableCards.indexOf(winChanceCard);
+        if (cardIndexInAvailable > -1) {
+          availableCards.splice(cardIndexInAvailable, 1);
+        }
+
+        winCardShown = true; // Mark that the win card has been shown
+        return winChanceCard; // Return the specific win chance card
+      } else {
+        console.log("Win conditions met, but WIN_CHANCE_CARD already used.");
+        // Proceed with normal card selection if the win card was already shown/used
+      }
+    } else {
+      console.error(`Card with id '${winChanceCardId}' not found in deck.json!`);
+      // Proceed with normal card selection as a fallback
+    }
   }
 
   // Oynanmış kart ID'lerini takip etmek için global değişken oluştur
