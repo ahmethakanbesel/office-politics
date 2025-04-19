@@ -4771,7 +4771,7 @@
     },
     {
         "id": "QUESTION_FROM_STRANGER",
-        "text": "Pek hoşlanmadığınız bir arkadaşınız soru sormak için yanınıza geldi ve önce elini uzattı. Ne yaparsınız?",
+        "text": "Pek hoşlanmadığınız bir çalışma arkadaşınız soru sormak için yanınıza geldi ve önce elini uzattı. Ne yaparsınız?",
         "yesEffects": {
             "motivation": 0,
             "performance": 0,
