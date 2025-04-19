@@ -175,7 +175,7 @@
             },
             {
                 "id": "PRODUCTIVITY_FOCUS",
-                "text": "Fuara katılmamayı seçerek mevcut projelerinize odaklanmaya devam ettiniz. Bu süreçte önemli bir iş paketini zamanından önce tamamladınız. Yöneticiniz, işe olan bağlılığınızı ve verimliliğinizi takdir etti.",
+                "text": "Fuara katılmamayı seçerek mevcut projelerinize odaklanmaya devam ettiniz. Bu süreçte önemli bir görevi zamanından önce tamamladınız. Yöneticiniz, işe olan bağlılığınızı ve verimliliğinizi takdir etti.",
                 "effects": {
                     "motivation": 10,
                     "performance": 15,
@@ -5830,7 +5830,7 @@
             },
             {
                 "id": "TASK_COMPLETION",
-                "text": "Toplantı yerine mevcut görevinize odaklanarak, önemli bir iş paketini zamanından önce tamamladınız. Bu verimlilik, kısa vadede işinizin ilerlemesine yardımcı oldu.",
+                "text": "Toplantı yerine mevcut görevinize odaklanarak, önemli bir görevi zamanından önce tamamladınız. Bu verimlilik, kısa vadede işinizin ilerlemesine yardımcı oldu.",
                 "effects": {
                     "motivation": 5,
                     "performance": 10,
@@ -6371,7 +6371,7 @@
     },
     {
         "id": "POSTPONE_VACATION",
-        "text": "Tam izne çıkacakken, iş paketi sorumlusu çalışmalarda sizin yardımınıza ihtiyaç duyacaklarını söylüyor. İzninizi erteler misiniz?",
+        "text": "Tam izne çıkacakken, proje sorumlusu çalışmalarda sizin yardımınıza ihtiyaç duyacaklarını söylüyor. İzninizi erteler misiniz?",
         "requirements": {
             "type": "or",
             "conditions": [
@@ -6404,7 +6404,7 @@
         "yesFollowups": [
             {
                 "id": "FEEDBACK_POSITIVE",
-                "text": "İşe bağlılığınız takdir edildi ve iş paketi sorumlusundan teşekkür aldınız.",
+                "text": "İşe bağlılığınız takdir edildi ve proje sorumlusundan teşekkür aldınız.",
                 "effects": {
                     "motivation": -5,
                     "performance": -5,
@@ -6924,7 +6924,7 @@
     },
     {
         "id": "CHALLENGING_PROJECT_OFFER",
-        "text": "Yüksek performansınız göz dolduruyor. Ekibin geleceği için kritik öneme sahip zorlu ve uzun bir iş paketine liderlik etmeniz teklif edildi, kabul edecek misiniz?",
+        "text": "Yüksek performansınız göz dolduruyor. Ekibin geleceği için kritik öneme sahip zorlu ve uzun bir projeye liderlik etmeniz teklif edildi, kabul edecek misiniz?",
         "requirements": {
             "type": "and",
             "conditions": [
@@ -6958,7 +6958,7 @@
         "yesFollowups": [
             {
                 "id": "PROJECT_SUCCESS_MAJOR",
-                "text": "Liderliğini üstlendiğiniz iş paketini başarıyla tamamlandı! Bu büyük bir kariyer adımı.",
+                "text": "Liderliğini üstlendiğiniz projei başarıyla tamamlandı! Bu büyük bir kariyer adımı.",
                 "effects": {
                     "motivation": 20,
                     "performance": 15,
@@ -6971,7 +6971,7 @@
             },
             {
                 "id": "PROJECT_STRESS",
-                "text": "Liderliğini üstlendiğiniz iş paketi çok stresliydi ve sizi yıprattı, ancak başarıyla tamamlandı.",
+                "text": "Liderliğini üstlendiğiniz proje çok stresliydi ve sizi yıprattı, ancak başarıyla tamamlandı.",
                 "effects": {
                     "motivation": -15,
                     "performance": 10,
@@ -6984,7 +6984,7 @@
             },
             {
                 "id": "PROJECT_STRESS",
-                "text": "Liderliğini üstlendiğiniz iş paketi çok stresli ve yorucu. Buna daha fazla katlanamadınız ve liderliği bıraktınız.",
+                "text": "Liderliğini üstlendiğiniz proje  çok stresli ve yorucu. Buna daha fazla katlanamadınız ve liderliği bıraktınız.",
                 "effects": {
                     "motivation": -15,
                     "performance": -15,
@@ -7336,10 +7336,10 @@
     },
     {
         "id": "INFO_DEADLINE_EXTENDED",
-        "text": "Üzerinde çalıştığınız iş paketinin teslim tarihi dokuz ay uzatıldı. Herkes rahat bir nefes aldı.",
+        "text": "Üzerinde çalıştığınız projenin teslim tarihi dokuz ay uzatıldı. Herkes rahat bir nefes aldı.",
         "effects": {
             "motivation": 10,
-            "performance": -5,
+            "performance": -10,
             "colleagues": 5,
             "boss": 0
         },
