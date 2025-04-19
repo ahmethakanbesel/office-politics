@@ -1553,22 +1553,22 @@
                 {
                     "resource": "performance",
                     "comparison": "gte",
-                    "value": 80
+                    "value": 70
                 },
                 {
                     "resource": "motivation",
                     "comparison": "gte",
-                    "value": 80
+                    "value": 70
                 },
                 {
                     "resource": "colleagues",
                     "comparison": "gte",
-                    "value": 80
+                    "value": 70
                 },
                 {
                     "resource": "boss",
                     "comparison": "gte",
-                    "value": 80
+                    "value": 70
                 }
             ]
         },
