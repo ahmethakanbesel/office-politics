@@ -2990,7 +2990,7 @@
         "yesFollowups": [
             {
                 "id": "PLEASANT_SURPRISE",
-                "text": "Araştırmanız sonuç verdi! Hayranınız uzun zamandır beğendiğiniz biri çıktı. Birlikte kahve içmeye karar verdiniz.",
+                "text": "Üç gün önce bulduğunuz nota dair başlattığınız araştırma sonuç verdi! Hayranınız uzun zamandır beğendiğiniz biri çıktı. Birlikte kahve içmeye karar verdiniz.",
                 "effects": {
                     "motivation": 20,
                     "performance": 5,
@@ -3003,7 +3003,7 @@
             },
             {
                 "id": "UNEXPECTED_ADMIRER",
-                "text": "Hayranınızın kim olduğunu öğrendiniz ama bu kişi hiç beklemediğiniz biriydi. Bu durumu nasıl ele alacağınızı bilmiyorsunuz.",
+                "text": "İsimsiz not bırakan hayranınızın kim olduğunu öğrendiniz ama bu kişi hiç beklemediğiniz biriydi. Bu durumu nasıl ele alacağınızı bilmiyorsunuz.",
                 "effects": {
                     "motivation": -5,
                     "performance": -5,
@@ -3016,7 +3016,7 @@
             },
             {
                 "id": "PRACTICAL_JOKE",
-                "text": "Notun aslında bir şaka olduğu ortaya çıktı. Bazı iş arkadaşlarınız sizi kızdırmak istemiş.",
+                "text": "Üç gün önce masanıza bırakılan notun aslında bir şaka olduğu ortaya çıktı. Bazı iş arkadaşlarınız sizi kızdırmak istemiş.",
                 "effects": {
                     "motivation": -15,
                     "performance": -10,
@@ -3031,7 +3031,7 @@
         "noFollowups": [
             {
                 "id": "MYSTERY_CONTINUES",
-                "text": "Notu görmezden geldiniz ama yeni notlar gelmeye devam ediyor. İçinizde büyüyen bir merak var.",
+                "text": "Masanıza bırakılan isimsiz notu görmezden gelmiştiniz ama yeni notlar gelmeye devam ediyor. İçinizde büyüyen bir merak var.",
                 "effects": {
                     "motivation": 5,
                     "performance": -5,
@@ -3044,7 +3044,7 @@
             },
             {
                 "id": "ADMIRER_REVEALED",
-                "text": "Siz aramaya çalışmasanız da hayranınız kendini açığa çıkardı ve kahve içmek için sizi davet etti.",
+                "text": "Masanıza bırakılan isimsiz notun sahibini siz aramaya çalışmasanız da sonunda hayranınız kendini açığa çıkardı ve kahve içmek için sizi davet etti.",
                 "effects": {
                     "motivation": 10,
                     "performance": 0,
@@ -3059,7 +3059,7 @@
     },
     {
         "id": "PEER_FEEDBACK",
-        "text": "Bir meslektaşınız sizden gizli olarak işinizle ilgili yapıcı eleştiri içeren geri bildirim aldınız. Bu geri bildirimi nasıl karşılarsınız?",
+        "text": "Çalışma arkadaşlarınızdan birinden işinizle ilgili yapıcı eleştiri içeren geri bildirim aldınız. Bu geri bildirimi nasıl karşılarsınız?",
         "yesEffects": {
             "motivation": 5,
             "performance": 15,
@@ -4910,7 +4910,7 @@
         "yesFollowups": [
             {
                 "id": "HELP_WITH_PRESENTATION",
-                "text": "İş arkadaşınız yarın yapacağı önemli sunum için panik içinde ve sizden yardım istiyor. Öğle molanızı feda eder misiniz?",
+                "text": "Arayan arkadaşınız yarın yapacağı önemli sunum için panik içinde ve sizden yardım istiyor. Öğle molanızı feda eder misiniz?",
                 "yesEffects": {
                     "motivation": -10,
                     "performance": -10,
@@ -4958,7 +4958,7 @@
             },
             {
                 "id": "PERSONAL_CRISIS",
-                "text": "İş arkadaşınız kişisel bir kriz yaşıyor ve sadece konuşmaya ihtiyacı var. Ona zaman ayırır mısınız?",
+                "text": "Arayan arkadaşınız kişisel bir kriz yaşıyor ve sadece konuşmaya ihtiyacı var. Ona zaman ayırır mısınız?",
                 "yesEffects": {
                     "motivation": 5,
                     "performance": -5,
@@ -5056,7 +5056,7 @@
         "noFollowups": [
             {
                 "id": "MISSED_PROMOTION_INFO",
-                "text": "Meğer arkadaşınız açık pozisyon hakkında size bilgi vermek istiyormuş. Fırsat kaçtı.",
+                "text": "Üç gün önce öğle aranız sırasında arayan arkadaşınız daha iyi olduğunu düşündüğü açık pozisyon hakkında size bilgi vermek istemiş. Fırsatı kaçırdınız.",
                 "effects": {
                     "motivation": -15,
                     "performance": -5,
