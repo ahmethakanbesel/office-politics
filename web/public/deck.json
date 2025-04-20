@@ -625,10 +625,10 @@
                 "id": "PROMPT_RESOLUTION",
                 "text": "Geçen hafta izniniz olmadan paylaşılan fotoğraflar konusunda resmi bir talepte bulunmuştunuz. İletişim departmanı hızlı bir şekilde özür diledi ve fotoğrafları kaldırdı. Ayrıca gelecekte fotoğraf paylaşımı konusunda daha dikkatli olacaklarını belirttiler.",
                 "effects": {
-                    "motivation": 10,
-                    "performance": 5,
+                    "motivation": 1,
+                    "performance": 0,
                     "colleagues": 0,
-                    "boss": 5
+                    "boss": 1
                 },
                 "isInfoOnly": true,
                 "delay": 3,
@@ -638,10 +638,10 @@
                 "id": "PRIVACY_POLICY_UPDATE",
                 "text": "İki hafta önce izinsiz fotoğraf paylaşımı konusunda yaptığınız resmi başvuru, şirket genelinde bir politika değişikliğine yol açtı. Artık tüm fotoğraf paylaşımları için çalışanlardan açık izin alınması gerekiyor. Birçok çalışan tarafından mahremiyete saygı gösterilmesini sağladığınız için takdir edildiniz.",
                 "effects": {
-                    "motivation": 15,
-                    "performance": 10,
-                    "colleagues": 10,
-                    "boss": 15
+                    "motivation": 1,
+                    "performance": 0,
+                    "colleagues": 0,
+                    "boss": 1
                 },
                 "isInfoOnly": true,
                 "delay": 14,
@@ -1418,7 +1418,7 @@
                 "text": "Önemli sunumunuz sırasında yaşadığınız internet kesintisi nedeniyle erteleme talep etmiştiniz. Yönetim anlayışla karşıladı ve teknik sorunların üstesinden gelmek için size zaman tanıdı. Yeni sunumunuz sorunsuz gerçekleşti.",
                 "effects": {
                     "motivation": 10,
-                    "performance": 5,
+                    "performance": 0,
                     "colleagues": 0,
                     "boss": 5
                 },
