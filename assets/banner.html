@@ -1,0 +1,170 @@
+<div class="game-banner">
+    <div class="banner-left">
+        <div class="banner-icon">💼</div>
+    </div>
+    <div class="banner-middle">
+        <h1 class="banner-title">Office Politics</h1>
+        <div class="banner-subtitle">A Corporate Survival Card Game</div>
+    </div>
+    <div class="banner-right">
+        <div class="banner-stats-preview">
+            <div class="mini-stat">❤️</div>
+            <div class="mini-stat">📈</div>
+            <div class="mini-stat">👥</div>
+            <div class="mini-stat">👔</div>
+        </div>
+    </div>
+
+    <style>
+        .game-banner {
+            width: 100%;
+            max-width: 600px;
+            background: rgb(55, 65, 81);
+            color: white;
+            border-radius: 10px;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .banner-left {
+            flex: 0 0 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-icon {
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-middle {
+            flex: 1;
+            text-align: center;
+        }
+
+        .banner-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.1;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .banner-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 4px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .banner-right {
+            flex: 0 0 70px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .banner-stats-preview {
+            display: flex;
+            flex-wrap: wrap;
+            width: 60px;
+            height: 50px;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        .mini-stat {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .game-banner {
+                padding: 10px 15px;
+            }
+
+            .banner-left {
+                flex: 0 0 50px;
+            }
+
+            .banner-icon {
+                font-size: 30px;
+            }
+
+            .banner-title {
+                font-size: 24px;
+            }
+
+            .banner-subtitle {
+                font-size: 12px;
+            }
+
+            .banner-right {
+                flex: 0 0 60px;
+            }
+
+            .banner-stats-preview {
+                width: 50px;
+                height: 40px;
+            }
+
+            .mini-stat {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .game-banner {
+                padding: 8px 15px;
+            }
+
+            .banner-icon {
+                font-size: 28px;
+            }
+
+            .banner-title {
+                font-size: 22px;
+            }
+
+            .banner-subtitle {
+                font-size: 11px;
+                margin-top: 2px;
+            }
+        }
+    </style>
+</div>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script>
+    function captureBanner() {
+        const banner = document.querySelector('.game-banner');
+
+        html2canvas(banner, {
+            backgroundColor: null,  // This ensures transparency
+            scale: 2  // Higher resolution
+        }).then(canvas => {
+            // Convert to PNG and download
+            const link = document.createElement('a');
+            link.download = 'office-politics-banner.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+    }
+
+    // Call the function when needed
+    // captureBanner();
+</script>
