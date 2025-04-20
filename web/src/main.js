@@ -579,10 +579,8 @@ function showGameOver(winReason = null) { // Add optional parameter winReason
       reason = "İş arkadaşlarınızla çok yakınsınız. Bu aranızdaki sosyalliğin artmasına ve iş yerine sosyal kulüp muamelesi yapmanıza sebep oldu. Kovuldunuz.";
     } else if (resources.boss <= resources.minValue) {
       reason = "Patronunuz sizi sevmiyor. Kovuldunuz.";
-    } else if (resources.boss >= (resources.maxValue + 100)) {
-      // This is the original win condition
-      reason = "Patronunuz sizi çok seviyor. Terfi ettiniz ve oyunu kazandınız!";
-      isWin = true; // Patronun sizi çok sevmesi durumu bir kazanma durumudur
+    } else if (resources.boss >= resources.maxValue) {
+      reason = "Patronunuzla çok yakınsınız. Bu durum iş arkadaşlarınız tarafından hoş karşılanmadı ve performansınızı olumsuz yönde etkiledi. Patronunuz sizi çok sevmesine rağmen işten çıkarmak zorunda kaldı.";
     } else {
       // Fallback if somehow called without a specific reason or boundary hit
       reason = "Oyun sona erdi.";
