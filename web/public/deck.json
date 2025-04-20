@@ -2869,7 +2869,7 @@
             },
             {
                 "id": "FUTURE_OPPORTUNITY",
-                "text": "Birkaç gün sonra şirket içi bir etkinlikte kafetaryada sürekli göz göze geldiğiniz ama konuşmaya çekindiğiniz kişiyle tanışma fırsatı buldunuz ve iyi anlaştınız.",
+                "text": "Sürekli göz göze geldiğiniz ama konuşmaya çekindiğiniz kişiyle şirket içi bir etkinlikte tanışma fırsatı buldunuz ve iyi anlaştınız.",
                 "effects": {
                     "motivation": 10,
                     "performance": 5,
@@ -4245,7 +4245,7 @@
     },
     {
         "id": "LUNCH_PREPARATION",
-        "text": "Öğle molasında masanızsa oturup uzun zamandır izlemek istediğiniz videoyu izlemek istiyorsunuz. Arkadaşlarınız kahve içerken sohbet ettiklerini görüyorsunuz. Ne yaparsınız?",
+        "text": "Öğle molasında masanıza oturup uzun zamandır izlemek istediğiniz videoyu izlemek istiyorsunuz. Arkadaşlarınız kahve içerken sohbet ettiklerini görüyorsunuz. Ne yaparsınız?",
         "yesEffects": {
             "motivation": 10,
             "performance": 5,
