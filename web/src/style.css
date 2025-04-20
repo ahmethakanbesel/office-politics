@@ -1,3 +1,4 @@
+/* web/src/style.css */
 * {
   margin: 0;
   padding: 0;
@@ -63,6 +64,17 @@ body {
   border: 2px solid rgb(55, 65, 81);
   overflow: hidden;
   background-color: white;
+  transition: border-color 0.3s ease-in-out, border-width 0.3s ease-in-out;
+}
+
+.stat-increase {
+  border-color: rgb(119, 221, 118);
+  border-width: 2px;
+}
+
+.stat-decrease {
+  border-color: rgb(255, 105, 98);
+  border-width: 2px;
 }
 
 .stat-fill {

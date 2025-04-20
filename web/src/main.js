@@ -1,3 +1,4 @@
+// web/src/main.js
 const resources = {
   motivation: 40,
   performance: 40,
@@ -19,17 +20,24 @@ let currentX = 0;
 let gameOver = false;
 let winCardShown = false;
 
-// DOM elementleri
+// DOM elements
 const cardElement = document.getElementById('card');
 const cardTextElement = document.getElementById('card-text');
 const yesOptionElement = document.getElementById('yes-option');
 const noOptionElement = document.getElementById('no-option');
 const swipeIndicatorElement = document.getElementById('swipe-indicator');
 const dayCounterElement = document.getElementById('day-counter');
+// Stat Fill Elements
 const motivationFillElement = document.querySelector('#motivation-icon .stat-fill');
 const performanceFillElement = document.querySelector('#performance-icon .stat-fill');
 const colleaguesFillElement = document.querySelector('#colleagues-icon .stat-fill');
 const bossFillElement = document.querySelector('#boss-icon .stat-fill');
+// Stat Icon Elements (for indicators)
+const motivationIconElement = document.getElementById('motivation-icon');
+const performanceIconElement = document.getElementById('performance-icon');
+const colleaguesIconElement = document.getElementById('colleagues-icon');
+const bossIconElement = document.getElementById('boss-icon');
+// Other elements
 const aboutIconElement = document.getElementById('about-icon');
 const aboutModalElement = document.getElementById('about-modal');
 const gameOverElement = document.getElementById('game-over');
@@ -483,11 +491,54 @@ function updateCardUI(card) {
   noOptionElement.style.opacity = '1'; // Reset opacity
 }
 
+// --- Stat Change Indicator ---
+/**
+ * Shows a temporary visual indicator on a stat icon.
+ * @param {string} statName - The name of the stat ('motivation', 'performance', etc.).
+ * @param {number} changeAmount - The amount the stat changed (positive for increase, negative for decrease).
+ */
+function showStatChangeIndicator(statName, changeAmount) {
+  let iconElement;
+  switch (statName) {
+    case 'motivation': iconElement = motivationIconElement; break;
+    case 'performance': iconElement = performanceIconElement; break;
+    case 'colleagues': iconElement = colleaguesIconElement; break;
+    case 'boss': iconElement = bossIconElement; break;
+    default: return; // Unknown stat
+  }
+
+  if (!iconElement) return; // Element not found
+
+  // Remove any existing indicator classes first
+  iconElement.classList.remove('stat-increase', 'stat-decrease');
+
+  // Add the appropriate class based on the change
+  if (changeAmount > 0) {
+    iconElement.classList.add('stat-increase');
+  } else if (changeAmount < 0) {
+    iconElement.classList.add('stat-decrease');
+  } else {
+    return; // No change, no indicator needed
+  }
+
+  // Set a timeout to remove the indicator class after a short duration
+  setTimeout(() => {
+    iconElement.classList.remove('stat-increase', 'stat-decrease');
+  }, 750); // Duration of the indicator flash in milliseconds
+}
+
+
 // Kaynakları güncelleme fonksiyonu (Dictionary based)
 function updateResources(effects) {
   if (!effects) return; // No effects to apply
 
-  // Get current values or 0 if not specified in effects
+  // Store old values to calculate change
+  const oldMotivation = resources.motivation;
+  const oldPerformance = resources.performance;
+  const oldColleagues = resources.colleagues;
+  const oldBoss = resources.boss;
+
+  // Get change amounts or 0 if not specified in effects
   const motivationChange = effects.motivation * 0.50 || 0;
   const performanceChange = effects.performance * 0.50 || 0;
   const colleaguesChange = effects.colleagues * 0.35 || 0;
@@ -501,8 +552,14 @@ function updateResources(effects) {
 
   resources.day++; // Increment day after applying effects
 
-  // Arayüzü güncelle
+  // Arayüzü güncelle (Update fill levels)
   updateUI();
+
+  // Show indicators based on the *actual* change after clamping
+  showStatChangeIndicator('motivation', resources.motivation - oldMotivation);
+  showStatChangeIndicator('performance', resources.performance - oldPerformance);
+  showStatChangeIndicator('colleagues', resources.colleagues - oldColleagues);
+  showStatChangeIndicator('boss', resources.boss - oldBoss);
 
   // Oyun sonu kontrolü
   checkGameOver(); // Check game over after updating resources
@@ -511,15 +568,16 @@ function updateResources(effects) {
 // Bilgilendirme kartı etkilerini uygula (Uses updateResources now)
 function applyInfoCardEffects(effects) {
   // Info cards also use the same resource update logic
+  // updateResources handles UI update, indicators, and game over check
   updateResources(effects);
   // Note: Day is incremented inside updateResources, no need to increment again here
 }
 
-// Arayüzü güncelleme fonksiyonu
+// Arayüzü güncelleme fonksiyonu (Updates fill levels and day counter)
 function updateUI() {
   dayCounterElement.textContent = `Gün ${resources.day}`;
 
-  // Stat ikonlarını güncelle
+  // Stat ikon fill seviyelerini güncelle
   motivationFillElement.style.height = `${resources.motivation}%`;
   performanceFillElement.style.height = `${resources.performance}%`;
   colleaguesFillElement.style.height = `${resources.colleagues}%`;
@@ -550,7 +608,7 @@ function showWelcomeCard() {
   const welcomeCard = {
     text: "Hazırsanız başlayalım",
     isInfoOnly: true,
-    effects: {}
+    effects: {} // No effects for welcome card
   };
 
   currentCard = welcomeCard;
@@ -709,9 +767,12 @@ function restartGame() {
     });
     delayedCards = []; // Clear delayed cards
     gameOver = false; // Reset game over flag
+    winCardShown = false; // Reset win card flag
+    window.playedCardIds = []; // Reset played cards
+    window.immediateFollowups = null; // Reset immediate followups
 
     // Show welcome card again instead of getting next card
-    showWelcomeCard(); // <-- Add this line
+    showWelcomeCard();
   } else {
     // Handle error case if cards failed to load initially
     cardTextElement.textContent = "Hata: Kartlar yüklenemediği için yeniden başlatılamıyor.";
@@ -727,6 +788,12 @@ function restartGame() {
   cardElement.style.transform = "rotate(0) translateX(0)";
   cardElement.style.opacity = "1";
   // Background reset happens in updateCardUI
+
+  // Reset stat icon indicators
+  [motivationIconElement, performanceIconElement, colleaguesIconElement, bossIconElement].forEach(icon => {
+    icon.classList.remove('stat-increase', 'stat-decrease');
+  });
+
 
   // Reinitialize the stack
   // Remove any existing stack items
@@ -829,12 +896,22 @@ function processCard(isYes) {
   // Don't process if card is null or game is already over
   if (!currentCard || gameOver) {
     console.log("ProcessCard called with null card or game over state.");
+    // If card is null (calm day), still need to advance day and check game over
+    if (!currentCard && !gameOver) {
+      // Simulate advancing a day with no effects
+      updateResources({}); // Pass empty effects object
+      // Get the next card after the "calm day"
+      const nextCard = getNextCard();
+      currentCard = nextCard;
+      updateCardUI(currentCard);
+    }
     return;
   }
 
   // Store card details before potential changes during processing
   const cardIdBeforeProcessing = currentCard.id;
   const wasInfoCard = currentCard.isInfoOnly;
+  const cardToProcess = currentCard; // Keep a reference to the card being processed
 
   // Define the win message for the competitor offer scenario
   const competitorWinMessage = "Rakip firmadan gelen teklifi kabul ettiniz ve yeni bir başlangıç yaptınız. Oyunu kazandınız!";
@@ -860,26 +937,26 @@ function processCard(isYes) {
 
       // --- Apply Effects and Queue Followups ---
       if (wasInfoCard) {
-        // Apply effects for info-only cards
-        applyInfoCardEffects(currentCard.effects); // Assuming this function exists
+        // Apply effects for info-only cards using the stored card reference
+        applyInfoCardEffects(cardToProcess.effects); // applyInfoCardEffects now calls updateResources
         // Queue followups for info-only cards
-        if (currentCard.followup) {
-          queueFollowupCard(currentCard.followup, currentCard.followup.delay, currentCardId);
-        } else if (currentCard.followups) {
-          queueFollowupCard(currentCard.followups, null, currentCardId);
+        if (cardToProcess.followup) {
+          queueFollowupCard(cardToProcess.followup, cardToProcess.followup.delay, currentCardId);
+        } else if (cardToProcess.followups) {
+          queueFollowupCard(cardToProcess.followups, null, currentCardId);
         }
       } else {
         // Apply effects and queue followups for decision cards
         if (isYes) {
-          updateResources(currentCard.yesEffects); // Update resources first
+          updateResources(cardToProcess.yesEffects); // Update resources first
 
           // --- Check for Competitor Win Condition (Scenario A: Direct Leave) ---
           if (currentCardId === 'COMPETITOR_JOB_OFFER') {
             // Queue the 'yes' followups for the competitor offer
-            if (currentCard.yesFollowup) {
-              queueFollowupCard(currentCard.yesFollowup, currentCard.yesFollowup.delay, currentCardId);
-            } else if (currentCard.yesFollowups) {
-              queueFollowupCard(currentCard.yesFollowups, null, currentCardId);
+            if (cardToProcess.yesFollowup) {
+              queueFollowupCard(cardToProcess.yesFollowup, cardToProcess.yesFollowup.delay, currentCardId);
+            } else if (cardToProcess.yesFollowups) {
+              queueFollowupCard(cardToProcess.yesFollowups, null, currentCardId);
             }
 
             // Check if COUNTEROFFER was NOT queued immediately (delay 0)
@@ -897,19 +974,19 @@ function processCard(isYes) {
 
           } else {
             // If it wasn't the competitor offer card, queue 'yes' followups normally
-            if (currentCard.yesFollowup) {
-              queueFollowupCard(currentCard.yesFollowup, currentCard.yesFollowup.delay, currentCardId);
-            } else if (currentCard.yesFollowups) {
-              queueFollowupCard(currentCard.yesFollowups, null, currentCardId);
+            if (cardToProcess.yesFollowup) {
+              queueFollowupCard(cardToProcess.yesFollowup, cardToProcess.yesFollowup.delay, currentCardId);
+            } else if (cardToProcess.yesFollowups) {
+              queueFollowupCard(cardToProcess.yesFollowups, null, currentCardId);
             }
           }
         } else { // Player chose 'no'
-          updateResources(currentCard.noEffects);
+          updateResources(cardToProcess.noEffects);
           // Queue 'no' followups
-          if (currentCard.noFollowup) {
-            queueFollowupCard(currentCard.noFollowup, currentCard.noFollowup.delay, currentCardId);
-          } else if (currentCard.noFollowups) {
-            queueFollowupCard(currentCard.noFollowups, null, currentCardId);
+          if (cardToProcess.noFollowup) {
+            queueFollowupCard(cardToProcess.noFollowup, cardToProcess.noFollowup.delay, currentCardId);
+          } else if (cardToProcess.noFollowups) {
+            queueFollowupCard(cardToProcess.noFollowups, null, currentCardId);
           }
         }
       } // End of effect/followup logic for decision vs info cards
@@ -929,8 +1006,10 @@ function processCard(isYes) {
 
         // --- Check Standard Game Over Conditions ---
         // This check happens AFTER resource updates and potential competitor win
+        // updateResources already calls checkGameOver, so this might be redundant,
+        // but double-checking doesn't hurt.
         if (checkGameOver()) {
-          // showGameOver() was called inside checkGameOver()
+          // showGameOver() was called inside checkGameOver() or updateResources
           currentCard = null; // Ensure no new card is processed or UI updated
           return; // Exit, game ended by resource limits
         }
@@ -948,7 +1027,7 @@ function processCard(isYes) {
             // Ensure parent card was played if specified (important for branching)
             if (!followup.parentCardId || (followup.parentCardId && window.playedCardIds.includes(followup.parentCardId))) {
               // Basic requirement check for the followup itself
-              if (checkRequirements(followup.requirements)) {
+              if (checkRequirements(followup.requirements, resources)) { // Pass resources
                 selectedFollowup = followup;
                 selectedFollowupIndex = i;
                 break;
@@ -962,7 +1041,7 @@ function processCard(isYes) {
             window.immediateFollowups.splice(selectedFollowupIndex, 1);
           }
           // Clean up the global variable if the queue is now empty
-          if (window.immediateFollowups.length === 0) {
+          if (window.immediateFollowups && window.immediateFollowups.length === 0) {
             window.immediateFollowups = null;
           }
         }
@@ -977,7 +1056,7 @@ function processCard(isYes) {
               // Ensure parent card was played if specified
               if (!delayedItem.parentCardId || (delayedItem.parentCardId && window.playedCardIds.includes(delayedItem.parentCardId))) {
                 // Basic requirement check for the delayed card
-                if (checkRequirements(delayedItem.card.requirements)) {
+                if (checkRequirements(delayedItem.card.requirements, resources)) { // Pass resources
                   nextCardToShow = delayedItem.card;
                   delayedCards.splice(i, 1); // Remove from delayed queue
                   foundDelayedFollowup = true;
@@ -1022,6 +1101,10 @@ function processCard(isYes) {
   cardElement.style.transition = 'transform 0.5s ease, opacity 0.5s ease'; // Ensure opacity transition
   cardElement.style.transform = `translateX(${direction * (window.innerWidth / 1.5)}px) rotate(${direction * 30}deg)`; // Adjust distance/rotation as needed
   cardElement.style.opacity = "0";
+
+  // Animate stack and add new card *during* swipe animation
+  animateStackForward();
+  addNewCardToStack();
 
   // --- Wait for animation, then process logic ---
   setTimeout(processAfterSwipe, 500); // Match timeout to animation duration
@@ -1152,4 +1235,6 @@ aboutModalElement.addEventListener('click', () => {
 
 restartButtonElement.addEventListener('click', restartGame);
 
-initializeGame();
+// --- Initialize ---
+initializeGame(); // Load cards and set up initial state
+updateUI(); // Initial UI update for resources
