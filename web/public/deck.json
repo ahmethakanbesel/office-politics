@@ -188,7 +188,7 @@
             },
             {
                 "id": "FUTURE_CONSIDERATION",
-                "text": "Bu fuar teklifini reddetmenize rağmen, yöneticiniz gelecekteki etkinliklerde sizi değerlendirmeye devam edeceğini belirtti. Önümüzdeki çeyrekte daha uygun bir zamanda gerçekleşecek bir etkinlik için sizinle tekrar görüşeceklerini söyledi.",
+                "text": "Bu fuar teklifini reddetmenize rağmen yöneticiniz gelecekteki etkinliklerde sizi değerlendirmeye devam edeceğini belirtti. Önümüzdeki çeyrekte daha uygun bir zamanda gerçekleşecek bir etkinlik için sizinle tekrar görüşeceklerini söyledi.",
                 "effects": {
                     "motivation": 5,
                     "performance": 0,
@@ -1218,7 +1218,7 @@
             },
             {
                 "id": "INSISTENT_COLLEAGUE",
-                "text": "Konuyu değiştirme çabalarınıza rağmen, iş arkadaşınız dini konularda görüşlerini paylaşmaya devam etti. Rahatsızlığınız arttı ve molanın geri kalanı boyunca kendinizi huzursuz hissettiniz.",
+                "text": "Konuyu değiştirme çabalarınıza rağmen iş arkadaşınız dini konularda görüşlerini paylaşmaya devam etti. Rahatsızlığınız arttı ve molanın geri kalanı boyunca kendinizi huzursuz hissettiniz.",
                 "effects": {
                     "motivation": -15,
                     "performance": -5,
@@ -1306,7 +1306,7 @@
             },
             {
                 "id": "PERSISTENT_COLLEAGUE",
-                "text": "Konuyu değiştirme çabalarınıza rağmen, iş arkadaşınız siyasi konulara geri dönmeye devam etti. Bu durum sizi rahatsız etti ve molanın geri kalanı boyunca gergin hissettiniz.",
+                "text": "Konuyu değiştirme çabalarınıza rağmen iş arkadaşınız siyasi konulara geri dönmeye devam etti. Bu durum sizi rahatsız etti ve molanın geri kalanı boyunca gergin hissettiniz.",
                 "effects": {
                     "motivation": -15,
                     "performance": -5,
@@ -2031,7 +2031,7 @@
     },
     {
         "id": "IMPATIENT_COLLEAGUE",
-        "text": "Bir iş arkadaşınız bir projeyi incelemenizi rica etti. Gün içerisinde bakacağınızı söylemenize rağmen, son birkaç saatte üç kez size gelip inceleyip incelemediğinizi sordu. Bu duruma nasıl tepki vereceksiniz?",
+        "text": "Bir iş arkadaşınız bir projeyi incelemenizi rica etti. Gün içerisinde bakacağınızı söylemenize rağmen son birkaç saatte üç kez size gelip inceleyip incelemediğinizi sordu. Bu duruma nasıl tepki vereceksiniz?",
         "yesEffects": {
             "motivation": -5,
             "performance": -10,
@@ -2200,7 +2200,7 @@
         "yesFollowups": [
             {
                 "id": "FUTILE_EFFORTS",
-                "text": "İş yerindeki partnerinizle ilişkinizi kurtarmak için çaba göstermiştiniz. Tüm çabalarınıza rağmen, partneriniz kararını vermiş. İlişki acı verici bir şekilde sona erdi ve şimdi her gün iş yerinde bu kişiyle karşılaşmak zorunda kalıyorsunuz.",
+                "text": "İş yerindeki partnerinizle ilişkinizi kurtarmak için çaba göstermiştiniz. Tüm çabalarınıza rağmen partneriniz kararını vermiş. İlişki acı verici bir şekilde sona erdi ve şimdi her gün iş yerinde bu kişiyle karşılaşmak zorunda kalıyorsunuz.",
                 "effects": {
                     "motivation": -25,
                     "performance": -15,
@@ -5599,7 +5599,7 @@
             },
             {
                 "id": "UNEXPECTED_SUCCESS",
-                "text": "Beş gün önce, proje yöneticisinin fikrinin kusurlu olduğunu düşündüğünüzde sessiz kalmayı seçmiştiniz. Endişelerinize rağmen, proje yöneticisinin fikri beklenmedik şekilde başarılı oldu. Belki de eleştirmemekle doğru kararı vermişsiniz.",
+                "text": "Beş gün önce, proje yöneticisinin fikrinin kusurlu olduğunu düşündüğünüzde sessiz kalmayı seçmiştiniz. Endişelerinize rağmen proje yöneticisinin fikri beklenmedik şekilde başarılı oldu. Belki de eleştirmemekle doğru kararı vermişsiniz.",
                 "effects": {
                     "motivation": -5,
                     "performance": 5,
@@ -6037,7 +6037,7 @@
         "noFollowups": [
             {
                 "id": "UNEXPECTED_INCREASE",
-                "text": "Siz herhangi bir talepte bulunmamanıza rağmen, yönetiminiz performansınızı takdir etti ve bir sonraki dönemde priminizi artırdı.",
+                "text": "Siz herhangi bir talepte bulunmamanıza rağmen yönetiminiz performansınızı takdir etti ve bir sonraki dönemde priminizi artırdı.",
                 "effects": {
                     "motivation": 15,
                     "performance": 10,
