@@ -19,6 +19,7 @@ let startX = 0;
 let currentX = 0;
 let gameOver = false;
 let winCardShown = false;
+let personalBest = 0;
 
 // DOM elements
 const cardElement = document.getElementById('card');
@@ -46,6 +47,8 @@ const restartButtonElement = document.getElementById('restart-button');
 
 // --- Load Cards and Initialize Game ---
 function initializeGame() {
+  loadPersonalBest();
+
   // First show the welcome card
   showWelcomeCard();
 
@@ -615,7 +618,45 @@ function showWelcomeCard() {
   updateCardUI(welcomeCard);
 }
 
-function showGameOver(winReason = null) { // Add optional parameter winReason
+
+function loadPersonalBest() {
+  const savedBest = localStorage.getItem('officePoliticsPersonalBest');
+  if (savedBest) {
+    personalBest = parseInt(savedBest, 10);
+  } else {
+    personalBest = 0;
+  }
+
+  // Update the best score display in the info/about screen
+  updateInfoScreenBestScore();
+}
+
+// Add a new function to update the best score in the info screen
+function updateInfoScreenBestScore() {
+  const bestScoreElement = document.getElementById('info-best-score');
+  if (bestScoreElement) {
+    if (personalBest > 0) {
+      bestScoreElement.textContent = `En uzun oyununuz ${personalBest} gün sürdü.`;
+      bestScoreElement.style.display = 'block';
+    } else {
+      bestScoreElement.style.display = 'none'; // Hide if no best score yet
+    }
+  }
+}
+
+function savePersonalBest(days) {
+  if (days > personalBest) {
+    personalBest = days;
+    localStorage.setItem('officePoliticsPersonalBest', personalBest.toString());
+    // Update the info screen best score display
+    updateInfoScreenBestScore();
+    return true; // Return true if this is a new personal best
+  }
+  return false; // Return false if not a new personal best
+}
+
+
+function showGameOver(winReason = null) {
   let reason = "";
   let isWin = false;
 
@@ -646,13 +687,41 @@ function showGameOver(winReason = null) { // Add optional parameter winReason
   }
 
   // Add the days lasted text to the reason
-  // Duruma göre farklı mesaj göster
-  const daysMessage = isWin
-    ? `${resources.day - 1} günde kariyerinizde yeni bir dönüm noktasına ulaştınız.`
-    : `${resources.day - 1} gün dayanabildiniz.`;
+  // Calculate days (subtract 1 since the game ends on the current day)
+  const daysSurvived = resources.day - 1;
 
-  // Update game over text with both the reason and days message
+  // Check if this is a new personal best
+  const isNewPersonalBest = savePersonalBest(daysSurvived);
+
+  // Create appropriate message based on win/loss and personal best
+  let daysMessage = '';
+
+  if (isWin) {
+    daysMessage = `${daysSurvived} günde kariyerinizde yeni bir dönüm noktasına ulaştınız.`;
+  } else {
+    daysMessage = `${daysSurvived} gün dayanabildiniz.`;
+  }
+
+  // Add personal best message
+  let personalBestMessage = '';
+  if (isNewPersonalBest && daysSurvived > 0) {
+    personalBestMessage = `<span class="personal-best-highlight">Yeni Rekorunuz!</span>`;
+  } else if (personalBest > 0) {
+    personalBestMessage = `En yüksek: ${personalBest} gün`;
+  }
+
+  // Update game over text with reason, days message, and personal best
   gameOverReasonElement.innerHTML = `${reason}<br><br>${daysMessage}`;
+
+  // Create or update the personal best element
+  let personalBestElement = document.getElementById('personal-best');
+  if (!personalBestElement) {
+    personalBestElement = document.createElement('div');
+    personalBestElement.id = 'personal-best';
+    gameOverElement.insertBefore(personalBestElement, restartButtonElement);
+  }
+
+  personalBestElement.innerHTML = personalBestMessage;
 
   // Show the game over screen
   gameOverElement.style.display = "flex";
@@ -1226,6 +1295,7 @@ function endDrag(e) {
 }
 
 aboutIconElement.addEventListener('click', () => {
+  updateInfoScreenBestScore();
   aboutModalElement.style.display = 'flex';
 });
 

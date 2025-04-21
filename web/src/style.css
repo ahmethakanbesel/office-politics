@@ -511,3 +511,27 @@ body {
 .fade-in {
   animation: fadeIn 0.3s ease-in forwards;
 }
+
+.best-score-display {
+  display: inline-block;
+  font-weight: bold;
+  color: rgb(234, 179, 8);
+  /* yellow color, matching colleagues color */
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+#info-best-score {
+  display: none;
+  /* Hidden by default, shown when there's a score */
+}
+
+/* Media query adjustments */
+@media (max-width: 480px) {
+  .best-score-display {
+    padding: 3px 8px;
+    margin-top: 8px;
+  }
+}
