@@ -542,10 +542,10 @@ function updateResources(effects) {
   const oldBoss = resources.boss;
 
   // Get change amounts or 0 if not specified in effects
-  const motivationChange = effects.motivation * 0.50 || 0;
-  const performanceChange = effects.performance * 0.50 || 0;
-  const colleaguesChange = effects.colleagues * 0.35 || 0;
-  const bossChange = effects.boss * 0.50 || 0;
+  const motivationChange = effects.motivation * (Math.random() * 0.15 + 0.50) || 0;
+  const performanceChange = effects.performance * (Math.random() * 0.15 + 0.50) || 0;
+  const colleaguesChange = effects.colleagues * (Math.random() * 0.15 + 0.35) || 0;
+  const bossChange = effects.boss * (Math.random() * 0.15 + 0.50) || 0;
 
   // Update resources, clamping between minValue and maxValue
   resources.motivation = Math.max(Math.min(resources.motivation + motivationChange, resources.maxValue), resources.minValue);
