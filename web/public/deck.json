@@ -8572,5 +8572,197 @@
             "boss": 5
         },
         "isInfoOnly": true
+    },
+    {
+        "id": "INFO_SURPRISE_LUNCH",
+        "text": "Şirket yönetimi bugün sürpriz bir öğle yemeği organize etti! Herkes lobideki açık büfenin tadını çıkarıyor.",
+        "effects": {
+            "motivation": 15,
+            "performance": -5,
+            "colleagues": 10,
+            "boss": 5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_COFFEE_MACHINE_BROKE",
+        "text": "Kahve makinesi bozuldu! Bugün ofiste herkes uyuşuk ve huysuz. Tamir ekibi ancak yarın gelebilecekmiş.",
+        "effects": {
+            "motivation": -10,
+            "performance": -10,
+            "colleagues": -5,
+            "boss": 0
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_SURPRISE_INSPECTION",
+        "text": "Sürpriz denetim! Genel müdür bugün departmanları dolaşıyor ve projeler hakkında detaylı sorular soruyor.",
+        "effects": {
+            "motivation": -5,
+            "performance": 10,
+            "colleagues": 0,
+            "boss": 5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_OFFICE_DOG",
+        "text": "Bir iş arkadaşınız bugün sevimli köpeğini ofise getirdi. Herkes ara sıra gidip patili arkadaşı sevmeye gidiyor!",
+        "effects": {
+            "motivation": 10,
+            "performance": -5,
+            "colleagues": 15,
+            "boss": -5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_NETWORK_DOWN",
+        "text": "Ofis internet bağlantısı çöktü! BT ekibi sorunu çözmeye çalışırken herkes birbirine komik videolar gösteriyor.",
+        "effects": {
+            "motivation": 5,
+            "performance": -15,
+            "colleagues": 10,
+            "boss": -10
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_SURPRISE_BONUS",
+        "text": "E-postanızı kontrol ettiğinizde harika bir haber: Bu ay ekstra bir prim alacaksınız! Patronunuz projenizdeki ekstra çabanızı fark etmiş.",
+        "effects": {
+            "motivation": 20,
+            "performance": 10,
+            "colleagues": 0,
+            "boss": 15
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_LOUD_CONSTRUCTION",
+        "text": "Ofis binanızın dışında gürültülü inşaat çalışmaları başladı. Kulaklıklarınızı taktınız ama yine de konsantre olmak imkansız!",
+        "effects": {
+            "motivation": -10,
+            "performance": -15,
+            "colleagues": 5,
+            "boss": 0
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_FREE_WORKSHOP",
+        "text": "Şirket, çalışanlar için ücretsiz kişisel gelişim atölyesi düzenledi. Hem eğlenceli hem de öğretici bir gün sizi bekliyor!",
+        "effects": {
+            "motivation": 15,
+            "performance": 5,
+            "colleagues": 10,
+            "boss": 5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_STOLEN_LUNCH",
+        "text": "Birisi buzdolabına bıraktığınız tatlınızı almış! Bu durum pek hoşunuza gitmedi ve bütün gün keyfiniz kaçık bir şekilde çalıştınız.",
+        "effects": {
+            "motivation": -15,
+            "performance": -10,
+            "colleagues": -10,
+            "boss": 0
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_BROKEN_CHAIR",
+        "text": "Sandalyeniz aniden çöktü ve herkesin önünde yere kapaklandınız! Neyse ki sadece gülüşmeler oldu, ciddi bir yaralanma yok.",
+        "effects": {
+            "motivation": -5,
+            "performance": -10,
+            "colleagues": 5,
+            "boss": -5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_OFFICE_PLANTS",
+        "text": "Yönetim ofise canlılık katmak için her masaya minik bitkiler dağıttı. Yeşil arkadaşınıza isim verdiniz bile!",
+        "effects": {
+            "motivation": 10,
+            "performance": 5,
+            "colleagues": 5,
+            "boss": 10
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_TEAMMATE_QUITS",
+        "text": "Yakın çalıştığınız bir ekip arkadaşınız aniden istifa etti. Şimdi onun işlerini de siz üstlenmek zorunda kalacaksınız!",
+        "effects": {
+            "motivation": -10,
+            "performance": -5,
+            "colleagues": -5,
+            "boss": -5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_COMPLIMENT",
+        "text": "Toplantıda takım lideriniz son çalışmalarınıza övgüler yağdırdı ve sizi örnek gösterdi. Gururdan kulaklarınız kızardı!",
+        "effects": {
+            "motivation": 20,
+            "performance": 10,
+            "colleagues": -5,
+            "boss": 15
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_SMELLY_LUNCH",
+        "text": "Bir iş arkadaşınız mikrodalgada aşırı kokulu bir yemek ısıttı. Tüm kat inanılmaz kötü kokuyor ve herkes suçluyu arıyor!",
+        "effects": {
+            "motivation": -10,
+            "performance": -5,
+            "colleagues": -5,
+            "boss": 0
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_BIRTHDAY_SURPRISE",
+        "text": "Doğum gününüzü hatırlayan iş arkadaşlarınız size pasta almışlar. Ne güzel bir sürpriz!",
+        "effects": {
+            "motivation": 20,
+            "performance": 5,
+            "colleagues": 15,
+            "boss": 5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_WRONG_EMAIL",
+        "text": "Eyvah! Patronunuz hakkında yazdığınız şikâyet mailini yanlışlıkla ona göndermişsiniz. Şimdi ne yapacaksınız?",
+        "effects": {
+            "motivation": -15,
+            "performance": -10,
+            "colleagues": 5,
+            "boss": -25
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
     }
 ]
