@@ -1,5 +1,226 @@
 [
     {
+        "id": "IGNORED_GREETING",
+        "text": "Selamladığınız bir arkadaşınız selamınızı almadı. Normalde iyi anlaştığınız bu kişinin davranışı sizi şaşırttı. Son zamanlarda aranızda herhangi bir sorun yaşanmadı, ancak bu durum sizi rahatsız etti. Ne yapacaksınız?",
+        "requirements": {
+            "type": "and",
+            "conditions": [
+                {
+                    "resource": "colleagues",
+                    "comparison": "gte",
+                    "value": 10
+                },
+                {
+                    "resource": "motivation",
+                    "comparison": "gte",
+                    "value": 5
+                }
+            ]
+        },
+        "yesEffects": {
+            "motivation": 0,
+            "performance": 0,
+            "colleagues": -5,
+            "boss": 0
+        },
+        "noEffects": {
+            "motivation": 5,
+            "performance": 0,
+            "colleagues": 10,
+            "boss": 0
+        },
+        "yesText": "Durumu görmezden geleceksiniz",
+        "noText": "Arkadaşınızla konuşup durumu netleştireceksiniz",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "GROWING_DISTANCE",
+                "text": "Selamınızı almayan arkadaşınızla ilgili durumu görmezden gelmeyi seçmiştiniz. Zamanla aranızdaki mesafe büyüdü ve iş ilişkileriniz soğumaya başladı. Artık ekip toplantılarında bile iletişiminiz minimum düzeyde.",
+                "effects": {
+                    "motivation": -10,
+                    "performance": -5,
+                    "colleagues": -15,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 5,
+                "probability": 65
+            },
+            {
+                "id": "MISUNDERSTANDING_REVEALED",
+                "text": "Selamınızı almayan arkadaşınızla ilgili durumu görmezden gelmeyi seçmiştiniz. Bir süre sonra ortak bir arkadaşınız aracılığıyla öğrendiniz ki, o gün arkadaşınız ciddi bir kişisel sorun yaşıyormuş ve tamamen dalgınlıktan selamınızı duymamış. Şimdi sizin kendisine kırıldığınızı düşünüyor.",
+                "yesEffects": {
+                    "motivation": -5,
+                    "performance": 0,
+                    "colleagues": -10,
+                    "boss": 0
+                },
+                "noEffects": {
+                    "motivation": 5,
+                    "performance": 0,
+                    "colleagues": 15,
+                    "boss": 5
+                },
+                "yesText": "Yine de bir adım atmayacaksınız",
+                "noText": "İnisiyatif alıp durumu düzelteceksiniz",
+                "delay": 3,
+                "probability": 45,
+                "yesFollowups": [
+                    {
+                        "id": "PERMANENT_DAMAGE",
+                        "text": "Arkadaşınızın durumunu öğrenmenize rağmen bir adım atmamayı seçmiştiniz. Bu pasif tutumunuz, aranızdaki ilişkiye kalıcı zarar verdi. Arkadaşınız, empati eksikliğinizi gördü ve profesyonel ilişki dışında sizinle iletişimini en aza indirdi.",
+                        "effects": {
+                            "motivation": -15,
+                            "performance": -5,
+                            "colleagues": -20,
+                            "boss": -5
+                        },
+                        "isInfoOnly": true,
+                        "delay": 4
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "STRENGTHENED_BOND",
+                        "text": "Arkadaşınızın durumunu öğrendikten sonra inisiyatif alıp durumu düzeltmeyi seçmiştiniz. Ona yaklaşıp anlayışla karşıladığınızı belirttiğinizde çok rahatladı. Bu olumlu yaklaşımınız, arkadaşlığınızı daha da güçlendirdi ve iş ortamında birbirinize daha fazla destek olmaya başladınız.",
+                        "effects": {
+                            "motivation": 15,
+                            "performance": 10,
+                            "colleagues": 20,
+                            "boss": 5
+                        },
+                        "isInfoOnly": true,
+                        "delay": 3
+                    }
+                ]
+            },
+            {
+                "id": "TEMPORARY_ISSUE",
+                "text": "Selamınızı almayan arkadaşınızla ilgili durumu görmezden gelmeyi seçmiştiniz. Birkaç gün sonra arkadaşınız size her zamanki gibi sıcak davranmaya başladı. Anlaşılan o gün geçici bir durum yaşanmıştı.",
+                "effects": {
+                    "motivation": 5,
+                    "performance": 0,
+                    "colleagues": 5,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 2,
+                "probability": 35
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "HONEST_CONVERSATION",
+                "text": "Selamınızı almayan arkadaşınızla konuşup durumu netleştirmeyi seçmiştiniz. Sakin ve yapıcı bir yaklaşımla konuyu açtığınızda, arkadaşınız o gün çok stresli olduğunu ve farkında olmadan sizi görmezden geldiğini söyledi. Samimi özrünü iletti.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 5,
+                    "colleagues": 20,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 1,
+                "probability": 70
+            },
+            {
+                "id": "UNDERLYING_ISSUE",
+                "text": "Selamınızı almayan arkadaşınızla konuşup durumu netleştirmeyi seçmiştiniz. Konuşma sırasında, aslında arkadaşınızın son projedeki bir kararınızdan rahatsız olduğunu öğrendiniz. Bu konuşma, potansiyel bir çatışmayı erkenden tespit etmenizi sağladı.",
+                "yesEffects": {
+                    "motivation": -5,
+                    "performance": -10,
+                    "colleagues": -5,
+                    "boss": -5
+                },
+                "noEffects": {
+                    "motivation": 10,
+                    "performance": 15,
+                    "colleagues": 15,
+                    "boss": 10
+                },
+                "yesText": "Savunmaya geçip kararınızı savunacaksınız",
+                "noText": "Arkadaşınızın bakış açısını anlamaya çalışacaksınız",
+                "delay": 2,
+                "probability": 40,
+                "yesFollowups": [
+                    {
+                        "id": "ESCALATED_CONFLICT",
+                        "text": "Arkadaşınızın projedeki kararınızdan rahatsız olduğunu öğrendiğinizde, savunmaya geçip kararınızı savunmayı seçmiştiniz. Bu yaklaşım, sorunu çözmek yerine daha da büyüttü. Artık iş ortamında gergin bir hava var ve proje süreçlerinde iş birliği zorlaşıyor.",
+                        "effects": {
+                            "motivation": -15,
+                            "performance": -20,
+                            "colleagues": -15,
+                            "boss": -10
+                        },
+                        "isInfoOnly": true,
+                        "delay": 3
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "COLLABORATIVE_SOLUTION",
+                        "text": "Arkadaşınızın projedeki kararınızdan rahatsız olduğunu öğrendiğinizde, onun bakış açısını anlamaya çalışmayı seçmiştiniz. Bu empati dolu yaklaşım, sorunu çözmenize yardımcı oldu. Birlikte daha iyi bir çözüm geliştirdiniz ve bu deneyim iş ilişkinizi güçlendirdi.",
+                        "effects": {
+                            "motivation": 20,
+                            "performance": 15,
+                            "colleagues": 20,
+                            "boss": 15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 4
+                    }
+                ]
+            },
+            {
+                "id": "OVERREACTION",
+                "text": "Selamınızı almayan arkadaşınızla konuşup durumu netleştirmeyi seçmiştiniz. Ancak konuşma sırasında arkadaşınız, basit bir olayı büyüttüğünüzü düşündü. Aslında selamınızı duymamış ve bu kadar hassasiyet göstermenizi gereksiz buldu.",
+                "yesEffects": {
+                    "motivation": -10,
+                    "performance": -5,
+                    "colleagues": -15,
+                    "boss": 0
+                },
+                "noEffects": {
+                    "motivation": 5,
+                    "performance": 0,
+                    "colleagues": 5,
+                    "boss": 0
+                },
+                "yesText": "İncinerek tepki göstereceksiniz",
+                "noText": "Durumu hafife alıp geçiştireceksiniz",
+                "delay": 1,
+                "probability": 30,
+                "yesFollowups": [
+                    {
+                        "id": "COMMUNICATION_BREAKDOWN",
+                        "text": "Arkadaşınızın tepkisi karşısında incinip duygusal tepki vermeyi seçmiştiniz. Bu durum, küçük bir yanlış anlaşılmayı büyük bir iletişim kopukluğuna dönüştürdü. Artık ofiste birbirinizle minimum düzeyde iletişim kuruyorsunuz.",
+                        "effects": {
+                            "motivation": -15,
+                            "performance": -10,
+                            "colleagues": -20,
+                            "boss": -5
+                        },
+                        "isInfoOnly": true,
+                        "delay": 3
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "MATURE_RESOLUTION",
+                        "text": "Arkadaşınızın tepkisi karşısında durumu hafife alıp geçiştirmeyi seçmiştiniz. Bu olgun yaklaşımınız, gereksiz bir çatışmayı önledi. Kısa süre içinde ilişkiniz normale döndü ve olay unutuldu.",
+                        "effects": {
+                            "motivation": 10,
+                            "performance": 5,
+                            "colleagues": 10,
+                            "boss": 5
+                        },
+                        "isInfoOnly": true,
+                        "delay": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "id": "REHIRE_DECISION",
         "text": "Ekibinizin işlerinin çok yoğun olduğu bir dönemde, ekibinizden daha önce ayrılan bir çalışan yeni açtığınız iş ilanına başvurdu. Bu kişi işi ve ekibi tanıyor ancak geçmişte ekibi terk etmişti. Diğer yandan, donanımlı yeni adaylar da var. Mevcut yoğunlukta bildiğiniz kişiyle mi devam edeceksiniz, yoksa yeni ve potansiyel olarak daha donanımlı birini mi işe alacaksınız?",
         "requirements": {
@@ -10109,6 +10330,114 @@
             "performance": -10,
             "colleagues": 5,
             "boss": -25
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_WRONG_EMAIL",
+        "text": "Su sebili bozulmuş, musluktan su içmek zorunda kaldınız. Bu durum sizi biraz rahatsız etti ama yine de işinize odaklanmayı başardınız.",
+        "effects": {
+            "motivation": 0,
+            "performance": 0,
+            "colleagues": 0,
+            "boss": 0
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_WRONG_EMAIL",
+        "text": "Çok sevdiğiniz kaleminizi biri sizden habersiz almış. Bu durum sizi biraz rahatsız etti ama yine de işinize odaklanmayı başardınız.",
+        "effects": {
+            "motivation": 0,
+            "performance": 0,
+            "colleagues": 0,
+            "boss": 0
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_COFFEE_MACHINE_BROKEN",
+        "text": "Hiç kahve kalmamış! Çalışanlar kafeinsiz kalınca verimlilik düşüşü yaşanıyor.",
+        "effects": {
+            "motivation": -15,
+            "performance": -10,
+            "colleagues": 5,
+            "boss": -5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_MISSED_MEETING",
+        "text": "Önemli bir toplantıyı unuttunuz ve katılmadınız! Patronunuz durumdan hiç memnun değil.",
+        "effects": {
+            "motivation": -10,
+            "performance": -5,
+            "colleagues": 0,
+            "boss": -20
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_BROKEN_AC",
+        "text": "Klimalar bozuldu ve içerisi fırın gibi! Herkes bunalırken çalışmaya odaklanmak imkansız hale geldi.",
+        "effects": {
+            "motivation": -15,
+            "performance": -20,
+            "colleagues": -5,
+            "boss": -5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_COMPUTER_CRASH",
+        "text": "Bilgisayarınız aniden çöktü ve sabahtan beri çalıştığınız dosyaları kaybettiniz! Hepsini yeniden yapmak zorundasınız.",
+        "effects": {
+            "motivation": -25,
+            "performance": -15,
+            "colleagues": 0,
+            "boss": -5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_MISTAKE_FIXED",
+        "text": "Dün yaptığınız büyük bir hatayı kimse fark etmeden düzeltmeyi başardınız. Bu stresli durum sizi biraz yordu.",
+        "effects": {
+            "motivation": 5,
+            "performance": -5,
+            "colleagues": 0,
+            "boss": 5
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_PARKING_PROBLEM",
+        "text": "Birisi sizin hep park ettiğiniz yere aracını park etmiş! Uzak bir yere park etmek zorunda kaldınız ve toplantıya geç kaldınız.",
+        "effects": {
+            "motivation": -10,
+            "performance": -5,
+            "colleagues": -5,
+            "boss": -10
+        },
+        "isInfoOnly": true,
+        "maxUses": 1
+    },
+    {
+        "id": "INFO_PRINTER_JAM",
+        "text": "Yazıcı tam da önemli bir rapor çıkaracakken sıkıştı! Teknik servis gelene kadar toplantıya dosyasız gitmek zorunda kaldınız.",
+        "effects": {
+            "motivation": -5,
+            "performance": -15,
+            "colleagues": 0,
+            "boss": -10
         },
         "isInfoOnly": true,
         "maxUses": 1
