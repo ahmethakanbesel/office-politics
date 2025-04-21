@@ -535,3 +535,7 @@ body {
     margin-top: 8px;
   }
 }
+
+#personal-best {
+  padding: 1rem;
+}

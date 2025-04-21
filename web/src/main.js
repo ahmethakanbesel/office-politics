@@ -664,22 +664,81 @@ function showGameOver(winReason = null) {
     reason = winReason;
     isWin = true;
   } else {
+    const lossReasons = {
+      motivationLow: [
+        "Motivasyonunuz tükendi. İşi bıraktınız.",
+        "Her sabah işe gitmek dayanılmaz bir hal aldı. Motivasyonsuzluktan istifa ettiniz.",
+        "İşe karşı tüm heyecanınızı kaybettiniz ve motivasyonunuz dibe vurdu. İstifa etmeye karar verdiniz.",
+        "Projelerinize olan ilginizi tamamen kaybettiniz. Motivasyon eksikliğinden dolayı işten ayrıldınız."
+      ],
+      motivationHigh: [
+        "Aşırı motivasyon sizi tüketti. Burnout oldunuz.",
+        "Aşırı motivasyon, sizi gece gündüz çalışmaya itti ve sonunda tükendiniz.",
+        "Çok hevesli olmanız dengeli bir yaşam sürmenizi engelledi. Aşırı motivasyon burnout yaşamanıza sebep oldu.",
+        "Motivasyonunuzu kontrol edemeyip kendinizi tükettiniz. İşkoliklik sizi bitirdi."
+      ],
+      performanceLow: [
+        "Performansınız çok düşük. Kovuldunuz.",
+        "Üst üste başarısız projeler nedeniyle performansınız kabul edilemez seviyeye düştü. İşten çıkarıldınız.",
+        "Hedeflerinizi tutturamadınız ve düşük performans nedeniyle şirket sizi kadroda tutamadı.",
+        "Verimlilik raporlarınız sürekli düşüş gösterdi ve sonunda performans yetersizliğinden işinize son verildi."
+      ],
+      performanceHigh: [
+        "Çok fazla çalıştınız. Tükenmişlik sendromu yaşadınız.",
+        "Sürekli yüksek performans göstermeniz sizi fiziksel ve zihinsel olarak tüketti.",
+        "Mükemmeliyetçiliğiniz sizi aşırı çalışmaya sürükledi ve sonunda tükenmişlik yaşadınız.",
+        "Her projede kendinizi aşmaya çalışmanız sağlığınızı bozdu ve işi bırakmak zorunda kaldınız."
+      ],
+      colleaguesLow: [
+        "İş arkadaşlarınız sizden nefret ediyor. Yalnız kaldınız ve istifa ettiniz.",
+        "Ekip çalışmasında yaşadığınız sorunlar ciddi iletişim kopukluklarına yol açtı. Yalnızlaştınız ve istifa ettiniz.",
+        "Meslektaşlarınızla sürekli çatışmalar yaşadığınız için ofisteki atmosfer dayanılmaz hale geldi. İstifa etmeyi seçtiniz.",
+        "İş arkadaşlarınızla kuramadığınız olumlu ilişkiler, size karşı bir cephe oluşmasına neden oldu. Yalnızlık dayanılmaz hale gelince istifa ettiniz."
+      ],
+      colleaguesHigh: [
+        "İş arkadaşlarınızla çok yakınsınız. Bu aranızdaki sosyalliğin artmasına ve iş yerine sosyal kulüp muamelesi yapmanıza sebep oldu. Kovuldunuz.",
+        "Ofisteki aşırı sosyalleşmeniz iş verimliliğinizi düşürdü. Şirket, sosyal ilişkilerinizin iş performansınızı etkilediğini düşünerek sizi işten çıkardı.",
+        "İş arkadaşlarınızla kurduğunuz yakın ilişkiler mesai saatlerinde gevezeliğe ve işlerin aksamasına yol açtı. Şirket bu duruma son vermek için sizi işten çıkardı.",
+        "Çalışma ortamını aşırı sosyalleştirmeniz şirket politikalarına aykırı bulundu ve profesyonellikten uzaklaştığınız gerekçesiyle işinize son verildi."
+      ],
+      bossLow: [
+        "Patronunuz sizi sevmiyor. Kovuldunuz.",
+        "Yöneticinizle yaşadığınız sürekli anlaşmazlıklar sonucu işten çıkarıldınız.",
+        "Patronunuzla aranızdaki uyumsuzluk sonunda onun sabrını taşırdı ve işinize son verildi.",
+        "Yöneticinizle kurduğunuz olumsuz ilişki, şirket içindeki geleceğinizi baltaladı ve sonunda kovuldunuz."
+      ],
+      bossHigh: [
+        "Patronunuzla kurduğunuz aşırı yakın ilişki, ofis içinde dedikodulara ve çalışma arkadaşlarınızın size karşı güvenini kaybetmesine yol açtı. Diğer çalışanlar kayırıldığınızı düşünmeye başladı ve takım dinamikleri bozuldu. Patronunuz, şirket kültürünü korumak ve diğer çalışanların moralini düzeltmek için, size olan kişisel sempatisine rağmen, pozisyonunuzu sonlandırmak zorunda kaldı.",
+        "Yöneticinizle olan yakınlığınız, diğer çalışanlar arasında adaletsizlik algısı yarattı. Bu durum ofis politikasını olumsuz etkiledi ve sonunda yöneticiniz 'çıkar çatışması' gerekçesiyle sizi işten çıkarmak zorunda kaldı.",
+        "Patronunuzla kurduğunuz samimi ilişki, şirket içi hiyerarşiyi bozdu ve diğer yöneticilerin otoritesini zayıflattı. Şirket politikası gereği pozisyonunuz sonlandırıldı.",
+        "Yöneticinizle fazla yakınlaşmanız, profesyonel sınırları aşmanıza ve şirket içi dengelerin bozulmasına yol açtı. İş ortamındaki bu olumsuz etki nedeniyle işten çıkarıldınız."
+      ]
+    };
+
     if (resources.motivation <= resources.minValue) {
-      reason = "Motivasyonunuz tükendi. İşi bıraktınız.";
+      const randomIndex = Math.floor(Math.random() * lossReasons.motivationLow.length);
+      reason = lossReasons.motivationLow[randomIndex];
     } else if (resources.motivation >= resources.maxValue) {
-      reason = "Aşırı motivasyon sizi tüketti. Burnout oldunuz.";
+      const randomIndex = Math.floor(Math.random() * lossReasons.motivationHigh.length);
+      reason = lossReasons.motivationHigh[randomIndex];
     } else if (resources.performance <= resources.minValue) {
-      reason = "Performansınız çok düşük. Kovuldunuz.";
+      const randomIndex = Math.floor(Math.random() * lossReasons.performanceLow.length);
+      reason = lossReasons.performanceLow[randomIndex];
     } else if (resources.performance >= resources.maxValue) {
-      reason = "Çok fazla çalıştınız. Tükenmişlik sendromu yaşadınız.";
+      const randomIndex = Math.floor(Math.random() * lossReasons.performanceHigh.length);
+      reason = lossReasons.performanceHigh[randomIndex];
     } else if (resources.colleagues <= resources.minValue) {
-      reason = "İş arkadaşlarınız sizden nefret ediyor. Yalnız kaldınız ve istifa ettiniz.";
+      const randomIndex = Math.floor(Math.random() * lossReasons.colleaguesLow.length);
+      reason = lossReasons.colleaguesLow[randomIndex];
     } else if (resources.colleagues >= resources.maxValue) {
-      reason = "İş arkadaşlarınızla çok yakınsınız. Bu aranızdaki sosyalliğin artmasına ve iş yerine sosyal kulüp muamelesi yapmanıza sebep oldu. Kovuldunuz.";
+      const randomIndex = Math.floor(Math.random() * lossReasons.colleaguesHigh.length);
+      reason = lossReasons.colleaguesHigh[randomIndex];
     } else if (resources.boss <= resources.minValue) {
-      reason = "Patronunuz sizi sevmiyor. Kovuldunuz.";
+      const randomIndex = Math.floor(Math.random() * lossReasons.bossLow.length);
+      reason = lossReasons.bossLow[randomIndex];
     } else if (resources.boss >= resources.maxValue) {
-      reason = "Patronunuzla kurduğunuz aşırı yakın ilişki, ofis içinde dedikodulara ve çalışma arkadaşlarınızın size karşı güvenini kaybetmesine yol açtı. Diğer çalışanlar kayırıldığınızı düşünmeye başladı ve takım dinamikleri bozuldu. Patronunuz, şirket kültürünü korumak ve diğer çalışanların moralini düzeltmek için, size olan kişisel sempatisine rağmen, pozisyonunuzu sonlandırmak zorunda kaldı.";
+      const randomIndex = Math.floor(Math.random() * lossReasons.bossHigh.length);
+      reason = lossReasons.bossHigh[randomIndex];
     } else {
       // Fallback if somehow called without a specific reason or boundary hit
       reason = "Oyun sona erdi.";
