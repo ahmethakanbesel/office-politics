@@ -1,5 +1,261 @@
 [
     {
+        "id": "THOROUGH_MANAGER",
+        "text": "Üstlerinize sunduğunuz detaylı bir rapor hakkında geri bildirim aldınız. Yöneticiniz raporu ilmek ilmek incelemiş, tablolardaki hatalardan grafiklerdeki tutarsızlıklara kadar her şeyi tespit etmiş. Yöneticinizin bu titiz yaklaşımı karşısında ne yapacaksınız?",
+        "requirements": {
+            "type": "and",
+            "conditions": [
+                {
+                    "resource": "performance",
+                    "comparison": "gte",
+                    "value": 10
+                },
+                {
+                    "resource": "boss",
+                    "comparison": "gte",
+                    "value": 5
+                }
+            ]
+        },
+        "yesEffects": {
+            "motivation": -5,
+            "performance": 15,
+            "colleagues": 0,
+            "boss": 20
+        },
+        "noEffects": {
+            "motivation": 5,
+            "performance": -10,
+            "colleagues": 5,
+            "boss": -15
+        },
+        "yesText": "Tüm hatalarınızı kabul edip raporu baştan detaylıca düzelteceksiniz",
+        "noText": "Bazı detayların o kadar önemli olmadığını savunacaksınız",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "IMPROVED_SKILLS",
+                "text": "Yöneticinizin rapordaki tüm hataları tespit etmesinin ardından, hatalarınızı kabul edip raporu baştan ve titizlikle düzeltmeyi seçmiştiniz. Bu süreçte veri analizi ve raporlama becerileriniz önemli ölçüde gelişti. Yöneticiniz bu gelişimden çok etkilendi.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 20,
+                    "colleagues": 10,
+                    "boss": 25
+                },
+                "isInfoOnly": true,
+                "delay": 4,
+                "probability": 75
+            },
+            {
+                "id": "EXTRA_WORKLOAD",
+                "text": "Yöneticinizin raporunuzdaki tüm hataları tespit etmesinin ardından, hatalarınızı kabul edip raporu baştan düzeltmeyi seçmiştiniz. Ancak bu durum iş yükünüzü beklenmedik şekilde artırdı ve diğer projeleriniz aksadı. Yöneticiniz yeni bir talepte bulunuyor.",
+                "yesEffects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": -5,
+                    "boss": 10
+                },
+                "noEffects": {
+                    "motivation": 5,
+                    "performance": 10,
+                    "colleagues": 0,
+                    "boss": -10
+                },
+                "yesText": "Diğer projelerinizi de erteleyip bu iş üzerine yoğunlaşacaksınız",
+                "noText": "Önceliklendirme yapmanız gerektiğini kibarca belirteceksiniz",
+                "delay": 3,
+                "probability": 40,
+                "yesFollowups": [
+                    {
+                        "id": "BURNOUT_RISK",
+                        "text": "Rapordaki hataları düzeltirken diğer projelerinizi ertelemeyi ve tamamen bu iş üzerine yoğunlaşmayı seçmiştiniz. Aşırı iş yükü ve uzun çalışma saatleri sizi tükenme noktasına getirdi. Performansınız düşmeye başladı.",
+                        "effects": {
+                            "motivation": -25,
+                            "performance": -20,
+                            "colleagues": -5,
+                            "boss": -10
+                        },
+                        "isInfoOnly": true,
+                        "delay": 5
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "BALANCED_APPROACH",
+                        "text": "Rapordaki hataları düzeltirken önceliklendirme yapmanız gerektiğini kibarca belirtmiştiniz. Bu profesyonel tutumunuz yöneticiniz tarafından anlaşıldı. Çalışma planınızı birlikte düzenlediniz ve daha dengeli bir yaklaşım benimsendi.",
+                        "effects": {
+                            "motivation": 15,
+                            "performance": 15,
+                            "colleagues": 5,
+                            "boss": 10
+                        },
+                        "isInfoOnly": true,
+                        "delay": 4
+                    }
+                ]
+            },
+            {
+                "id": "MENTORSHIP_OFFER",
+                "text": "Yöneticinizin raporunuzdaki tüm hataları tespit etmesinin ardından, hatalarınızı kabul edip raporu baştan düzeltmeyi seçmiştiniz. Bu profesyonel davranışınızdan etkilenen yöneticiniz, size özel mentörlük teklif ediyor.",
+                "yesEffects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": -5,
+                    "boss": 15
+                },
+                "noEffects": {
+                    "motivation": 0,
+                    "performance": 0,
+                    "colleagues": 10,
+                    "boss": -5
+                },
+                "yesText": "Mentörlük teklifini kabul edeceksiniz",
+                "noText": "Şu an için buna zamanınız olmadığını belirteceksiniz",
+                "delay": 6,
+                "probability": 35,
+                "yesFollowups": [
+                    {
+                        "id": "CAREER_ADVANCEMENT",
+                        "text": "Detaylı raporunuzdaki hataları düzelttikten sonra yöneticinizin mentörlük teklifini kabul etmiştiniz. Bu karar kariyerinizde bir dönüm noktası oldu. Analitik becerileriniz hızla gelişti ve şirkette bir terfi için değerlendirilmeye başlandınız.",
+                        "effects": {
+                            "motivation": 25,
+                            "performance": 20,
+                            "colleagues": 10,
+                            "boss": 25
+                        },
+                        "isInfoOnly": true,
+                        "delay": 8
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "MISSED_OPPORTUNITY",
+                        "text": "Detaylı raporunuzdaki hataları düzelttikten sonra yöneticinizin mentörlük teklifini zamanınız olmadığı gerekçesiyle reddetmiştiniz. Zamanla bu kararın önemli bir kariyer fırsatını kaçırmanıza neden olduğunu fark ettiniz.",
+                        "effects": {
+                            "motivation": -15,
+                            "performance": -5,
+                            "colleagues": 0,
+                            "boss": -10
+                        },
+                        "isInfoOnly": true,
+                        "delay": 7
+                    }
+                ]
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "DEFENSIVE_REACTION",
+                "text": "Yöneticinizin raporunuzdaki hataları detaylıca tespit etmesi karşısında, bazı detayların o kadar da önemli olmadığını savunmayı seçmiştiniz. Bu savunmacı tutumunuz, yöneticinizi hayal kırıklığına uğrattı ve aranızdaki güven zedelendi.",
+                "effects": {
+                    "motivation": -5,
+                    "performance": -15,
+                    "colleagues": -10,
+                    "boss": -25
+                },
+                "isInfoOnly": true,
+                "delay": 2,
+                "probability": 80
+            },
+            {
+                "id": "DIFFERENT_PRIORITIES",
+                "text": "Yöneticinizin raporunuzdaki hataları detaylıca tespit etmesi karşısında, bazı detayların o kadar da önemli olmadığını savunmayı seçmiştiniz. Bu durum, siz ve yöneticiniz arasında bir çalışma stili ve öncelikler tartışmasını başlattı.",
+                "yesEffects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 5,
+                    "boss": -5
+                },
+                "noEffects": {
+                    "motivation": -10,
+                    "performance": -5,
+                    "colleagues": -5,
+                    "boss": -15
+                },
+                "yesText": "Ortak bir çalışma standardı bulmaya çalışacaksınız",
+                "noText": "Kendi çalışma tarzınızda ısrar edeceksiniz",
+                "delay": 3,
+                "probability": 20,
+                "yesFollowups": [
+                    {
+                        "id": "CONSTRUCTIVE_COMPROMISE",
+                        "text": "Yöneticinizle yaşadığınız anlaşmazlıktan sonra ortak bir çalışma standardı bulmaya çalışmayı seçmiştiniz. Bu yapıcı yaklaşımınız meyvesini verdi ve hem sizin verimliliğinizi hem de yöneticinizin beklentilerini karşılayan bir orta yol buldunuz.",
+                        "effects": {
+                            "motivation": 15,
+                            "performance": 15,
+                            "colleagues": 10,
+                            "boss": 15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 5
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "REPUTATION_DAMAGE",
+                        "text": "Yöneticinizle yaşadığınız anlaşmazlıktan sonra kendi çalışma tarzınızda ısrar etmeyi seçmiştiniz. Bu tutumunuz, şirkette 'detaylara önem vermeyen' ve 'eleştiriye kapalı' biri olarak anılmanıza yol açtı. Bu olumsuz algı, kariyer gelişiminizi etkiliyor.",
+                        "effects": {
+                            "motivation": -15,
+                            "performance": -10,
+                            "colleagues": -15,
+                            "boss": -20
+                        },
+                        "isInfoOnly": true,
+                        "delay": 6
+                    }
+                ]
+            },
+            {
+                "id": "ALTERNATIVE_APPROACH",
+                "text": "Yöneticinizin raporunuzdaki hataları detaylıca tespit etmesi karşısında, bazı detayların o kadar da önemli olmadığını savunmayı seçmiştiniz. Ancak bu durumu bir fırsata çevirip alternatif bir raporlama yaklaşımı önerdiniz ve yöneticinizin dikkatini çektiniz.",
+                "yesEffects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 15,
+                    "boss": 5
+                },
+                "noEffects": {
+                    "motivation": -10,
+                    "performance": -5,
+                    "colleagues": -10,
+                    "boss": -10
+                },
+                "yesText": "Yeni yaklaşımınızı detaylandırıp sunacaksınız",
+                "noText": "Fikrinizi daha fazla savunmayacaksınız",
+                "delay": 4,
+                "probability": 15,
+                "yesFollowups": [
+                    {
+                        "id": "INNOVATION_RECOGNIZED",
+                        "text": "Yöneticinizin raporunuzdaki hataları tespit etmesi sonrasında önerdiğiniz alternatif raporlama yaklaşımını detaylandırıp sunmayı seçmiştiniz. Bu yenilikçi yaklaşımınız, şirkette büyük ilgi gördü ve raporlama süreçlerinin iyileştirilmesine öncülük etmeniz istendi.",
+                        "effects": {
+                            "motivation": 25,
+                            "performance": 20,
+                            "colleagues": 20,
+                            "boss": 15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 7
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "BACK_TO_BASICS",
+                        "text": "Yöneticinizin raporunuzdaki hataları tespit etmesi sonrasında önerdiğiniz alternatif yaklaşımı daha fazla savunmamayı seçmiştiniz. Sonunda geleneksel yöntemlere geri döndünüz ve ekstra dikkatle çalışmaya başladınız.",
+                        "effects": {
+                            "motivation": -5,
+                            "performance": 5,
+                            "colleagues": 0,
+                            "boss": 5
+                        },
+                        "isInfoOnly": true,
+                        "delay": 5
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "id": "UNEXPECTED_RESIGNATION",
         "text": "Ekibinizdeki başarılı bir çalışan toplantıda beklenmedik şekilde istifa etmek istediğini belirtti. Kendini geliştirmek ve ailesine zaman ayırmak istediğini söylüyor, ancak verdiği cevaplar net değil ve ekip arkadaşları duruma anlam veremiyor. Bu çalışanın projelerdeki sorumluluklarını  nasıl devam ettireceği belirsiz. Ne yapacaksınız?",
         "requirements": {
