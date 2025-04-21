@@ -764,9 +764,9 @@ function showGameOver(winReason = null) {
   // Add personal best message
   let personalBestMessage = '';
   if (isNewPersonalBest && daysSurvived > 0) {
-    personalBestMessage = `<span class="personal-best-highlight">Bu yeni bir rekor!</span>`;
+    personalBestMessage = `<span class="personal-best-highlight">İyi iş! Bu oyun bu zamana kadar ki en uzun oyununuz oldu.</span>`;
   } else if (personalBest > 0) {
-    personalBestMessage = `En yüksek: ${personalBest} gün`;
+    personalBestMessage = `En uzun oyununuz ${personalBest} gün sürmüştü.`;
   }
 
   // Update game over text with reason, days message, and personal best
