@@ -188,10 +188,10 @@ function getNextCard() {
 
   const winChanceCardId = 'COMPETITOR_JOB_OFFER';
   const meetWinConditions = resources.day >= 70 &&
-    resources.motivation >= 70 &&
-    resources.performance >= 70 &&
-    resources.colleagues >= 70 &&
-    resources.boss >= 70 &&
+    resources.motivation >= 50 &&
+    resources.performance >= 50 &&
+    resources.colleagues >= 50 &&
+    resources.boss >= 50 &&
     !winCardShown;
 
   if (meetWinConditions) {
