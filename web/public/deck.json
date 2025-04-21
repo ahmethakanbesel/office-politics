@@ -1,5 +1,620 @@
 [
     {
+        "id": "UNEXPECTED_RESIGNATION",
+        "text": "Ekibinizdeki başarılı bir çalışan toplantıda beklenmedik şekilde istifa etmek istediğini belirtti. Kendini geliştirmek ve ailesine zaman ayırmak istediğini söylüyor, ancak verdiği cevaplar net değil ve ekip arkadaşları duruma anlam veremiyor. Bu çalışanın projelerdeki sorumluluklarını  nasıl devam ettireceği belirsiz. Ne yapacaksınız?",
+        "requirements": {
+            "type": "and",
+            "conditions": [
+                {
+                    "resource": "boss",
+                    "comparison": "gte",
+                    "value": 15
+                },
+                {
+                    "resource": "colleagues",
+                    "comparison": "gte",
+                    "value": 10
+                }
+            ]
+        },
+        "yesEffects": {
+            "motivation": -5,
+            "performance": -10,
+            "colleagues": 5,
+            "boss": 10
+        },
+        "noEffects": {
+            "motivation": 10,
+            "performance": 5,
+            "colleagues": -5,
+            "boss": -10
+        },
+        "yesText": "İstifasını kabul edip sürecin hızla tamamlanmasını sağlayacaksınız",
+        "noText": "Özel görüşme talep edip gerçek nedenini anlamaya çalışacaksınız",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "QUICK_DEPARTURE",
+                "text": "Başarılı çalışanın verdiği net olmayan istifa açıklamasını sorgulamadan kabul etmiştiniz. Ayrılık süreci hızla tamamlandı, ancak projeler ve laboratuvar çalışmaları aksamaya başladı. Ekipte bir bilgi boşluğu oluştu.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -20,
+                    "colleagues": -10,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 3,
+                "probability": 70
+            },
+            {
+                "id": "SURPRISING_RETURN",
+                "text": "Başarılı çalışanın belirsiz açıklamalarla istifasını kabul etmiştiniz. İki ay sonra, aynı çalışan sizinle iletişime geçip geri dönmek istediğini söylüyor. Meğer gittiği yeni iş beklentilerini karşılamamış.",
+                "yesEffects": {
+                    "motivation": 5,
+                    "performance": 10,
+                    "colleagues": -15,
+                    "boss": 5
+                },
+                "noEffects": {
+                    "motivation": -5,
+                    "performance": -5,
+                    "colleagues": 10,
+                    "boss": -5
+                },
+                "yesText": "Geri dönüş talebini kabul edeceksiniz",
+                "noText": "Geri dönüş talebini reddedeceksiniz",
+                "delay": 8,
+                "probability": 30,
+                "yesFollowups": [
+                    {
+                        "id": "TEAM_DISTRUST",
+                        "text": "Belirsiz nedenlerle istifa eden çalışanı tekrar işe almayı kabul etmiştiniz. Bu durum ekip içinde güvensizlik yarattı. Diğer çalışanlar, bu kişinin tekrar ne zaman ve hangi belirsiz nedenlerle ayrılacağını sorguluyor.",
+                        "effects": {
+                            "motivation": -10,
+                            "performance": 5,
+                            "colleagues": -20,
+                            "boss": 0
+                        },
+                        "isInfoOnly": true,
+                        "delay": 4
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "BETTER_RECRUITMENT",
+                        "text": "Belirsiz nedenlerle istifa eden çalışanın geri dönüş talebini reddetmiştiniz. Bu kararınız sayesinde açık pozisyona daha kararlı ve şeffaf iletişim kuran bir çalışan almayı başardınız. Ekip dinamikleri olumlu yönde gelişti.",
+                        "effects": {
+                            "motivation": 15,
+                            "performance": 15,
+                            "colleagues": 10,
+                            "boss": 15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 6
+                    }
+                ]
+            },
+            {
+                "id": "COMPETITOR_MOVE",
+                "text": "Belirsiz açıklamalarla istifa eden başarılı çalışanın aslında rakip bir firmaya geçtiğini öğrendiniz. Bu durum, bazı projelerin ve laboratuvar çalışmalarının güvenliği konusunda endişe yaratıyor.",
+                "effects": {
+                    "motivation": -10,
+                    "performance": -5,
+                    "colleagues": -5,
+                    "boss": -15
+                },
+                "isInfoOnly": true,
+                "delay": 5,
+                "probability": 50
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "REAL_ISSUES_DISCOVERED",
+                "text": "Başarılı çalışanla özel görüşme talep etmiş ve gerçek istifa nedenini anlamaya çalışmıştınız. Bu samimi görüşmede, çalışanın aslında bazı yönetim uygulamalarından ve iş yükünden memnun olmadığını öğrendiniz. Size bu sorunları çözmek için bir fırsat doğdu.",
+                "yesEffects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 15,
+                    "boss": 5
+                },
+                "noEffects": {
+                    "motivation": -10,
+                    "performance": -15,
+                    "colleagues": -15,
+                    "boss": -10
+                },
+                "yesText": "Sorunları çözmek için harekete geçeceksiniz",
+                "noText": "Sorunları görmezden geleceksiniz",
+                "delay": 2,
+                "probability": 65,
+                "yesFollowups": [
+                    {
+                        "id": "EMPLOYEE_RETENTION",
+                        "text": "Başarılı çalışanla gerçekleştirdiğiniz özel görüşmede ortaya çıkan sorunları çözmek için harekete geçmiştiniz. Bu proaktif yaklaşımınız sayesinde sadece bu çalışanı elde tutmakla kalmadınız, aynı zamanda tüm ekibin motivasyonunu ve bağlılığını artırdınız.",
+                        "effects": {
+                            "motivation": 20,
+                            "performance": 15,
+                            "colleagues": 20,
+                            "boss": 15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 5
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "MASS_EXODUS",
+                        "text": "Başarılı çalışanla gerçekleştirdiğiniz özel görüşmede ortaya çıkan sorunları görmezden gelmeyi seçmiştiniz. Bu çalışan istifa etti ve kısa süre içinde aynı sorunlardan şikayetçi olan başka ekip üyeleri de ayrılmaya başladı. Bir domino etkisi yaşanıyor.",
+                        "effects": {
+                            "motivation": -25,
+                            "performance": -20,
+                            "colleagues": -25,
+                            "boss": -20
+                        },
+                        "isInfoOnly": true,
+                        "delay": 4
+                    }
+                ]
+            },
+            {
+                "id": "PERSONAL_CIRCUMSTANCES",
+                "text": "Başarılı çalışanla özel görüşme talep etmiş ve gerçek istifa nedenini anlamaya çalışmıştınız. Görüşmede, çalışanın aslında ciddi kişisel sorunlarla boğuştuğunu ve bu durumu iş arkadaşlarıyla paylaşmak istemediğini öğrendiniz.",
+                "yesEffects": {
+                    "motivation": 10,
+                    "performance": 0,
+                    "colleagues": 5,
+                    "boss": 10
+                },
+                "noEffects": {
+                    "motivation": -5,
+                    "performance": -10,
+                    "colleagues": 0,
+                    "boss": -5
+                },
+                "yesText": "Esnek çalışma koşulları sunacaksınız",
+                "noText": "İstifasını kabul edeceksiniz",
+                "delay": 3,
+                "probability": 35,
+                "yesFollowups": [
+                    {
+                        "id": "LOYALTY_GAINED",
+                        "text": "Kişisel sorunları olan başarılı çalışana esnek çalışma koşulları sunmayı seçmiştiniz. Bu anlayışlı yaklaşımınız, çalışanın sorunlarını çözmesine yardımcı oldu ve size karşı büyük bir sadakat geliştirmesini sağladı. Artık şirketin en bağlı çalışanlarından biri.",
+                        "effects": {
+                            "motivation": 15,
+                            "performance": 15,
+                            "colleagues": 10,
+                            "boss": 15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 7
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "RESPECTFUL_DEPARTURE",
+                        "text": "Kişisel sorunları olan başarılı çalışanın istifasını anlayışla karşılamıştınız. Ayrılık süreci profesyonel ve saygılı bir şekilde tamamlandı. Çalışan, gösterdiğiniz anlayış için minnettar ve gelecekte koşullar uygun olursa geri dönmeyi düşünebileceğini belirtti.",
+                        "effects": {
+                            "motivation": 5,
+                            "performance": -5,
+                            "colleagues": 10,
+                            "boss": 5
+                        },
+                        "isInfoOnly": true,
+                        "delay": 5
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "RETURNING_EMPLOYEE",
+        "text": "Ekibinizin işlerinin çok yoğun olduğu bir dönemde, ekibinizden ayrılan bir çalışan yeni açtığınız iş ilanına başvurmuş. Bu kişi işi ve ekibi biliyor, fakat daha önce ayrılmayı tercih etmişti. Ne yapacaksınız?",
+        "requirements": {
+            "type": "and",
+            "conditions": [
+                {
+                    "resource": "boss",
+                    "comparison": "gte",
+                    "value": 15
+                },
+                {
+                    "resource": "colleagues",
+                    "comparison": "gte",
+                    "value": 10
+                }
+            ]
+        },
+        "yesEffects": {
+            "motivation": 5,
+            "performance": 10,
+            "colleagues": -5,
+            "boss": 5
+        },
+        "noEffects": {
+            "motivation": -5,
+            "performance": -10,
+            "colleagues": 10,
+            "boss": -5
+        },
+        "yesText": "Eski çalışanı mülakata çağıracaksınız",
+        "noText": "Eski çalışanı mülakata çağırmayacaksınız",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "SUCCESSFUL_REHIRE",
+                "text": "Yoğun dönemde ekibinizden ayrılan eski çalışanı mülakata çağırmaya karar vermiştiniz. Mülakat başarılı geçti ve çalışan işe geri döndü. Şirket kültürünü ve süreçleri zaten bildiğinden, hızla adapte oldu ve yoğun dönemde ekibe büyük katkı sağladı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 20,
+                    "colleagues": 5,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 3,
+                "probability": 60
+            },
+            {
+                "id": "TEAM_RESENTMENT",
+                "text": "Yoğun dönemde ekibinizden ayrılan eski çalışanı mülakata çağırmış ve işe geri almıştınız. Ancak mevcut ekip üyeleri, zor zamanda onları terk eden birinin geri dönmesinden rahatsız oldu. Ekip içi gerginlik artmaya başladı.",
+                "yesEffects": {
+                    "motivation": -5,
+                    "performance": -10,
+                    "colleagues": -15,
+                    "boss": 0
+                },
+                "noEffects": {
+                    "motivation": 5,
+                    "performance": 5,
+                    "colleagues": 10,
+                    "boss": 5
+                },
+                "yesText": "Durumu görmezden geleceksiniz",
+                "noText": "Ekip toplantısı düzenleyip sorunu çözeceksiniz",
+                "delay": 5,
+                "probability": 40,
+                "yesFollowups": [
+                    {
+                        "id": "WORSENING_MORALE",
+                        "text": "Yoğun dönemde ayrılan eski çalışanın geri dönüşünden kaynaklanan ekip gerginliğini görmezden gelmeyi seçmiştiniz. Bu durum zamanla daha da kötüleşti. Ekip içi iletişim koptu ve verimlilik düştü.",
+                        "effects": {
+                            "motivation": -20,
+                            "performance": -15,
+                            "colleagues": -25,
+                            "boss": -10
+                        },
+                        "isInfoOnly": true,
+                        "delay": 4
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "TEAM_HARMONY",
+                        "text": "Yoğun dönemde ayrılan eski çalışanın geri dönüşünden kaynaklanan ekip gerginliğini çözmek için toplantı düzenlemiştiniz. Açık iletişim sayesinde tüm endişeler dile getirildi ve çözüm bulundu. Bu proaktif yaklaşımınız ekip dinamiklerini güçlendirdi.",
+                        "effects": {
+                            "motivation": 15,
+                            "performance": 10,
+                            "colleagues": 20,
+                            "boss": 15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 3
+                    }
+                ]
+            },
+            {
+                "id": "RETURNER_EXPECTATIONS",
+                "text": "Yoğun dönemde ayrılan eski çalışanı mülakata çağırmış ve işe geri almıştınız. Ancak geri dönen çalışan, ayrıldığı zamandan bu yana şirkette çok şey değiştiğini fark etti ve adapte olmakta zorlanıyor. Size özel muamele bekliyor.",
+                "yesEffects": {
+                    "motivation": 5,
+                    "performance": -5,
+                    "colleagues": -10,
+                    "boss": -5
+                },
+                "noEffects": {
+                    "motivation": -5,
+                    "performance": 10,
+                    "colleagues": 15,
+                    "boss": 10
+                },
+                "yesText": "Özel muamele göstereceksiniz",
+                "noText": "Herkesle aynı standartlara tabi olmasını isteyeceksiniz",
+                "delay": 7,
+                "probability": 45,
+                "yesFollowups": [
+                    {
+                        "id": "UNFAIR_TREATMENT",
+                        "text": "Yoğun dönemde geri dönen eski çalışana özel muamele göstermeyi seçmiştiniz. Bu durum diğer ekip üyelerinin gözünden kaçmadı ve adil olmayan bir çalışma ortamı oluştuğu algısı yayıldı. Ekip motivasyonu ciddi şekilde düştü.",
+                        "effects": {
+                            "motivation": -15,
+                            "performance": -10,
+                            "colleagues": -20,
+                            "boss": -15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 4
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "FAIR_STANDARDS",
+                        "text": "Yoğun dönemde geri dönen eski çalışandan herkesle aynı standartlara uymasını istemiştiniz. Başlangıçta zorlandı ama zamanla bu yaklaşımın doğru olduğunu anladı. Ekip içinde adil bir ortam korundu ve herkes bundan memnun kaldı.",
+                        "effects": {
+                            "motivation": 10,
+                            "performance": 15,
+                            "colleagues": 15,
+                            "boss": 10
+                        },
+                        "isInfoOnly": true,
+                        "delay": 6
+                    }
+                ]
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "HIRING_STRUGGLE",
+                "text": "Yoğun dönemde ekibinizden ayrılan eski çalışanı mülakata çağırmamaya karar vermiştiniz. Ne yazık ki, açık pozisyon için uygun aday bulmakta zorlanıyorsunuz ve işler birikmeye devam ediyor. Yönetim sabırsızlanmaya başladı.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -20,
+                    "colleagues": -10,
+                    "boss": -15
+                },
+                "isInfoOnly": true,
+                "delay": 4,
+                "probability": 55
+            },
+            {
+                "id": "BETTER_CANDIDATE",
+                "text": "Yoğun dönemde ekibinizden ayrılan eski çalışanı mülakata çağırmamaya karar vermiştiniz. Bu karar olumlu sonuç verdi çünkü daha nitelikli ve istekli bir aday buldunuz. Yeni çalışan beklenenden hızlı adapte oldu ve taze fikirleriyle ekibe büyük katkı sağladı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 20,
+                    "colleagues": 15,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 6,
+                "probability": 45
+            },
+            {
+                "id": "EX_EMPLOYEE_FEEDBACK",
+                "text": "Yoğun dönemde ekibinizden ayrılan eski çalışanı mülakata çağırmamıştınız. Bu çalışan, sosyal medyada şirketiniz hakkında olumsuz yorumlar paylaşmaya başladı. İK departmanı bu durumla ilgili sizinle görüşmek istiyor.",
+                "yesEffects": {
+                    "motivation": -5,
+                    "performance": -5,
+                    "colleagues": 0,
+                    "boss": 10
+                },
+                "noEffects": {
+                    "motivation": 0,
+                    "performance": 0,
+                    "colleagues": -5,
+                    "boss": -15
+                },
+                "yesText": "Durumu İK ile detaylı şekilde görüşeceksiniz",
+                "noText": "Çok da önemsemediğinizi belirteceksiniz",
+                "delay": 5,
+                "probability": 35,
+                "yesFollowups": [
+                    {
+                        "id": "CONFLICT_RESOLUTION",
+                        "text": "Eski çalışanın olumsuz yorumlarıyla ilgili durumu İK ile detaylı şekilde görüşmeyi seçmiştiniz. İK departmanı, şeffaf iletişiminizi takdir etti ve sorunu profesyonelce çözdü. Şirketin itibarı korundu ve benzer durumlar için bir protokol oluşturuldu.",
+                        "effects": {
+                            "motivation": 10,
+                            "performance": 5,
+                            "colleagues": 10,
+                            "boss": 15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 3
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "REPUTATION_DAMAGE",
+                        "text": "Eski çalışanın olumsuz yorumlarını önemsememeyi seçmiştiniz. Ancak bu yorumlar daha fazla yayıldı ve şirketin işveren markasına zarar verdi. Yeni yetenekleri çekmekte zorlanmaya başladınız ve üst yönetim durumdan sizi sorumlu tutuyor.",
+                        "effects": {
+                            "motivation": -10,
+                            "performance": -10,
+                            "colleagues": -5,
+                            "boss": -20
+                        },
+                        "isInfoOnly": true,
+                        "delay": 7
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "PROJECT_HANDOVER",
+        "text": "Çok emek verdiğiniz ama henüz tamamlayamadığınız bir proje, yeni başlayacak bir çalışana devredilmek isteniyor. Aylardır üzerinde çalıştığınız ve kendinizi adadığınız bu projeyi bırakmak zor olacak. Ne yapacaksınız?",
+        "requirements": {
+            "type": "and",
+            "conditions": [
+                {
+                    "resource": "performance",
+                    "comparison": "gte",
+                    "value": 15
+                },
+                {
+                    "resource": "motivation",
+                    "comparison": "gte",
+                    "value": 10
+                }
+            ]
+        },
+        "yesEffects": {
+            "motivation": -10,
+            "performance": 5,
+            "colleagues": 5,
+            "boss": 15
+        },
+        "noEffects": {
+            "motivation": 10,
+            "performance": -5,
+            "colleagues": -5,
+            "boss": -15
+        },
+        "yesText": "Projeyi devretmeyi kabul edeceksiniz",
+        "noText": "Projeyi devretmeyi reddedeceksiniz",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "SUCCESSFUL_HANDOVER",
+                "text": "Çok emek verdiğiniz projeyi yeni bir çalışana devretmeyi kabul etmiştiniz. Detaylı bir devir teslim süreci yürüttünüz ve yeni çalışana tüm bilgilerinizi aktardınız. Üstleriniz bu profesyonel yaklaşımınızdan çok etkilendi ve size daha stratejik bir projede pozisyon teklif edildi.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": 10,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 4,
+                "probability": 65
+            },
+            {
+                "id": "PROJECT_FAILURE",
+                "text": "Çok emek verdiğiniz projeyi yeni bir çalışana devretmeyi kabul etmiştiniz. Ne yazık ki, yeni çalışan projenin karmaşıklığını kavrayamadı ve proje başarısız oldu. Yönetim, sizin projeyi tamamlamış olabileceğinizi düşünüyor.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -5,
+                    "colleagues": -5,
+                    "boss": -10
+                },
+                "isInfoOnly": true,
+                "delay": 6,
+                "probability": 35
+            },
+            {
+                "id": "MENTORSHIP_OPPORTUNITY",
+                "text": "Çok emek verdiğiniz projeyi devretmeyi kabul etmiştiniz. Yeni çalışan, sizi mentor olarak görmeye başladı ve aranızda güçlü bir iş ilişkisi gelişti. Bu durum, şirkette saygınlığınızı artırdı.",
+                "yesEffects": {
+                    "motivation": 10,
+                    "performance": 10,
+                    "colleagues": 15,
+                    "boss": 5
+                },
+                "noEffects": {
+                    "motivation": -5,
+                    "performance": 0,
+                    "colleagues": -10,
+                    "boss": -5
+                },
+                "yesText": "Mentorluk rolünü kabul edeceksiniz",
+                "noText": "Mentorluk için zamanınız olmadığını söyleyeceksiniz",
+                "delay": 5,
+                "probability": 50,
+                "yesFollowups": [
+                    {
+                        "id": "LEADERSHIP_PROMOTION",
+                        "text": "Projeyi devrettikten sonra yeni çalışana mentorluk yapmayı kabul etmiştiniz. Bu süreçteki liderlik becerileriniz fark edildi ve şirket içinde bir liderlik pozisyonuna terfi ettirildiniz.",
+                        "effects": {
+                            "motivation": 25,
+                            "performance": 15,
+                            "colleagues": 10,
+                            "boss": 20
+                        },
+                        "isInfoOnly": true,
+                        "delay": 8
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "MISSED_LEADERSHIP",
+                        "text": "Projeyi devrettikten sonra yeni çalışana mentorluk yapmayı reddetmiştiniz. Bu durum, potansiyel bir liderlik fırsatını kaçırmanıza neden oldu ve yönetim, ekip çalışması konusundaki tutumunuzu sorgulamaya başladı.",
+                        "effects": {
+                            "motivation": -10,
+                            "performance": -5,
+                            "colleagues": -10,
+                            "boss": -15
+                        },
+                        "isInfoOnly": true,
+                        "delay": 7
+                    }
+                ]
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "OVERWORKED",
+                "text": "Çok emek verdiğiniz projeyi devretmeyi reddetmiştiniz. Şimdi hem mevcut işleriniz hem de bu proje ile uğraşmak zorunda kaldınız. İş yükünüz ciddi şekilde arttı ve tükenmişlik belirtileri göstermeye başladınız.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -15,
+                    "colleagues": -5,
+                    "boss": -10
+                },
+                "isInfoOnly": true,
+                "delay": 3,
+                "probability": 70
+            },
+            {
+                "id": "PROJECT_SUCCESS",
+                "text": "Çok emek verdiğiniz projeyi devretmeyi reddetmiştiniz. Ekstra çaba sarf ederek projeyi başarıyla tamamladınız ve bu başarı tamamen size ait oldu. Ancak bu süreçte diğer sorumluluklarınız biraz aksadı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 0,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 7,
+                "probability": 30
+            },
+            {
+                "id": "TEAM_COLLABORATION",
+                "text": "Çok emek verdiğiniz projeyi devretmeyi reddetmiştiniz, ancak yönetim bir uzlaşma önerisi sundu: Projeyi tamamen devretmek yerine, yeni çalışanla birlikte çalışmanızı istiyorlar. Bu şekilde hem proje bilginizi aktarabilir hem de sonucu görebilirsiniz.",
+                "yesEffects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 10,
+                    "boss": 15
+                },
+                "noEffects": {
+                    "motivation": -5,
+                    "performance": -10,
+                    "colleagues": -15,
+                    "boss": -25
+                },
+                "yesText": "İşbirliği teklifini kabul edeceksiniz",
+                "noText": "İşbirliği teklifini reddedeceksiniz",
+                "delay": 2,
+                "probability": 60,
+                "yesFollowups": [
+                    {
+                        "id": "COLLABORATION_SUCCESS",
+                        "text": "Projeyi devretmeyi reddetmiş olsanız da, yeni çalışanla işbirliği yapma teklifini kabul etmiştiniz. Bu işbirliği beklenenden de iyi sonuç verdi. Proje başarıyla tamamlandı ve yönetim gelecekteki projeler için bu tür işbirliklerini örnek göstermeye başladı.",
+                        "effects": {
+                            "motivation": 15,
+                            "performance": 15,
+                            "colleagues": 20,
+                            "boss": 25
+                        },
+                        "isInfoOnly": true,
+                        "delay": 6
+                    }
+                ],
+                "noFollowups": [
+                    {
+                        "id": "FORCED_TRANSFER",
+                        "text": "Projeyi devretmeyi reddetmiş ve sonrasında işbirliği teklifini de kabul etmemiştiniz. Yönetim daha sert bir tutum takındı ve projeyi zorla elinizden aldı. Bu durum iş ilişkilerinize ciddi zarar verdi.",
+                        "effects": {
+                            "motivation": -25,
+                            "performance": -20,
+                            "colleagues": -15,
+                            "boss": -30
+                        },
+                        "isInfoOnly": true,
+                        "delay": 4
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "id": "SHOWOFF_COLLEAGUE",
         "text": "Ekibinizdeki bir kişi toplantılarda çok konuşup büyük vaatlerde bulunuyor ama gerçekte çok az iş yapıyor. Yöneticiniz bu kişiden çok etkileniyor. Bu durumu nasıl ele alırsınız?",
         "yesEffects": {
