@@ -687,7 +687,7 @@ function showGameOver(winReason = null) {
         "Çok fazla çalıştınız. Tükenmişlik sendromu yaşadınız.",
         "Sürekli yüksek performans göstermeniz sizi fiziksel ve zihinsel olarak tüketti.",
         "Mükemmeliyetçiliğiniz sizi aşırı çalışmaya sürükledi ve sonunda tükenmişlik yaşadınız.",
-        "Her projede kendinizi aşmaya çalışmanız sağlığınızı bozdu ve işi bırakmak zorunda kaldınız."
+        "Performansınızın sınırlarını zorlamanız sağlığınızı bozdu ve işi bırakmak zorunda kaldınız."
       ],
       colleaguesLow: [
         "İş arkadaşlarınız sizden nefret ediyor. Yalnız kaldınız ve istifa ettiniz.",
