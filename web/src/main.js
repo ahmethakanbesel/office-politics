@@ -705,7 +705,7 @@ function showGameOver(winReason = null) {
   // Add personal best message
   let personalBestMessage = '';
   if (isNewPersonalBest && daysSurvived > 0) {
-    personalBestMessage = `<span class="personal-best-highlight">Yeni Rekorunuz!</span>`;
+    personalBestMessage = `<span class="personal-best-highlight">Bu yeni bir rekor!</span>`;
   } else if (personalBest > 0) {
     personalBestMessage = `En yüksek: ${personalBest} gün`;
   }
