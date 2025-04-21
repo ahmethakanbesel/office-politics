@@ -1964,7 +1964,7 @@
             },
             {
                 "id": "SELF_IMPROVEMENT",
-                "text": "Bir ay önce yeni ekip arkadaşınızın yorumuna sakin yaklaştığınızda, onun perspektifinde haklılık payı olabileceğini fark ettiniz. Bu farkındalık, iletişim tarzınızı gözden geçirmenize ve duygusal zekânızı geliştirmenize yol açtı. Takım içindeki etkileşimlerinizde daha empatik davranmaya başladınız ve bu değişim olumlu karşılandı.",
+                "text": "Bir ay önce yeni ekip arkadaşınızın yorumuna sakin yaklaştığınızda onun perspektifinde haklılık payı olabileceğini fark ettiniz. Bu farkındalık, iletişim tarzınızı gözden geçirmenize ve duygusal zekânızı geliştirmenize yol açtı. Takım içindeki etkileşimlerinizde daha empatik davranmaya başladınız ve bu değişim olumlu karşılandı.",
                 "effects": {
                     "motivation": 10,
                     "performance": 15,
@@ -2140,7 +2140,7 @@
         "noFollowups": [
             {
                 "id": "DEESCALATION_SUCCESS",
-                "text": "Üç gün önce iş arkadaşınız birebir görüşme sırasında sesini yükselttiğinde, siz sakin kalmayı başarmıştınız. Sakin tepkiniz ve durumu yatıştırma çabalarınız karşısında arkadaşınız kısa sürede kendini toparladı ve davranışı için özür diledi. Bu olaydan sonra ikiniz arasındaki karşılıklı saygı arttı.",
+                "text": "Üç gün önce iş arkadaşınız birebir görüşme sırasında sesini yükselttiğinde siz sakin kalmayı başarmıştınız. Sakin tepkiniz ve durumu yatıştırma çabalarınız karşısında arkadaşınız kısa sürede kendini toparladı ve davranışı için özür diledi. Bu olaydan sonra ikiniz arasındaki karşılıklı saygı arttı.",
                 "effects": {
                     "motivation": 10,
                     "performance": 10,
