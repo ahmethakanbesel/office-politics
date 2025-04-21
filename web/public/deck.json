@@ -5983,7 +5983,7 @@
     },
     {
         "id": "QUESTION_FROM_STRANGER",
-        "text": "Geçen hafta tartıştığınız bir arkadaşınız soru sormak için yanınıza geldi ve selamlaşmak için elinizi uzattı. Ne yaparsınız?",
+        "text": "Geçen hafta tartıştığınız bir arkadaşınız soru sormak için yanınıza geldi ve selamlaşmak için elinizi uzattı. Elini sıkacak mısınız?",
         "yesEffects": {
             "motivation": 0,
             "performance": 0,
