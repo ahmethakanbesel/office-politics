@@ -1,5 +1,1217 @@
 [
     {
+        "id": "SHOWOFF_COLLEAGUE",
+        "text": "Ekibinizdeki bir kişi toplantılarda çok konuşup büyük vaatlerde bulunuyor ama gerçekte çok az iş yapıyor. Yöneticiniz bu kişiden çok etkileniyor. Bu durumu nasıl ele alırsınız?",
+        "yesEffects": {
+            "motivation": -5,
+            "performance": 0,
+            "colleagues": -5,
+            "boss": -10
+        },
+        "noEffects": {
+            "motivation": -15,
+            "performance": -5,
+            "colleagues": 0,
+            "boss": 0
+        },
+        "yesText": "Somut verilerle performans farklılıklarını gösteririm",
+        "noText": "Kendi işime odaklanır, zamanla gerçek ortaya çıksın derim",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "VINDICATED_ANALYSIS",
+                "text": "Bir ay önce, gösterişçi iş arkadaşınızın performansını somut verilerle göstermeyi seçmiştiniz. Dikkatli hazırladığınız analiz ve raporlar sonuç verdi. Yöneticiniz durumun farkına vardı ve gösterişçi arkadaşınızdan artık sadece vaatler değil, somut sonuçlar da beklemeye başladı. Profesyonel yaklaşımınız takdir edildi.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 10,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 40
+            },
+            {
+                "id": "WORKPLACE_TENSION",
+                "text": "İki hafta önce, gösterişçi iş arkadaşınızın gerçek performansını verilerle göstermeyi seçmiştiniz. İş arkadaşınız kendisini hedef aldığınızı düşünüyor ve size karşı düşmanca bir tavır takındı. Ofiste gergin bir atmosfer oluştu ve bazı çalışanlar taraf tutmaya başladı.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": -20,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 35
+            },
+            {
+                "id": "LEADERSHIP_RECOGNITION",
+                "text": "Üç hafta önce, gösterişçi iş arkadaşınızın performansını somut verilerle göstermeyi seçmiştiniz. Bu profesyonel ve analitik yaklaşımınız, sadece bu durumu çözmekle kalmadı, aynı zamanda liderlik potansiyelinizi de ortaya koydu. Yöneticiniz sizi bir sonraki proje için ekip lideri olarak düşünmeye başladı.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": 5,
+                    "boss": 25
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 25
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "COLLEAGUE_PROMOTION",
+                "text": "İki ay önce, gösterişçi iş arkadaşınız hakkında sessiz kalmayı ve kendi işinize odaklanmayı seçmiştiniz. Bu süre içinde, arkadaşınız etkileyici konuşmaları ve vaatleriyle yönetimin gözüne girmeyi başardı ve beklenmedik bir terfi aldı. Şimdi sizin doğrudan yöneticiniz oldu ve ilişkiniz daha da karmaşıklaştı.",
+                "effects": {
+                    "motivation": -25,
+                    "performance": -15,
+                    "colleagues": -10,
+                    "boss": -20
+                },
+                "isInfoOnly": true,
+                "delay": 60,
+                "probability": 40
+            },
+            {
+                "id": "TRUTH_REVEALED",
+                "text": "Bir ay önce, gösterişçi iş arkadaşınız hakkında sessiz kalmayı ve kendi işinize odaklanmayı seçmiştiniz. Zamanla, arkadaşınızın vaatlerini yerine getirememesi ve sürekli bahaneler üretmesi yönetimin dikkatini çekti. Sessiz profesyonelliğiniz ve tutarlı performansınız, kontrast oluşturarak değerinizi ortaya koydu.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 5,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 35
+            },
+            {
+                "id": "STAGNANT_SITUATION",
+                "text": "Üç hafta önce, gösterişçi iş arkadaşınız hakkında sessiz kalmayı ve kendi işinize odaklanmayı seçmiştiniz. Ne yazık ki durum değişmedi. İş arkadaşınız hala büyük vaatlerde bulunuyor ve az iş yapıyor, yöneticiniz ise hala ondan etkileniyor. Bu adaletsiz durum motivasyonunuzu düşürmeye devam ediyor.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -5,
+                    "colleagues": -5,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 25
+            }
+        ]
+    },
+    {
+        "id": "DIGITAL_SLACKER",
+        "text": "Ofisteki bir iş arkadaşınız bilgisayar ekranında sürekli iş yapıyor gibi görünüyor ama yakından fark ettiniz ki sadece klavyeyi rastgele tıklıyor ve gerçekte sosyal medyada geziniyor. Bu durum ekip performansını etkiliyor. Ne yaparsınız?",
+        "yesEffects": {
+            "motivation": -5,
+            "performance": 0,
+            "colleagues": -10,
+            "boss": 0
+        },
+        "noEffects": {
+            "motivation": -10,
+            "performance": -5,
+            "colleagues": -5,
+            "boss": 5
+        },
+        "yesText": "Arkadaşımla özel olarak konuşurum",
+        "noText": "Ekip liderine durumu bildiririm",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "DEFENSIVE_REACTION",
+                "text": "İki gün önce, dijital kaytaran iş arkadaşınızla özel olarak konuşmayı seçmiştiniz. Arkadaşınız savunmaya geçti ve sizi 'ispiyoncu' olmakla suçladı. Konuşmanın gizli kalacağına söz vermenize rağmen, sizin arkadaşınızı gözetlediğinize dair dedikodular yaymaya başladı.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -5,
+                    "colleagues": -20,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 2,
+                "probability": 35
+            },
+            {
+                "id": "PRODUCTIVE_CHANGE",
+                "text": "Bir hafta önce, dijital kaytaran iş arkadaşınızla özel olarak konuşmayı seçmiştiniz. Nazik ve yapıcı yaklaşımınız işe yaradı. Arkadaşınız durumu kabul etti ve iş disiplini konusunda zorlandığını itiraf etti. Ona bazı verimlilik teknikleri önerdiniz ve son günlerde gerçekten daha odaklı çalışmaya başladı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 15,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 7,
+                "probability": 45
+            },
+            {
+                "id": "PERSONAL_ISSUES",
+                "text": "İki hafta önce, dijital kaytaran iş arkadaşınızla özel olarak konuşmayı seçmiştiniz. Konuşma beklenmedik bir yöne evrildi. Arkadaşınız size kişisel hayatındaki ciddi zorlukları açıkladı ve bunların işine konsantre olmasını engellediğini anlattı. Bu samimi paylaşım aranızda yeni bir anlayış ve dostluk bağı oluşturdu.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 20,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 20
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "IMMEDIATE_ACTION",
+                "text": "Üç gün önce, dijital kaytaran iş arkadaşınızı ekip liderine bildirmeyi seçmiştiniz. Lideriniz durumu ciddiye aldı ve hemen harekete geçti. Arkadaşınızla özel bir toplantı yapıldı ve kendisine açık bir uyarı verildi. İş arkadaşınız durumun sizden kaynaklandığını öğrendi ve size karşı kırgın.",
+                "effects": {
+                    "motivation": 5,
+                    "performance": 10,
+                    "colleagues": -15,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 3,
+                "probability": 50
+            },
+            {
+                "id": "TEAM_MONITORING",
+                "text": "İki hafta önce, dijital kaytaran iş arkadaşınızı ekip liderine bildirmeyi seçmiştiniz. Bu bildirim sonucunda yönetim, tüm ekip için yeni bir 'verimlilik izleme yazılımı' uygulamaya karar verdi. Artık herkesin bilgisayar aktiviteleri takip ediliyor. Bu durum ofiste genel bir huzursuzluk ve güvensizlik yarattı.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": 5,
+                    "colleagues": -25,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 30
+            },
+            {
+                "id": "PERFORMANCE_REVIEW",
+                "text": "Bir ay önce, dijital kaytaran iş arkadaşınızı ekip liderine bildirmeyi seçmiştiniz. Lideriniz konuyu kişiselleştirmeden, genel bir ekip performans değerlendirmesi başlattı. Bu süreçte sadece o arkadaşınız değil, verimliliği düşük olan herkes için iyileştirme planları oluşturuldu. Yaklaşımınız sistemik bir iyileşmeye katkı sağladı.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 15,
+                    "colleagues": 5,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 20
+            }
+        ]
+    },
+    {
+        "id": "PERFECTIONIST_LEADER",
+        "text": "Yeni proje lideriniz tüm detaylara takıntılı şekilde odaklanıyor ve sürekli revizyonlar istiyor. İyi niyetli ama bu durum projeyi geciktiriyor. Nasıl ele alırsınız?",
+        "yesEffects": {
+            "motivation": 0,
+            "performance": 5,
+            "colleagues": 10,
+            "boss": 5
+        },
+        "noEffects": {
+            "motivation": -5,
+            "performance": -5,
+            "colleagues": -5,
+            "boss": -15
+        },
+        "yesText": "Kaygılarını anlayıp süreci hızlandırmayı öneririm",
+        "noText": "Üst yönetimle durumu paylaşırım",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "COMPROMISE_REACHED",
+                "text": "İki hafta önce, mükemmeliyetçi proje liderinizle onun kaygılarını anlayarak ve süreci hızlandırma önerisiyle yaklaşmayı seçmiştiniz. Bu empatik yaklaşım işe yaradı. Liderinizle verimli bir diyalog kurdunuz ve daha dengeli bir iş akışı üzerinde anlaştınız. Kritik detaylara odaklanırken gereksiz revizyonlar azaldı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 15,
+                    "colleagues": 10,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 55
+            },
+            {
+                "id": "INCREASED_WORKLOAD",
+                "text": "Bir ay önce, mükemmeliyetçi proje liderinizin kaygılarını anlayarak yaklaşmayı seçmiştiniz. Ancak bu anlayışlı tavrınız, liderinizin size daha da fazla iş yüklemesine neden oldu. Artık sadece kendi işinizi değil, diğer ekip üyelerinin revizyonlarını da kontrol ediyorsunuz. İş-yaşam dengeniz bozuldu ve tükenmişlik belirtileri göstermeye başladınız.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -15,
+                    "colleagues": 5,
+                    "boss": 10
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 30
+            },
+            {
+                "id": "QUALITY_RECOGNITION",
+                "text": "Üç hafta önce, mükemmeliyetçi proje liderinize anlayışlı yaklaşmayı seçmiştiniz. Bu sabırlı yaklaşımınız sonuç verdi. Proje her ne kadar planlanan süreden biraz uzun sürse de, kalitesi beklentilerin çok üzerindeydi. Üst yönetim projeyi övdü ve takımınız şirket genelinde tanınırlık kazandı. Lideriniz sizin katkınızı özellikle vurguladı.",
+                "effects": {
+                    "motivation": 25,
+                    "performance": 20,
+                    "colleagues": 15,
+                    "boss": 25
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 15
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "NEGATIVE_PERCEPTION",
+                "text": "İki hafta önce, mükemmeliyetçi proje liderinizle ilgili endişelerinizi üst yönetime iletmeyi seçmiştiniz. Bu karar beklenmedik sonuçlar doğurdu. Üst yönetim sizi 'ekip çalışmasına uygun olmayan' ve 'zor durumlarla baş edemeyen' biri olarak algılamaya başladı. Kariyeriniz için olumsuz bir izlenim oluştu.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": -10,
+                    "boss": -25
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 50
+            },
+            {
+                "id": "LEADER_REPLACEMENT",
+                "text": "Bir ay önce, mükemmeliyetçi proje liderinizle ilgili durumu üst yönetime bildirmeyi seçmiştiniz. Şaşırtıcı bir şekilde, üst yönetim konuyu ciddiye aldı ve soruşturma başlattı. Proje lideriniz bu projeden alındı ve yerine daha pragmatik bir lider atandı. Bu değişim projenin hızını artırdı fakat eski liderinizle aranızda ciddi bir soğukluk oluştu.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 15,
+                    "colleagues": -5,
+                    "boss": -10
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 30
+            },
+            {
+                "id": "TEAM_DIVIDE",
+                "text": "Üç hafta önce, mükemmeliyetçi lidere karşı üst yönetime gitmeyi seçmiştiniz. Bu karar ekibi ikiye böldü. Bazı ekip arkadaşlarınız sizi desteklerken, diğerleri arkadan konuşmaya başladı. Proje artık gergin bir atmosferde ilerliyor ve iş birliği yapmak zorlaştı.",
+                "effects": {
+                    "motivation": -10,
+                    "performance": -15,
+                    "colleagues": -20,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 20
+            }
+        ]
+    },
+    {
+        "id": "COLLEAGUE_SABOTAGE",
+        "text": "Üzerinde çalıştığınız önemli bir projenin dosyalarının değiştirildiğini fark ettiniz. Güvenlik kamerası kayıtları, size rakip olan bir iş arkadaşınızın gece geç saatte ofise geldiğini gösteriyor. Ne yapacaksınız?",
+        "yesEffects": {
+            "motivation": -5,
+            "performance": 0,
+            "colleagues": -10,
+            "boss": 15
+        },
+        "noEffects": {
+            "motivation": -10,
+            "performance": -5,
+            "colleagues": -5,
+            "boss": -5
+        },
+        "yesText": "Delilleri yöneticime göstereceğim",
+        "noText": "Önce arkadaşımla yüzleşeceğim",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "DISCIPLINARY_ACTION",
+                "text": "İki hafta önce, projenizdeki dosyaların değiştirilmesi olayında delilleri yöneticinize göstermeyi seçmiştiniz. Yöneticiniz durumu ciddiye aldı ve soruşturma başlattı. İş arkadaşınız disiplin cezası aldı ve projeden alındı. Ancak bu durum ofiste gergin bir atmosfer yarattı ve bazı çalışanlar sizi 'ispiyoncu' olarak görmeye başladı.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 15,
+                    "colleagues": -15,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 60
+            },
+            {
+                "id": "ONGOING_RIVALRY",
+                "text": "Bir ay önce, iş arkadaşınızın sabotajını yöneticinize bildirmiştiniz. Arkadaşınız disiplin cezası alsa da şirkette kalmaya devam etti ve şimdi size karşı daha da kinli. İnceden inceye yeni zorluklar çıkarıyor ve ofiste sizin aleyhinize bir grup oluşturmaya çalışıyor.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": -20,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 25
+            },
+            {
+                "id": "CAREER_ADVANCEMENT",
+                "text": "Üç hafta önce, projenizdeki sabotaj girişimini yöneticinize bildirmiştiniz. Bu profesyonel tavrınız ve dürüstlüğünüz üst yönetim tarafından takdir edildi. Sadece projenizi kurtarmakla kalmadınız, aynı zamanda şirket içi güvenlik protokollerinin güçlendirilmesine katkıda bulundunuz. Bu olay, kariyerinizde beklenmedik bir ilerleme fırsatı yarattı.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 10,
+                    "colleagues": 5,
+                    "boss": 25
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 15
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "HEATED_CONFRONTATION",
+                "text": "Bir hafta önce, projenizdeki dosya değişiklikleri nedeniyle iş arkadaşınızla yüzleşmeyi seçmiştiniz. Konfrontasyon beklenenden daha kötü geçti. Arkadaşınız her şeyi inkâr etti ve size karşı tehditkâr bir tavır takındı. Tartışma büyüdü ve diğer çalışanlar tarafından duyuldu. Şimdi herkes olayı konuşuyor ve ofis ortamı çok gergin.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -15,
+                    "colleagues": -10,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 7,
+                "probability": 50
+            },
+            {
+                "id": "UNEXPECTED_APOLOGY",
+                "text": "İki hafta önce, projenizdeki dosya değişiklikleri nedeniyle iş arkadaşınızla yüzleşmeyi seçmiştiniz. Şaşırtıcı bir şekilde, arkadaşınız ağlayarak size açıldı. Şirkette hissettiği baskı ve kişisel sorunları paylaştı, yaptığı için çok pişman olduğunu söyledi. Bu dürüst konuşma aranızda yeni bir anlayış ve beklenmedik bir dostluk yarattı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 5,
+                    "colleagues": 10,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 20
+            },
+            {
+                "id": "CONTINUED_SABOTAGE",
+                "text": "Üç hafta önce, projenizdeki dosya değişiklikleri hakkında arkadaşınızla yüzleşmiştiniz. Arkadaşınız tüm suçlamaları reddetti ve masum olduğunu iddia etti. Resmi bir şikâyette bulunmadığınız için sabotaj devam etti. Son teslim tarihine yaklaşırken, yeni kritik dosyaların da değiştirildiğini fark ettiniz. Artık çok geç, proje ciddi tehlikede.",
+                "effects": {
+                    "motivation": -25,
+                    "performance": -20,
+                    "colleagues": -5,
+                    "boss": -15
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 30
+            }
+        ]
+    },
+    {
+        "id": "CREDIT_THEFT",
+        "text": "Bir iş arkadaşınız, sizin geliştirdiğiniz bir fikri kendi fikriymiş gibi üst yönetime sundu ve övgü aldı. Herkes tebrik ederken gerçeği söyler misiniz?",
+        "yesEffects": {
+            "motivation": 5,
+            "performance": 0,
+            "colleagues": -5,
+            "boss": 0
+        },
+        "noEffects": {
+            "motivation": -15,
+            "performance": -10,
+            "colleagues": 5,
+            "boss": -5
+        },
+        "yesText": "Gerçeği açıkça söylerim",
+        "noText": "Özel olarak yöneticimle konuşurum",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "AWKWARD_SITUATION",
+                "text": "Üç gün önce, fikrinizi çalan iş arkadaşınıza karşı herkesin önünde gerçeği açıklamayı seçmiştiniz. Bu konfrontasyon oldukça rahatsız edici bir ortam yarattı. İş arkadaşınız küçük düştü ve savunmaya geçti. Bazı çalışanlar sizi desteklese de, diğerleri bu durumu ele alış şeklinizi profesyonellikten uzak buldu.",
+                "effects": {
+                    "motivation": -10,
+                    "performance": -5,
+                    "colleagues": -15,
+                    "boss": -10
+                },
+                "isInfoOnly": true,
+                "delay": 3,
+                "probability": 45
+            },
+            {
+                "id": "RECOGNITION_RESTORED",
+                "text": "İki hafta önce, fikrinizi kendine mal eden arkadaşınıza karşı gerçeği açıkça söylemiştiniz. Başlangıçtaki gerginliğe rağmen, açık sözlülüğünüz takdir edildi. Üst yönetim durumu inceledi ve orijinal fikrin size ait olduğunu doğruladı. Fikriniz için tam kredi aldınız ve şirket içi inovasyon ödülüne aday gösterildiniz.",
+                "effects": {
+                    "motivation": 25,
+                    "performance": 15,
+                    "colleagues": 10,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 35
+            },
+            {
+                "id": "TEAM_DIVISION",
+                "text": "Bir ay önce, fikirlerinizi çalan arkadaşınıza karşı herkesin önünde gerçeği söylemiştiniz. Bu olay ekibi ikiye böldü. Bazıları sizi açık sözlü ve dürüst buluyor, diğerleri ise arkadaşınızın tarafını tutuyor. Ofiste bir soğukluk oluştu ve iş birliği gerektiren projelerde zorlanmaya başladınız.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": -20,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 20
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "PRIVATE_RESOLUTION",
+                "text": "İki hafta önce, fikrinizi çalan iş arkadaşınız hakkında yöneticinizle özel olarak konuşmayı seçmiştiniz. Yöneticiniz durumu profesyonelce ele aldı. Kanıtlarınızı inceledikten sonra, bir sonraki toplantıda durumu düzeltti ve fikrin size ait olduğunu belirtti. İş arkadaşınız utandı ama en azından herkesin önünde zor durumda kalmadı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 5,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 40
+            },
+            {
+                "id": "CONTINUED_PATTERN",
+                "text": "Bir ay önce, fikrinizi çalan arkadaşınız hakkında yöneticinizle özel olarak konuşmuştunuz. Yöneticiniz sizi dinledi fakat somut bir adım atmadı. Bu cesaret verici tavır sonucunda, aynı iş arkadaşınız şimdi başka fikirlerinizi de kendine mal etmeye başladı. Durumun giderek kötüleştiğini hissediyorsunuz.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -15,
+                    "colleagues": -5,
+                    "boss": -15
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 35
+            },
+            {
+                "id": "UNEXPECTED_ALLY",
+                "text": "Üç hafta önce, fikrinizi çalan iş arkadaşınız hakkında yöneticinizle özel olarak konuşmuştunuz. Bu olaydan sonra, başka bir üst düzey yönetici sizinle iletişime geçti. Meğer o da toplantıda bulunmuş ve fikrin gerçekte size ait olduğunu anlamış. Sizi bir yetenek geliştirme programına dahil etmek istiyor.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": 0,
+                    "boss": 10
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 25
+            }
+        ]
+    },
+    {
+        "id": "GOSSIP_ENVIRONMENT",
+        "text": "Ekibinizdeki bir çalışan sürekli diğer çalışanlar hakkında negatif dedikodular yayıyor ve ofis ortamını zehirliyor. Bu kişi sizin hakkınızda da konuşmaya başladı. Nasıl tepki verirsiniz?",
+        "yesEffects": {
+            "motivation": -5,
+            "performance": -5,
+            "colleagues": -10,
+            "boss": 0
+        },
+        "noEffects": {
+            "motivation": -10,
+            "performance": -5,
+            "colleagues": 0,
+            "boss": 5
+        },
+        "yesText": "Doğrudan yüzleşirim",
+        "noText": "İnsan kaynaklarına bildiririm",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "DEFENSIVE_REACTION",
+                "text": "İki gün önce, hakkınızda dedikodu yayan iş arkadaşınızla doğrudan yüzleşmeyi seçmiştiniz. Arkadaşınız hiçbir şeyi kabul etmedi, aksine savunmaya geçti ve sizin 'paranoyak' olduğunuzu iddia etti. Konfrontasyon sonrası ofiste daha da fazla dedikodu yaymaya başladı, bu kez doğrudan sizi hedef alarak.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": -20,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 2,
+                "probability": 45
+            },
+            {
+                "id": "POSITIVE_CHANGE",
+                "text": "Bir hafta önce, dedikodu yayan iş arkadaşınızla doğrudan yüzleşmeyi seçmiştiniz. Beklenmedik bir şekilde, bu konuşma olumlu sonuçlandı. Sakin ve profesyonel yaklaşımınız arkadaşınızı etkiledi. Davranışının farkında olmadığını ve değişmek istediğini söyledi. Gerçekten de son günlerde dedikodular azaldı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 15,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 7,
+                "probability": 35
+            },
+            {
+                "id": "PUBLIC_SCENE",
+                "text": "Üç gün önce, dedikodu yayan iş arkadaşınızla yüzleşmeyi seçmiştiniz. Ne yazık ki konuşma kontrolden çıktı ve ofiste bir tartışmaya dönüştü. Herkes sizi izledi ve her iki taraf da sinirli sözler söyledi. Yöneticiniz bu durumu profesyonellikten uzak buldu ve ikinizi de uyardı.",
+                "effects": {
+                    "motivation": -10,
+                    "performance": -5,
+                    "colleagues": -5,
+                    "boss": -15
+                },
+                "isInfoOnly": true,
+                "delay": 3,
+                "probability": 20
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "DISCREET_INVESTIGATION",
+                "text": "İki hafta önce, dedikodu yayan iş arkadaşınızı İK'ya bildirmeyi seçmiştiniz. İK departmanı konuyu ciddiye aldı ve gizli bir soruşturma başlattı. Sadece siz değil, başka çalışanların da benzer şikayetleri vardı. İş arkadaşınız resmi bir uyarı aldı ve davranışlarında iyileşme görülmeye başlandı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 5,
+                    "boss": 10
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 40
+            },
+            {
+                "id": "CONFIDENTIALITY_BREACH",
+                "text": "Bir ay önce, dedikodu yayan arkadaşınızı İK'ya bildirmiştiniz. Ne yazık ki İK süreci iyi yönetemedi ve şikayetinizin kimden geldiği ortaya çıktı. İş arkadaşınız bunu öğrendi ve şimdi size karşı daha da kin besliyor. Ofisteki diğer çalışanları size karşı kışkırtmaya çalışıyor.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -15,
+                    "colleagues": -20,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 35
+            },
+            {
+                "id": "WORKPLACE_CULTURE_INITIATIVE",
+                "text": "Üç hafta önce, dedikodu sorununu İK'ya bildirmiştiniz. Şikayetinizi ciddiye alan İK departmanı, sadece bu olayı ele almakla kalmadı, aynı zamanda tüm şirket için 'Pozitif Çalışma Ortamı' adlı bir inisiyatif başlattı. Yeni politikalar ve eğitimler sayesinde ofis kültürü iyileşmeye başladı.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 15,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 25
+            }
+        ]
+    },
+    {
+        "id": "OVERHELPFUL_TEAMMATE",
+        "text": "Yeni bir ekip üyesi herkese aşırı yardımcı olmaya çalışıyor, ancak bu sizin işinize de karışmasına ve zaman kaybetmenize neden oluyor. İyi niyetli ama müdahaleci bu duruma nasıl yaklaşırsınız?",
+        "yesEffects": {
+            "motivation": 5,
+            "performance": 10,
+            "colleagues": 5,
+            "boss": 0
+        },
+        "noEffects": {
+            "motivation": -5,
+            "performance": -5,
+            "colleagues": 10,
+            "boss": 5
+        },
+        "yesText": "Nazikçe sınırları belirlerim",
+        "noText": "Yardımını kabul edip yönlendiririm",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "RESPECTFUL_DISTANCE",
+                "text": "İki hafta önce, aşırı yardımsever ekip arkadaşınıza nazikçe sınırlar koymayı seçmiştiniz. Profesyonel ve kibar yaklaşımınız işe yaradı. Arkadaşınız durumu anlayışla karşıladı ve artık işinize gereksiz müdahalelerde bulunmuyor. Yardıma ihtiyacınız olduğunda yine destek oluyor ama şimdi siz talep ettiğinizde.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 15,
+                    "colleagues": 10,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 60
+            },
+            {
+                "id": "HURT_FEELINGS",
+                "text": "Bir hafta önce, aşırı yardımsever ekip arkadaşınıza sınırlar koymayı seçmiştiniz. Ne yazık ki, ne kadar nazik davranmaya çalışsanız da arkadaşınız bunu reddedilme olarak algıladı ve duygusal olarak incindiğini belli etti. Şimdi sizden tamamen uzak duruyor ve ofiste bir soğukluk oluştu.",
+                "effects": {
+                    "motivation": -10,
+                    "performance": 5,
+                    "colleagues": -15,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 7,
+                "probability": 30
+            },
+            {
+                "id": "MENTORING_OPPORTUNITY",
+                "text": "Bir ay önce, aşırı yardımsever ekip arkadaşınıza nazikçe sınırlar koymuştunuz. Bu konuşma beklenmedik bir fırsat yarattı. Yeni ekip üyesi sizin profesyonel yaklaşımınızdan etkilendi ve sizden mentorluk istedi. Ona rehberlik etmeye başladınız ve bu deneyim sizin de liderlik becerilerinizi geliştirdi.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 5,
+                    "colleagues": 15,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 10
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "EFFICIENCY_DRAIN",
+                "text": "İki hafta önce, aşırı yardımsever ekip arkadaşınızın müdahalelerini kabul etmeyi seçmiştiniz. Zamanla bu durum verimliliğinizi ciddi şekilde düşürdü. Sürekli işinize karışılması nedeniyle projeleriniz gecikmeye başladı ve dikkatiniz sürekli bölündüğü için hata oranınız arttı.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -20,
+                    "colleagues": 0,
+                    "boss": -10
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 45
+            },
+            {
+                "id": "SUCCESSFUL_CHANNELING",
+                "text": "Bir ay önce, aşırı yardımsever ekip arkadaşınızın desteğini kabul edip yönlendirmeyi seçmiştiniz. Bu strateji mükemmel çalıştı! Arkadaşınızın enerjisini ve yardım isteğini yararlı alanlara yönlendirdiniz. Şimdi ikiniz birlikte daha verimli çalışıyorsunuz ve hatta yeni bir iş akışı sistemi geliştirdiniz.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 15,
+                    "colleagues": 20,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 35
+            },
+            {
+                "id": "DEPENDENCY_DEVELOPED",
+                "text": "Üç hafta önce, aşırı yardımsever ekip arkadaşınızın sürekli müdahalelerini kabul etmeyi seçmiştiniz. Zaman içinde arkadaşınız sizin işlerinize o kadar müdahil oldu ki, artık birçok görevi sizin yerinize yapmaya başladı. Bu durum yönetimin dikkatini çekti ve özerkliğinizi kaybettiğiniz için endişelenmeye başladılar.",
+                "effects": {
+                    "motivation": -5,
+                    "performance": -10,
+                    "colleagues": 5,
+                    "boss": -15
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 20
+            }
+        ]
+    },
+    {
+        "id": "OFFICE_RELOCATION",
+        "text": "Şirketiniz yeni bir ofise taşınıyor ve bu sizin ev-iş mesafenizi önemli ölçüde artırıyor. Nasıl tepki verirsiniz?",
+        "yesEffects": {
+            "motivation": -10,
+            "performance": 5,
+            "colleagues": 5,
+            "boss": 15
+        },
+        "noEffects": {
+            "motivation": 5,
+            "performance": -5,
+            "colleagues": 0,
+            "boss": -10
+        },
+        "yesText": "Değişikliği kabul edip adapte olurum",
+        "noText": "Uzaktan çalışma imkanı için görüşme talep ederim",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "COMMUTE_ADAPTATION",
+                "text": "Yeni ofise olan uzun yolculuğa alıştınız. Yolda podcast dinleyerek veya kitap okuyarak zamanı verimli kullanmayı öğrendiniz ve bu durum, günlük rutininizin olumlu bir parçası haline geldi.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 0,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 40
+            },
+            {
+                "id": "TRAVEL_FATIGUE",
+                "text": "Ofisinizin taşınması sonucu artan yolculuk süresi sizi tahmin ettiğinizden daha fazla yordu. Her gün erken kalkmak ve geç saatlerde eve dönmek enerji seviyenizi düşürdü ve iş performansınız bundan etkilenmeye başladı.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": -5,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 35
+            },
+            {
+                "id": "CARPOOLING_OPPORTUNITY",
+                "text": "Ofisiniz taşındıktan sonra yakın bir bölgede oturan birkaç iş arkadaşı buldunuz ve araç paylaşımı yapmaya başladınız. Bu hem yolculuk maliyetlerinizi düşürdü hem de yeni arkadaşlıklar kurmanızı sağladı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 5,
+                    "colleagues": 15,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 10,
+                "probability": 25
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "REMOTE_WORK_APPROVED",
+                "text": "Uzaktan çalışma talebiniz kabul edildi! Haftanın birkaç günü evden çalışabileceksiniz. Bu esneklik size hem zaman kazandırdı hem de iş-yaşam dengenizi korumanıza yardımcı oldu.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": 0,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 0,
+                "probability": 40
+            },
+            {
+                "id": "REQUEST_DENIED",
+                "text": "Uzaktan çalışma talebiniz reddedildi. Şirket politikası gereği tüm çalışanların ofiste bulunması gerektiği belirtildi. Bu durum sizi hayal kırıklığına uğrattı ve alternatif çözümler düşünmeye başladınız.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -5,
+                    "colleagues": -5,
+                    "boss": -10
+                },
+                "isInfoOnly": true,
+                "delay": 0,
+                "probability": 35
+            },
+            {
+                "id": "PARTIAL_FLEXIBILITY",
+                "text": "Ofisin taşınması üzerine uzaktan çalışma talebinde bulunmuştunuz. Uzaktan çalışma talebiniz tam olarak kabul edilmese de, haftada bir gün evden çalışma izni aldınız. Ayrıca esnek çalışma saatleri sunuldu, böylece trafik yoğunluğunu dikkate alarak programınızı ayarlayabileceksiniz.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 0,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 10,
+                "probability": 25
+            }
+        ]
+    },
+    {
+        "id": "INSUFFICIENT_RESOURCES",
+        "text": "Bir projeye atandınız ama gerekli insan ve teknoloji kaynakları sağlanmıyor. Nasıl ilerleyeceksiniz?",
+        "yesEffects": {
+            "motivation": -5,
+            "performance": -10,
+            "colleagues": 5,
+            "boss": 0
+        },
+        "noEffects": {
+            "motivation": 0,
+            "performance": 5,
+            "colleagues": 0,
+            "boss": -5
+        },
+        "yesText": "Elimdeki kaynaklarla en iyisini yapmaya çalışırım",
+        "noText": "Endişelerimi yöneticime açıkça belirtirim",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "CREATIVE_SOLUTION",
+                "text": "Yeni atandığınız projede kısıtlı kaynaklar ile çalışmayı tercih etmiştiniz. Bu sizi yaratıcı çözümler bulmaya itti. Alternatif yaklaşımlar geliştirdiniz ve beklenmedik şekilde projeyi zamanında ve bütçe içinde tamamladınız, bu da inovasyon yeteneğinizi öne çıkardı.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": 10,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 30
+            },
+            {
+                "id": "BURNOUT_RISK",
+                "text": "Yeni atandığınız projede kısıtlı kaynaklar ile çalışmayı tercih etmiştiniz. Bu durum giderek daha stresli hale geldi. Aşırı çalışma ve kişisel zamanınızdan feragat etme, tükenmişlik belirtileri göstermenize neden oldu ve sağlığınız bundan etkilenmeye başladı.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -15,
+                    "colleagues": -5,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 45
+            },
+            {
+                "id": "SCOPE_REDUCTION",
+                "text": "Yeni atandığınız projede kısıtlı kaynaklar ile çalışmayı tercih etmiştiniz. Şimdi, mevcut kaynaklarla projenin orijinal kapsamını tamamlamanın imkansız olduğunu fark ettiniz. Projenin en kritik özelliklerine odaklanarak küçültülmüş bir sürüm teslim ettiniz. Bu durum yönetimin pek hoşuna gitmedi.",
+                "effects": {
+                    "motivation": -5,
+                    "performance": -10,
+                    "colleagues": -5,
+                    "boss": -100
+                },
+                "isInfoOnly": true,
+                "delay": 10,
+                "probability": 25
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "RESOURCE_ALLOCATION",
+                "text": "Endişelerinizi yöneticinize iletme kararınız olumlu sonuç verdi. Durumun ciddiyetini anlayan yöneticiniz, ek kaynaklar sağladı ve proje planını yeniden değerlendirdi. Bu açık iletişim, projenin başarılı olmasına katkıda bulundu.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 20,
+                    "colleagues": 5,
+                    "boss": 15
+                },
+                "isInfoOnly": true,
+                "delay": 0,
+                "probability": 35
+            },
+            {
+                "id": "NEGATIVE_PERCEPTION",
+                "text": "Kaynak yetersizliği konusundaki endişeleriniz, bazı yöneticiler tarafından şikayet olarak algılandı. 'Zor koşullarda çalışamıyor' şeklinde etiketlendiniz ve bu, gelecekteki proje atamalarında sizin göz ardı edilmenize neden olabilir.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -5,
+                    "colleagues": 0,
+                    "boss": -20
+                },
+                "isInfoOnly": true,
+                "delay": 0,
+                "probability": 40
+            },
+            {
+                "id": "REALISTIC_PLANNING",
+                "text": "Yöneticinizle açık bir şekilde konuşmanız, proje takviminin ve beklentilerin daha gerçekçi hale getirilmesini sağladı. Kaynak kısıtlamaları devam etse de, en azından başarı kriterleri yeniden tanımlandı ve baskı azaldı.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 10,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 0,
+                "probability": 25
+            }
+        ]
+    },
+    {
+        "id": "WORK_LIFE_BALANCE",
+        "text": "Son zamanlarda sürekli geç saatlere kadar çalışıyorsunuz ve kişisel hayatınız bundan etkileniyor. Durumu değiştirir misiniz?",
+        "yesEffects": {
+            "motivation": 15,
+            "performance": -5,
+            "colleagues": 0,
+            "boss": -10
+        },
+        "noEffects": {
+            "motivation": -15,
+            "performance": 10,
+            "colleagues": 5,
+            "boss": 15
+        },
+        "yesText": "Evet, sınırlar koyup mesai saatlerine uyacağım",
+        "noText": "Hayır, bu geçici bir durum, projeyi bitirmeye odaklanacağım",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "IMPROVED_WELLBEING",
+                "text": "Çalışma saatlerinize sınırlar koyma kararınız (mesai saatlerine uymayı seçmiştiniz) ruh sağlığınızı ve genel yaşam kalitenizi önemli ölçüde iyileştirdi. Dinlenmiş ve enerjik olarak işe gelmeye başladınız, bu da verimliliğinizi artırdı. İş arkadaşlarınız da sizin bu sağlıklı sınırlar koyma yaklaşımınızdan ilham aldı.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": 10,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 40
+            },
+            {
+                "id": "CAREER_IMPACT",
+                "text": "Mesai saatlerine bağlı kalma kararınız (iş-yaşam dengenizi korumayı seçmiştiniz) kişisel yaşamınıza fayda sağlasa da, bazı önemli toplantıları ve kritik anlarda ekip çalışmasını kaçırdınız. Bu durum, kariyer ilerlemenizi yavaşlatabilir ve bazı fırsatları kaçırmanıza neden olabilir.",
+                "effects": {
+                    "motivation": 5,
+                    "performance": -10,
+                    "colleagues": -5,
+                    "boss": -15
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 35
+            },
+            {
+                "id": "PRODUCTIVITY_BOOST",
+                "text": "Düzenli çalışma saatleri ve iyi dinlenme (mesai saatlerine uymayı tercih etmiştiniz), kısa sürede daha verimli çalışmanızı sağladı. Aynı işi daha az zamanda tamamlayabildiğinizi fark ettiniz. Yöneticiniz başlangıçta şüpheciydi ama sonuçlar onu ikna etti.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 20,
+                    "colleagues": 5,
+                    "boss": 10
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 25
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "PROJECT_SUCCESS",
+                "text": "Uzun saatler çalışmaya devam etme kararınız (projeyi bitirmeye odaklanmayı seçmiştiniz) projenin zamanında tamamlanmasını sağladı. Üst yönetim bu adanmışlığınızı fark etti ve takdir etti. Ekstra çabanız gelecekte size önemli kariyer fırsatları sağlayabilir.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 15,
+                    "colleagues": 5,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 30
+            },
+            {
+                "id": "SEVERE_BURNOUT",
+                "text": "Yoğun çalışma temponuz (durumu değiştirmeyip projeye odaklanmayı seçmiştiniz) 'geçici' olmaktan çıkıp normal haline geldi. Sürekli yorgunluk, uyku problemleri ve konsantrasyon zorluğu yaşamaya başladınız. Bu ciddi tükenmişlik hem iş performansınızı hem de sağlığınızı tehlikeye attı.",
+                "effects": {
+                    "motivation": -25,
+                    "performance": -20,
+                    "colleagues": -10,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 45
+            },
+            {
+                "id": "RELATIONSHIP_STRAIN",
+                "text": "İşe odaklanmanız (çalışma saatlerinizi değiştirmemeyi seçmiştiniz) başarıyı getirse de, kişisel ilişkileriniz bundan ciddi şekilde etkilendi. Aileniz ve arkadaşlarınız sizinle daha az zaman geçirdiklerinden şikayet etmeye başladı ve önemli kişisel anları kaçırdınız.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -5,
+                    "colleagues": 0,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 25
+            }
+        ]
+    },
+    {
+        "id": "UNEXPECTED_LAYOFF",
+        "text": "Yakın çalıştığınız bir ekip arkadaşınız beklenmedik şekilde işten çıkarıldı ve onun sorumluluklarını size veriyorlar. Ek iş yükünü kabul eder misiniz?",
+        "yesEffects": {
+            "motivation": -5,
+            "performance": -10,
+            "colleagues": 5,
+            "boss": 15
+        },
+        "noEffects": {
+            "motivation": 5,
+            "performance": 5,
+            "colleagues": -5,
+            "boss": -15
+        },
+        "yesText": "Evet, ek sorumlulukları üstlenirim",
+        "noText": "Hayır, iş yüküm zaten ağır",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "PROMOTION_OPPORTUNITY",
+                "text": "Ek sorumlulukları kabul etme kararınız (işten çıkarılan arkadaşınızın görevlerini üstlenmeyi seçmiştiniz) ve bunları başarıyla yönetmeniz, yönetim tarafından fark edildi. Bu durum sizi bir terfi için güçlü bir aday haline getirdi ve kariyer gelişiminizi hızlandırdı.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": 5,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 35
+            },
+            {
+                "id": "PERMANENT_WORKLOAD",
+                "text": "Geçici olarak üstlendiğiniz ek sorumluluklar (işten çıkarılan arkadaşınızın görevlerini kabul etmiştiniz), yeni birinin işe alınmaması nedeniyle kalıcı hale geldi. Artan iş yükü standart haline geldi ve bu ek görevler için herhangi bir ücret artışı veya terfi sağlanmadı.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -15,
+                    "colleagues": -5,
+                    "boss": -10
+                },
+                "isInfoOnly": true,
+                "delay": 45,
+                "probability": 40
+            },
+            {
+                "id": "SKILL_DEVELOPMENT",
+                "text": "İşten çıkarılan iş arkadaşınızın görevlerini üstlenme kararınız, yeni beceriler geliştirmenizi ve farklı iş alanlarını öğrenmenizi sağladı. Bu ek sorumlulukları kabul etmeniz CV'nizi güçlendirdi ve kariyerinizde yeni seçenekler açtı.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 5,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 25
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "RESPECT_FOR_BOUNDARIES",
+                "text": "Ek görevleri nazikçe reddetmeniz (iş yükünüzün zaten ağır olduğunu belirtmiştiniz) başlangıçta olumsuz karşılansa da, sınırlarınızı koruma konusundaki kararlılığınız sonunda saygı gördü. Mevcut görevlerinize odaklanmayı sürdürerek kaliteli iş çıkarmaya devam ettiniz.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 5,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 14,
+                "probability": 30
+            },
+            {
+                "id": "NEGATIVE_PERCEPTION",
+                "text": "Ek sorumlulukları reddetme kararınız (işten çıkarılan arkadaşınızın görevlerini üstlenmeyi kabul etmemiştiniz), bazı yöneticiler tarafından 'takım oyuncusu olmamak' veya 'şirket hedeflerine bağlılık eksikliği' olarak yorumlandı. Bu durum, gelecekteki terfi fırsatlarını etkileyebilir.",
+                "effects": {
+                    "motivation": -10,
+                    "performance": 0,
+                    "colleagues": -5,
+                    "boss": -20
+                },
+                "isInfoOnly": true,
+                "delay": 21,
+                "probability": 45
+            },
+            {
+                "id": "ALTERNATIVE_ARRANGEMENT",
+                "text": "Ek görevleri reddetmenizden sonra (iş yükünüzün zaten ağır olduğunu belirtmiştiniz), yönetim durumu yeniden değerlendirdi ve ek görevleri ekip geneline dağıtmaya karar verdi. Bu daha adil bir çözüm sağladı ve işten çıkarmanın etkisi tüm ekip tarafından paylaşıldı.",
+                "effects": {
+                    "motivation": 10,
+                    "performance": 5,
+                    "colleagues": 10,
+                    "boss": 5
+                },
+                "isInfoOnly": true,
+                "delay": 7,
+                "probability": 25
+            }
+        ]
+    },
+    {
+        "id": "COMPANY_ACQUISITION",
+        "text": "Çalıştığınız şirket daha büyük bir şirket tarafından satın alındı ve şirket kültürü değişmeye başladı. Buna nasıl tepki verirsiniz?",
+        "yesEffects": {
+            "motivation": 5,
+            "performance": 10,
+            "colleagues": 5,
+            "boss": 15
+        },
+        "noEffects": {
+            "motivation": 10,
+            "performance": -5,
+            "colleagues": -10,
+            "boss": -15
+        },
+        "yesText": "Yeni kültüre uyum sağlamaya çalışırım",
+        "noText": "Yeni fırsatlar aramaya başlarım",
+        "maxUses": 1,
+        "yesFollowups": [
+            {
+                "id": "SUCCESSFUL_ADAPTATION",
+                "text": "Yeni şirket kültürüne uyum sağlama çabalarınız (şirket satın alımından sonra değişen kültüre adapte olmayı seçmiştiniz) meyvesini verdi. Değişen dinamikleri kabul edip yeni fırsatlara açık olmanız, sizi birleşme sonrası organizasyonda değerli bir çalışan haline getirdi.",
+                "effects": {
+                    "motivation": 15,
+                    "performance": 10,
+                    "colleagues": 10,
+                    "boss": 20
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 35
+            },
+            {
+                "id": "CULTURAL_CLASH",
+                "text": "Uyum sağlama çabalarınıza rağmen (şirket satın alımı sonrası yeni kültüre adapte olmayı seçmiştiniz), eski ve yeni şirket kültürleri arasındaki farklar beklenenden daha büyüktü. Yeni yönetim tarzı ve değerlere alışmakta zorlanıyorsunuz ve bu durum iş memnuniyetinizi azaltıyor.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -10,
+                    "colleagues": -5,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 45,
+                "probability": 40
+            },
+            {
+                "id": "BRIDGE_BUILDER",
+                "text": "Hem eski hem de yeni şirket kültürünü anlamanız (satın alım sonrası yeni kültüre uyum sağlamayı tercih etmiştiniz), sizi iki grup arasında değerli bir arabulucu haline getirdi. Bu rol, geçiş sürecinde kritik bir öneme sahip oldu ve üst yönetim tarafından fark edildi.",
+                "effects": {
+                    "motivation": 20,
+                    "performance": 15,
+                    "colleagues": 15,
+                    "boss": 25
+                },
+                "isInfoOnly": true,
+                "delay": 60,
+                "probability": 25
+            }
+        ],
+        "noFollowups": [
+            {
+                "id": "BETTER_OPPORTUNITY",
+                "text": "Yeni fırsatlar aramanız (şirketiniz satın alındıktan sonra ayrılmayı düşünmeye başlamıştınız) sonuç verdi ve kariyer hedeflerinize daha uygun bir pozisyon buldunuz. Yeni işiniz daha iyi bir ücret ve çalışma koşulları sunuyor.",
+                "effects": {
+                    "motivation": 25,
+                    "performance": 15,
+                    "colleagues": 5,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 60,
+                "probability": 40
+            },
+            {
+                "id": "MISSED_BENEFITS",
+                "text": "Satın almadan sonra şirket beklenmedik şekilde olumlu yönde gelişti. Yeni yönetim, çalışan faydalarını artırdı ve kariyer gelişim fırsatları sundu. Erken ayrılma kararınız (şirket satın alımı sonrası yeni fırsatlar aramaya başlamıştınız) nedeniyle bu avantajlardan faydalanamadınız.",
+                "effects": {
+                    "motivation": -15,
+                    "performance": -5,
+                    "colleagues": 0,
+                    "boss": 0
+                },
+                "isInfoOnly": true,
+                "delay": 45,
+                "probability": 35
+            },
+            {
+                "id": "DIFFICULT_TRANSITION",
+                "text": "İş aramaya başladınız (şirket satın alımından sonra yeni fırsatlar aramayı seçmiştiniz) ancak uygun bir pozisyon bulmak beklenenden daha uzun sürüyor. Bu arada, şirketteki değişim süreci hızlanıyor ve belirsizlik artıyor.",
+                "effects": {
+                    "motivation": -20,
+                    "performance": -15,
+                    "colleagues": -10,
+                    "boss": -5
+                },
+                "isInfoOnly": true,
+                "delay": 30,
+                "probability": 25
+            }
+        ]
+    },
+    {
         "id": "PERFORMANCE_CRITICISM",
         "text": "Takım lideriniz birebir görüşme için sizi odasına çağırdı. Görüşme sırasında potansiyelinizin altında performans gösterdiğinizi ve elinizden geleni yapmadığınızı düşündüğünü söyledi. Bu geri bildirime nasıl tepki vereceksiniz?",
         "yesEffects": {
