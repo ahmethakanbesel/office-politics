@@ -679,7 +679,7 @@ function showGameOver(winReason = null) {
     } else if (resources.boss <= resources.minValue) {
       reason = "Patronunuz sizi sevmiyor. Kovuldunuz.";
     } else if (resources.boss >= resources.maxValue) {
-      reason = "Patronunuzla çok yakınsınız. Bu durum iş arkadaşlarınız tarafından hoş karşılanmadı ve performansınızı olumsuz yönde etkiledi. Patronunuz sizi çok sevmesine rağmen işten çıkarmak zorunda kaldı.";
+      reason = "Patronunuzla kurduğunuz aşırı yakın ilişki, ofis içinde dedikodulara ve çalışma arkadaşlarınızın size karşı güvenini kaybetmesine yol açtı. Diğer çalışanlar kayırıldığınızı düşünmeye başladı ve takım dinamikleri bozuldu. Patronunuz, şirket kültürünü korumak ve diğer çalışanların moralini düzeltmek için, size olan kişisel sempatisine rağmen, pozisyonunuzu sonlandırmak zorunda kaldı.";
     } else {
       // Fallback if somehow called without a specific reason or boundary hit
       reason = "Oyun sona erdi.";
