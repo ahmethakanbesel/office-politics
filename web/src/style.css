@@ -1,4 +1,3 @@
-/* web/src/style.css */
 * {
   margin: 0;
   padding: 0;
@@ -148,6 +147,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 60px;
 }
 
 #card {
@@ -181,18 +181,6 @@ body {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-out;
   pointer-events: none;
-}
-
-.card-stack-item:nth-child(1) {
-  transform: translate(8px, 4px);
-  z-index: 2;
-  opacity: 0.8;
-}
-
-.card-stack-item:nth-child(2) {
-  transform: translate(4px, 2px);
-  z-index: 3;
-  opacity: 0.9;
 }
 
 #card.info-only {
@@ -267,6 +255,36 @@ body {
   cursor: pointer;
   font-weight: bold;
   z-index: 50;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#sound-toggle-button {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 2px solid #374151;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 50;
+  font-size: 22px;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#sound-toggle-button:hover {
+  background-color: #e5e7eb;
 }
 
 #about-modal,
@@ -351,6 +369,7 @@ body {
 @media (max-height: 700px) {
   #card-area {
     min-height: 250px;
+    margin-bottom: 50px;
   }
 
   #card {
@@ -388,19 +407,15 @@ body {
     font-size: 18px;
   }
 
-  .card-stack-item:nth-child(1) {
-    transform: translate(6px, 3px);
-  }
-
-  .card-stack-item:nth-child(2) {
-    transform: translate(3px, 1.5px);
+  #sound-toggle-button {
+    bottom: 45px;
   }
 }
 
 @media (max-width: 480px) {
   #card-area {
     margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin-bottom: 40px;
   }
 
   #day-counter {
@@ -469,12 +484,19 @@ body {
     font-size: 10px;
   }
 
-  .card-stack-item:nth-child(1) {
-    transform: translate(6px, 3px);
+  #about-icon {
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
   }
 
-  .card-stack-item:nth-child(2) {
-    transform: translate(3px, 1.5px);
+  #sound-toggle-button {
+    bottom: 40px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 }
 
@@ -520,7 +542,6 @@ body {
   display: inline-block;
   font-weight: bold;
   color: rgb(234, 179, 8);
-  /* yellow color, matching colleagues color */
   padding: 5px 10px;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.2);
@@ -529,10 +550,8 @@ body {
 
 #info-best-score {
   display: none;
-  /* Hidden by default, shown when there's a score */
 }
 
-/* Media query adjustments */
 @media (max-width: 480px) {
   .best-score-display {
     padding: 3px 8px;

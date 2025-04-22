@@ -21,6 +21,10 @@ let gameOver = false;
 let winCardShown = false;
 let personalBest = 0;
 
+// Sound related variables
+let isSoundEnabled = true; // Default to sound on
+const swipeSound = new Audio('swipe.mp3'); // Create Audio object
+
 // DOM elements
 const cardElement = document.getElementById('card');
 const cardTextElement = document.getElementById('card-text');
@@ -50,10 +54,48 @@ const aboutModalElement = document.getElementById('about-modal');
 const gameOverElement = document.getElementById('game-over');
 const gameOverReasonElement = document.getElementById('game-over-reason');
 const restartButtonElement = document.getElementById('restart-button');
+const soundToggleButtonElement = document.getElementById('sound-toggle-button'); // Get sound button
+
+// --- Sound Functions ---
+function playSwipeSound() {
+  if (isSoundEnabled) {
+    // Reset playback time to allow rapid playing if needed
+    swipeSound.currentTime = 0;
+    swipeSound
+      .play()
+      .catch((error) => console.error('Error playing swipe sound:', error));
+  }
+}
+
+function updateSoundButtonUI() {
+  soundToggleButtonElement.textContent = isSoundEnabled ? '🔊' : '🔇';
+}
+
+function toggleSound() {
+  isSoundEnabled = !isSoundEnabled;
+  updateSoundButtonUI();
+  // Save preference to localStorage
+  localStorage.setItem('officePoliticsSoundEnabled', isSoundEnabled.toString());
+  // Play a sound when toggling on (optional feedback)
+  if (isSoundEnabled) {
+    playSwipeSound();
+  }
+}
+
+function loadSoundPreference() {
+  const savedPreference = localStorage.getItem('officePoliticsSoundEnabled');
+  if (savedPreference !== null) {
+    isSoundEnabled = savedPreference === 'true';
+  } else {
+    isSoundEnabled = true; // Default to true if nothing saved
+  }
+  updateSoundButtonUI();
+}
 
 // --- Load Cards and Initialize Game ---
 function initializeGame() {
   loadPersonalBest();
+  loadSoundPreference(); // Load sound preference
 
   // First show the welcome card
   showWelcomeCard();
@@ -878,6 +920,7 @@ function showGameOver(winReason = null) {
   if (!personalBestElement) {
     personalBestElement = document.createElement('div');
     personalBestElement.id = 'personal-best';
+    // Insert before the restart button
     gameOverElement.insertBefore(personalBestElement, restartButtonElement);
   }
 
@@ -1489,6 +1532,7 @@ function endDrag(e) {
   if (Math.abs(currentX) > threshold) {
     // Karar verildi (or day skip triggered if currentCard is null)
     const isYes = currentX > 0;
+    playSwipeSound(); // <<< Play sound on successful swipe
     processCard(isYes); // This will handle animation away and logic
   } else {
     // Kartı orijinal pozisyonuna döndür
@@ -1511,6 +1555,7 @@ function endDrag(e) {
   currentX = 0;
 }
 
+// --- Event Listeners ---
 aboutIconElement.addEventListener('click', () => {
   updateInfoScreenBestScore();
   aboutModalElement.style.display = 'flex';
@@ -1521,6 +1566,9 @@ aboutModalElement.addEventListener('click', () => {
 });
 
 restartButtonElement.addEventListener('click', restartGame);
+
+// Add listener for the sound toggle button
+soundToggleButtonElement.addEventListener('click', toggleSound);
 
 // --- Initialize ---
 initializeGame(); // Load cards and set up initial state
