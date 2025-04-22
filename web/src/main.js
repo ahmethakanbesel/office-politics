@@ -6,7 +6,7 @@ const resources = {
   boss: 40,
   day: 1,
   maxValue: 100,
-  minValue: 0
+  minValue: 0,
 };
 
 let cards = [];
@@ -29,9 +29,15 @@ const noOptionElement = document.getElementById('no-option');
 const swipeIndicatorElement = document.getElementById('swipe-indicator');
 const dayCounterElement = document.getElementById('day-counter');
 // Stat Fill Elements
-const motivationFillElement = document.querySelector('#motivation-icon .stat-fill');
-const performanceFillElement = document.querySelector('#performance-icon .stat-fill');
-const colleaguesFillElement = document.querySelector('#colleagues-icon .stat-fill');
+const motivationFillElement = document.querySelector(
+  '#motivation-icon .stat-fill'
+);
+const performanceFillElement = document.querySelector(
+  '#performance-icon .stat-fill'
+);
+const colleaguesFillElement = document.querySelector(
+  '#colleagues-icon .stat-fill'
+);
 const bossFillElement = document.querySelector('#boss-icon .stat-fill');
 // Stat Icon Elements (for indicators)
 const motivationIconElement = document.getElementById('motivation-icon');
@@ -56,7 +62,9 @@ function initializeGame() {
   const cardArea = document.getElementById('card-area');
 
   // Remove any existing stack items (in case of restart)
-  document.querySelectorAll('.card-stack-item').forEach(item => item.remove());
+  document
+    .querySelectorAll('.card-stack-item')
+    .forEach((item) => item.remove());
 
   // Create two stack items with no initial animation
   for (let i = 0; i < 2; i++) {
@@ -65,11 +73,13 @@ function initializeGame() {
     stackItem.style.transition = 'none'; // No transition for initial setup
 
     // Apply appropriate styling based on position
-    if (i === 0) { // First stack item (middle position)
+    if (i === 0) {
+      // First stack item (middle position)
       stackItem.style.transform = 'translate(4px, 2px)';
       stackItem.style.opacity = '0.9';
       stackItem.style.zIndex = '3';
-    } else { // Second stack item (back position)
+    } else {
+      // Second stack item (back position)
       stackItem.style.transform = 'translate(8px, 4px)';
       stackItem.style.opacity = '0.8';
       stackItem.style.zIndex = '2';
@@ -81,17 +91,17 @@ function initializeGame() {
 
   // Then load the cards normally
   fetch('deck.json?v=' + Date.now()) // Fetch the JSON file
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       return response.json(); // Parse JSON response
     })
-    .then(loadedCards => {
-      console.log("Cards loaded successfully.");
+    .then((loadedCards) => {
+      console.log('Cards loaded successfully.');
       cards = loadedCards; // Assign loaded cards to the global variable
 
-      cards.forEach(card => {
+      cards.forEach((card) => {
         if (card.maxUses === undefined) {
           card.maxUses = 1;
         }
@@ -101,7 +111,8 @@ function initializeGame() {
 
       // --- Initialize game state that depends on cards ---
       availableCards = [...cards]; // Populate available cards
-      cards.forEach(card => { // Ensure uses count is reset
+      cards.forEach((card) => {
+        // Ensure uses count is reset
         card.uses = 0;
       });
       delayedCards = []; // Reset delayed cards
@@ -110,9 +121,9 @@ function initializeGame() {
       // Note: We don't set currentCard here as we're showing the welcome card
       // The welcome card will be replaced with the first game card when the player swipes
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Error loading or parsing cards.json:', error);
-      cardTextElement.textContent = "Kartlar yüklenirken hata oluştu.";
+      cardTextElement.textContent = 'Kartlar yüklenirken hata oluştu.';
       // Disable game or show error state
       gameOver = true;
     });
@@ -131,28 +142,42 @@ function checkRequirements(cardRequirements, currentResources) {
   }
 
   // Handle logical grouping (AND/OR)
-  if (cardRequirements.type && cardRequirements.conditions && Array.isArray(cardRequirements.conditions)) {
+  if (
+    cardRequirements.type &&
+    cardRequirements.conditions &&
+    Array.isArray(cardRequirements.conditions)
+  ) {
     if (cardRequirements.type.toLowerCase() === 'and') {
       // For AND, ALL conditions must be true
-      return cardRequirements.conditions.every(condition => checkRequirements(condition, currentResources));
+      return cardRequirements.conditions.every((condition) =>
+        checkRequirements(condition, currentResources)
+      );
     } else if (cardRequirements.type.toLowerCase() === 'or') {
       // For OR, AT LEAST ONE condition must be true
-      return cardRequirements.conditions.some(condition => checkRequirements(condition, currentResources));
+      return cardRequirements.conditions.some((condition) =>
+        checkRequirements(condition, currentResources)
+      );
     } else {
-      console.warn("Invalid requirement type:", cardRequirements.type);
+      console.warn('Invalid requirement type:', cardRequirements.type);
       return false; // Invalid type, fail the check
     }
   }
 
   // Handle single condition
-  if (cardRequirements.resource && cardRequirements.comparison && typeof cardRequirements.value !== 'undefined') {
+  if (
+    cardRequirements.resource &&
+    cardRequirements.comparison &&
+    typeof cardRequirements.value !== 'undefined'
+  ) {
     const resourceName = cardRequirements.resource;
     const comparison = cardRequirements.comparison.toLowerCase();
     const requiredValue = cardRequirements.value;
     const currentValue = currentResources[resourceName];
 
     if (typeof currentValue === 'undefined') {
-      console.warn(`Requirement check failed: Resource "${resourceName}" not found.`);
+      console.warn(
+        `Requirement check failed: Resource "${resourceName}" not found.`
+      );
       return false; // Resource doesn't exist in game state
     }
 
@@ -168,26 +193,28 @@ function checkRequirements(cardRequirements, currentResources) {
       case 'eq': // Equal to
         return currentValue === requiredValue;
       default:
-        console.warn("Invalid comparison operator:", comparison);
+        console.warn('Invalid comparison operator:', comparison);
         return false; // Invalid comparison, fail the check
     }
   }
 
   // If the structure is invalid (neither group nor single condition)
-  console.warn("Invalid requirement structure:", cardRequirements);
+  console.warn('Invalid requirement structure:', cardRequirements);
   return false;
 }
-
 
 function getNextCard() {
   // Check if cards array is populated
   if (!cards || cards.length === 0) {
-    console.error("Attempted to get next card, but 'cards' array is empty or not loaded.");
+    console.error(
+      "Attempted to get next card, but 'cards' array is empty or not loaded."
+    );
     return null;
   }
 
   const winChanceCardId = 'COMPETITOR_JOB_OFFER';
-  const meetWinConditions = resources.day >= 70 &&
+  const meetWinConditions =
+    resources.day >= 70 &&
     resources.motivation >= 50 &&
     resources.performance >= 50 &&
     resources.colleagues >= 50 &&
@@ -195,11 +222,12 @@ function getNextCard() {
     !winCardShown;
 
   if (meetWinConditions) {
-    const winChanceCard = cards.find(card => card.id === winChanceCardId);
+    const winChanceCard = cards.find((card) => card.id === winChanceCardId);
     if (winChanceCard) {
       // Check if this card hasn't been used yet (maxUses is now guaranteed to exist)
-      if ((winChanceCard.uses || 0) < winChanceCard.maxUses) { // Simplified check
-        console.log("Win conditions met, presenting WIN_CHANCE_CARD.");
+      if ((winChanceCard.uses || 0) < winChanceCard.maxUses) {
+        // Simplified check
+        console.log('Win conditions met, presenting WIN_CHANCE_CARD.');
         // Increment uses *before* returning to prevent re-selection if declined
         winChanceCard.uses = (winChanceCard.uses || 0) + 1;
 
@@ -212,11 +240,13 @@ function getNextCard() {
         winCardShown = true; // Mark that the win card has been shown
         return winChanceCard; // Return the specific win chance card
       } else {
-        console.log("Win conditions met, but WIN_CHANCE_CARD already used.");
+        console.log('Win conditions met, but WIN_CHANCE_CARD already used.');
         // Proceed with normal card selection if the win card was already shown/used
       }
     } else {
-      console.error(`Card with id '${winChanceCardId}' not found in deck.json!`);
+      console.error(
+        `Card with id '${winChanceCardId}' not found in deck.json!`
+      );
       // Proceed with normal card selection as a fallback
     }
   }
@@ -232,10 +262,12 @@ function getNextCard() {
   // 1. Check delayed cards first
   if (delayedCards.length > 0) {
     // Önce ebeveyn kartı gösterilmiş olan takip kartlarını ara
-    const readyFollowupIndex = delayedCards.findIndex(item =>
-      item.showOnDay <= resources.day &&
-      item.parentCardId &&
-      window.playedCardIds.includes(item.parentCardId));
+    const readyFollowupIndex = delayedCards.findIndex(
+      (item) =>
+        item.showOnDay <= resources.day &&
+        item.parentCardId &&
+        window.playedCardIds.includes(item.parentCardId)
+    );
 
     if (readyFollowupIndex !== -1) {
       const readyFollowup = delayedCards[readyFollowupIndex];
@@ -262,10 +294,13 @@ function getNextCard() {
 
     // If previous card was info, find the first non-info delayed card that's ready
     if (previousCardWasInfo) {
-      const readyNonInfoCardIndex = delayedCards.findIndex(item =>
-        item.showOnDay <= resources.day &&
-        !item.card.isInfoOnly &&
-        (!item.parentCardId || window.playedCardIds.includes(item.parentCardId)));
+      const readyNonInfoCardIndex = delayedCards.findIndex(
+        (item) =>
+          item.showOnDay <= resources.day &&
+          !item.card.isInfoOnly &&
+          (!item.parentCardId ||
+            window.playedCardIds.includes(item.parentCardId))
+      );
 
       if (readyNonInfoCardIndex !== -1) {
         const readyCard = delayedCards[readyNonInfoCardIndex];
@@ -292,9 +327,12 @@ function getNextCard() {
       // If no non-info delayed cards are ready, we'll proceed to pick from regular deck
     } else {
       // Regular delayed card check - önce takip kartları olanları kontrol et
-      const readyCardIndex = delayedCards.findIndex(item =>
-        item.showOnDay <= resources.day &&
-        (!item.parentCardId || window.playedCardIds.includes(item.parentCardId)));
+      const readyCardIndex = delayedCards.findIndex(
+        (item) =>
+          item.showOnDay <= resources.day &&
+          (!item.parentCardId ||
+            window.playedCardIds.includes(item.parentCardId))
+      );
 
       if (readyCardIndex !== -1) {
         const readyCard = delayedCards[readyCardIndex];
@@ -324,8 +362,10 @@ function getNextCard() {
 
   // If the pool is empty, reshuffle *all* cards
   if (potentialCards.length === 0) {
-    console.log("No available cards left in this cycle, reshuffling all cards...");
-    cards.forEach(card => card.uses = 0); // Reset uses count on reshuffle
+    console.log(
+      'No available cards left in this cycle, reshuffling all cards...'
+    );
+    cards.forEach((card) => (card.uses = 0)); // Reset uses count on reshuffle
     availableCards = [...cards]; // Reset availableCards pool
     potentialCards = [...availableCards]; // Use the fresh pool
     winCardShown = false; // Reset win card shown flag on reshuffle
@@ -339,7 +379,7 @@ function getNextCard() {
   // });
 
   // 4. Filter the potential cards
-  let validCards = potentialCards.filter(card => {
+  let validCards = potentialCards.filter((card) => {
     // Filter 1: Max Uses (maxUses is guaranteed to exist now)
     const maxUsesOk = (card.uses || 0) < card.maxUses;
     if (!maxUsesOk) return false;
@@ -352,17 +392,20 @@ function getNextCard() {
     if (previousCardWasInfo && card.isInfoOnly) return false;
 
     // Filter 4: Takip kartı ise ebeveyn kartının oynanmış olması gerekir
-    if (card.parentCardId && !window.playedCardIds.includes(card.parentCardId)) return false;
+    if (card.parentCardId && !window.playedCardIds.includes(card.parentCardId))
+      return false;
 
     return true;
   });
 
   // 5. Handle case where filtering results in no valid cards
   if (validCards.length === 0) {
-    console.log("No cards meet requirements/maxUses from current pool. Trying full reshuffle and re-filter...");
+    console.log(
+      'No cards meet requirements/maxUses from current pool. Trying full reshuffle and re-filter...'
+    );
 
     // Reshuffle *all* cards again (reset uses) and reset available pool
-    cards.forEach(card => card.uses = 0);
+    cards.forEach((card) => (card.uses = 0));
     availableCards = [...cards];
     potentialCards = [...availableCards]; // Use the fresh pool
     winCardShown = false; // Reset win card shown flag on reshuffle
@@ -375,7 +418,7 @@ function getNextCard() {
     // });
 
     // Re-apply filters, but if we're still getting no cards, relax the info card constraint
-    validCards = potentialCards.filter(card => {
+    validCards = potentialCards.filter((card) => {
       // Max Uses check
       const maxUsesOk = (card.uses || 0) < card.maxUses;
       if (!maxUsesOk) return false;
@@ -385,16 +428,21 @@ function getNextCard() {
       if (!requirementsOk) return false;
 
       // Parent card check
-      if (card.parentCardId && !window.playedCardIds.includes(card.parentCardId)) return false;
+      if (
+        card.parentCardId &&
+        !window.playedCardIds.includes(card.parentCardId)
+      )
+        return false;
 
       // Only apply info card prevention if we have other options
       if (previousCardWasInfo && card.isInfoOnly) {
         // Count how many non-info cards we have that meet other requirements
-        const nonInfoOptions = potentialCards.filter(c =>
-          ((c.uses || 0) < c.maxUses) &&
-          checkRequirements(c.requirements, resources) &&
-          !c.isInfoOnly &&
-          (!c.parentCardId || window.playedCardIds.includes(c.parentCardId))
+        const nonInfoOptions = potentialCards.filter(
+          (c) =>
+            (c.uses || 0) < c.maxUses &&
+            checkRequirements(c.requirements, resources) &&
+            !c.isInfoOnly &&
+            (!c.parentCardId || window.playedCardIds.includes(c.parentCardId))
         ).length;
 
         // If we have non-info options, exclude this info card
@@ -407,7 +455,9 @@ function getNextCard() {
 
     // If still no cards after full reshuffle and re-filter, return null
     if (validCards.length === 0) {
-      console.warn("No cards available that meet requirements even after full reshuffle.");
+      console.warn(
+        'No cards available that meet requirements even after full reshuffle.'
+      );
       return null; // Indicate no card is available right now
     }
   }
@@ -415,7 +465,7 @@ function getNextCard() {
   // 6. Prioritize non-info cards if the previous was info
   if (previousCardWasInfo && validCards.length > 0) {
     // Try to find non-info cards first
-    const nonInfoCards = validCards.filter(card => !card.isInfoOnly);
+    const nonInfoCards = validCards.filter((card) => !card.isInfoOnly);
 
     // If we have non-info cards, select from those instead
     if (nonInfoCards.length > 0) {
@@ -425,10 +475,16 @@ function getNextCard() {
   }
 
   // 7. Öncelik olarak takip kartlarını seç (if available after other filters)
-  const followupCards = validCards.filter(card => card.parentCardId && window.playedCardIds.includes(card.parentCardId));
+  const followupCards = validCards.filter(
+    (card) =>
+      card.parentCardId && window.playedCardIds.includes(card.parentCardId)
+  );
   if (followupCards.length > 0) {
     // Check if there are non-followup options available too
-    const nonFollowupCards = validCards.filter(card => !card.parentCardId || !window.playedCardIds.includes(card.parentCardId));
+    const nonFollowupCards = validCards.filter(
+      (card) =>
+        !card.parentCardId || !window.playedCardIds.includes(card.parentCardId)
+    );
     // If there are ONLY followup cards, use them. If there's a mix, maybe prioritize followups?
     // Current logic: If any followups are valid, pick ONLY from them.
     validCards = followupCards;
@@ -454,8 +510,10 @@ function getNextCard() {
 function updateCardUI(card) {
   if (!card) {
     // Handle the case where getNextCard returned null
-    cardTextElement.textContent = "Bugün sakin geçiyor..."; // Or another appropriate message
-    console.log("updateCardUI called with null card - no available card meets requirements.");
+    cardTextElement.textContent = 'Bugün sakin geçiyor...'; // Or another appropriate message
+    console.log(
+      'updateCardUI called with null card - no available card meets requirements.'
+    );
     cardElement.classList.add('info-only'); // Style as info card maybe
     yesOptionElement.style.display = 'none';
     noOptionElement.style.display = 'none';
@@ -482,14 +540,16 @@ function updateCardUI(card) {
     noOptionElement.style.display = 'block';
     swipeIndicatorElement.style.display = 'none';
 
-    yesOptionElement.textContent = card.yesText || "Evet";
-    noOptionElement.textContent = card.noText || "Hayır";
+    yesOptionElement.textContent = card.yesText || 'Evet';
+    noOptionElement.textContent = card.noText || 'Hayır';
   }
   // Reset card position and style for the new card
   cardElement.style.transition = 'none'; // Prevent animation on new card load
   cardElement.style.transform = 'rotate(0) translateX(0)';
   cardElement.style.opacity = '1';
-  cardElement.style.background = card.isInfoOnly ? 'rgb(249, 250, 251)' : 'white';
+  cardElement.style.background = card.isInfoOnly
+    ? 'rgb(249, 250, 251)'
+    : 'white';
   yesOptionElement.style.opacity = '1'; // Reset opacity
   noOptionElement.style.opacity = '1'; // Reset opacity
 }
@@ -503,11 +563,20 @@ function updateCardUI(card) {
 function showStatChangeIndicator(statName, changeAmount) {
   let iconElement;
   switch (statName) {
-    case 'motivation': iconElement = motivationIconElement; break;
-    case 'performance': iconElement = performanceIconElement; break;
-    case 'colleagues': iconElement = colleaguesIconElement; break;
-    case 'boss': iconElement = bossIconElement; break;
-    default: return; // Unknown stat
+    case 'motivation':
+      iconElement = motivationIconElement;
+      break;
+    case 'performance':
+      iconElement = performanceIconElement;
+      break;
+    case 'colleagues':
+      iconElement = colleaguesIconElement;
+      break;
+    case 'boss':
+      iconElement = bossIconElement;
+      break;
+    default:
+      return; // Unknown stat
   }
 
   if (!iconElement) return; // Element not found
@@ -530,7 +599,6 @@ function showStatChangeIndicator(statName, changeAmount) {
   }, 750); // Duration of the indicator flash in milliseconds
 }
 
-
 // Kaynakları güncelleme fonksiyonu (Dictionary based)
 function updateResources(effects) {
   if (!effects) return; // No effects to apply
@@ -542,16 +610,31 @@ function updateResources(effects) {
   const oldBoss = resources.boss;
 
   // Get change amounts or 0 if not specified in effects
-  const motivationChange = effects.motivation * (Math.random() * 0.15 + 0.50) || 0;
-  const performanceChange = effects.performance * (Math.random() * 0.15 + 0.50) || 0;
-  const colleaguesChange = effects.colleagues * (Math.random() * 0.15 + 0.35) || 0;
-  const bossChange = effects.boss * (Math.random() * 0.15 + 0.50) || 0;
+  const motivationChange =
+    effects.motivation * (Math.random() * 0.15 + 0.5) || 0;
+  const performanceChange =
+    effects.performance * (Math.random() * 0.15 + 0.5) || 0;
+  const colleaguesChange =
+    effects.colleagues * (Math.random() * 0.15 + 0.35) || 0;
+  const bossChange = effects.boss * (Math.random() * 0.15 + 0.5) || 0;
 
   // Update resources, clamping between minValue and maxValue
-  resources.motivation = Math.max(Math.min(resources.motivation + motivationChange, resources.maxValue), resources.minValue);
-  resources.performance = Math.max(Math.min(resources.performance + performanceChange, resources.maxValue), resources.minValue);
-  resources.colleagues = Math.max(Math.min(resources.colleagues + colleaguesChange, resources.maxValue), resources.minValue);
-  resources.boss = Math.max(Math.min(resources.boss + bossChange, resources.maxValue), resources.minValue);
+  resources.motivation = Math.max(
+    Math.min(resources.motivation + motivationChange, resources.maxValue),
+    resources.minValue
+  );
+  resources.performance = Math.max(
+    Math.min(resources.performance + performanceChange, resources.maxValue),
+    resources.minValue
+  );
+  resources.colleagues = Math.max(
+    Math.min(resources.colleagues + colleaguesChange, resources.maxValue),
+    resources.minValue
+  );
+  resources.boss = Math.max(
+    Math.min(resources.boss + bossChange, resources.maxValue),
+    resources.minValue
+  );
 
   resources.day++; // Increment day after applying effects
 
@@ -560,7 +643,10 @@ function updateResources(effects) {
 
   // Show indicators based on the *actual* change after clamping
   showStatChangeIndicator('motivation', resources.motivation - oldMotivation);
-  showStatChangeIndicator('performance', resources.performance - oldPerformance);
+  showStatChangeIndicator(
+    'performance',
+    resources.performance - oldPerformance
+  );
   showStatChangeIndicator('colleagues', resources.colleagues - oldColleagues);
   showStatChangeIndicator('boss', resources.boss - oldBoss);
 
@@ -609,15 +695,14 @@ function checkGameOver() {
 
 function showWelcomeCard() {
   const welcomeCard = {
-    text: "Hazırsanız başlayalım",
+    text: 'Hazırsanız başlayalım',
     isInfoOnly: true,
-    effects: {} // No effects for welcome card
+    effects: {}, // No effects for welcome card
   };
 
   currentCard = welcomeCard;
   updateCardUI(welcomeCard);
 }
-
 
 function loadPersonalBest() {
   const savedBest = localStorage.getItem('officePoliticsPersonalBest');
@@ -655,93 +740,109 @@ function savePersonalBest(days) {
   return false; // Return false if not a new personal best
 }
 
-
 function showGameOver(winReason = null) {
-  let reason = "";
+  let reason = '';
   let isWin = false;
 
-  if (winReason) { // If a specific win reason is provided, use it
+  if (winReason) {
+    // If a specific win reason is provided, use it
     reason = winReason;
     isWin = true;
   } else {
     const lossReasons = {
       motivationLow: [
-        "Motivasyonunuz tükendi. İşi bıraktınız.",
-        "Her sabah işe gitmek dayanılmaz bir hal aldı. Motivasyonsuzluktan istifa ettiniz.",
-        "İşe karşı tüm heyecanınızı kaybettiniz ve motivasyonunuz dibe vurdu. İstifa etmeye karar verdiniz.",
-        "Projelerinize olan ilginizi tamamen kaybettiniz. Motivasyon eksikliğinden dolayı işten ayrıldınız."
+        'Motivasyonunuz tükendi. İşi bıraktınız.',
+        'Her sabah işe gitmek dayanılmaz bir hal aldı. Motivasyonsuzluktan istifa ettiniz.',
+        'İşe karşı tüm heyecanınızı kaybettiniz ve motivasyonunuz dibe vurdu. İstifa etmeye karar verdiniz.',
+        'Projelerinize olan ilginizi tamamen kaybettiniz. Motivasyon eksikliğinden dolayı işten ayrıldınız.',
       ],
       motivationHigh: [
-        "Aşırı motivasyon sizi tüketti. Burnout oldunuz.",
-        "Aşırı motivasyon, sizi gece gündüz çalışmaya itti ve sonunda tükendiniz.",
-        "Çok hevesli olmanız dengeli bir yaşam sürmenizi engelledi. Aşırı motivasyon burnout yaşamanıza sebep oldu.",
-        "Motivasyonunuzu kontrol edemeyip kendinizi tükettiniz. İşkoliklik sizi bitirdi."
+        'Aşırı motivasyon sizi tüketti. Burnout oldunuz.',
+        'Aşırı motivasyon, sizi gece gündüz çalışmaya itti ve sonunda tükendiniz.',
+        'Çok hevesli olmanız dengeli bir yaşam sürmenizi engelledi. Aşırı motivasyon burnout yaşamanıza sebep oldu.',
+        'Motivasyonunuzu kontrol edemeyip kendinizi tükettiniz. İşkoliklik sizi bitirdi.',
       ],
       performanceLow: [
-        "Performansınız çok düşük. Kovuldunuz.",
-        "Üst üste başarısız projeler nedeniyle performansınız kabul edilemez seviyeye düştü. İşten çıkarıldınız.",
-        "Hedeflerinizi tutturamadınız ve düşük performans nedeniyle şirket sizi kadroda tutamadı.",
-        "Verimlilik raporlarınız sürekli düşüş gösterdi ve sonunda performans yetersizliğinden işinize son verildi."
+        'Performansınız çok düşük. Kovuldunuz.',
+        'Üst üste başarısız projeler nedeniyle performansınız kabul edilemez seviyeye düştü. İşten çıkarıldınız.',
+        'Hedeflerinizi tutturamadınız ve düşük performans nedeniyle şirket sizi kadroda tutamadı.',
+        'Verimlilik raporlarınız sürekli düşüş gösterdi ve sonunda performans yetersizliğinden işinize son verildi.',
       ],
       performanceHigh: [
-        "Çok fazla çalıştınız. Tükenmişlik sendromu yaşadınız.",
-        "Sürekli yüksek performans göstermeniz sizi fiziksel ve zihinsel olarak tüketti.",
-        "Mükemmeliyetçiliğiniz sizi aşırı çalışmaya sürükledi ve sonunda tükenmişlik yaşadınız.",
-        "Performansınızın sınırlarını zorlamanız sağlığınızı bozdu ve işi bırakmak zorunda kaldınız."
+        'Çok fazla çalıştınız. Tükenmişlik sendromu yaşadınız.',
+        'Sürekli yüksek performans göstermeniz sizi fiziksel ve zihinsel olarak tüketti.',
+        'Mükemmeliyetçiliğiniz sizi aşırı çalışmaya sürükledi ve sonunda tükenmişlik yaşadınız.',
+        'Performansınızın sınırlarını zorlamanız sağlığınızı bozdu ve işi bırakmak zorunda kaldınız.',
       ],
       colleaguesLow: [
-        "İş arkadaşlarınız sizden nefret ediyor. Yalnız kaldınız ve istifa ettiniz.",
-        "Ekip çalışmasında yaşadığınız sorunlar ciddi iletişim kopukluklarına yol açtı. Yalnızlaştınız ve istifa ettiniz.",
-        "Meslektaşlarınızla sürekli çatışmalar yaşadığınız için ofisteki atmosfer dayanılmaz hale geldi. İstifa etmeyi seçtiniz.",
-        "İş arkadaşlarınızla kuramadığınız olumlu ilişkiler, size karşı bir cephe oluşmasına neden oldu. Yalnızlık dayanılmaz hale gelince istifa ettiniz."
+        'İş arkadaşlarınız sizden nefret ediyor. Yalnız kaldınız ve istifa ettiniz.',
+        'Ekip çalışmasında yaşadığınız sorunlar ciddi iletişim kopukluklarına yol açtı. Yalnızlaştınız ve istifa ettiniz.',
+        'Meslektaşlarınızla sürekli çatışmalar yaşadığınız için ofisteki atmosfer dayanılmaz hale geldi. İstifa etmeyi seçtiniz.',
+        'İş arkadaşlarınızla kuramadığınız olumlu ilişkiler, size karşı bir cephe oluşmasına neden oldu. Yalnızlık dayanılmaz hale gelince istifa ettiniz.',
       ],
       colleaguesHigh: [
-        "İş arkadaşlarınızla çok yakınsınız. Bu aranızdaki sosyalliğin artmasına ve iş yerine sosyal kulüp muamelesi yapmanıza sebep oldu. Kovuldunuz.",
-        "Ofisteki aşırı sosyalleşmeniz iş verimliliğinizi düşürdü. Şirket, sosyal ilişkilerinizin iş performansınızı etkilediğini düşünerek sizi işten çıkardı.",
-        "İş arkadaşlarınızla kurduğunuz yakın ilişkiler mesai saatlerinde gevezeliğe ve işlerin aksamasına yol açtı. Şirket bu duruma son vermek için sizi işten çıkardı.",
-        "Çalışma ortamını aşırı sosyalleştirmeniz şirket politikalarına aykırı bulundu ve profesyonellikten uzaklaştığınız gerekçesiyle işinize son verildi."
+        'İş arkadaşlarınızla çok yakınsınız. Bu aranızdaki sosyalliğin artmasına ve iş yerine sosyal kulüp muamelesi yapmanıza sebep oldu. Kovuldunuz.',
+        'Ofisteki aşırı sosyalleşmeniz iş verimliliğinizi düşürdü. Şirket, sosyal ilişkilerinizin iş performansınızı etkilediğini düşünerek sizi işten çıkardı.',
+        'İş arkadaşlarınızla kurduğunuz yakın ilişkiler mesai saatlerinde gevezeliğe ve işlerin aksamasına yol açtı. Şirket bu duruma son vermek için sizi işten çıkardı.',
+        'Çalışma ortamını aşırı sosyalleştirmeniz şirket politikalarına aykırı bulundu ve profesyonellikten uzaklaştığınız gerekçesiyle işinize son verildi.',
       ],
       bossLow: [
-        "Patronunuz sizi sevmiyor. Kovuldunuz.",
-        "Yöneticinizle yaşadığınız sürekli anlaşmazlıklar sonucu işten çıkarıldınız.",
-        "Patronunuzla aranızdaki uyumsuzluk sonunda onun sabrını taşırdı ve işinize son verildi.",
-        "Yöneticinizle kurduğunuz olumsuz ilişki, şirket içindeki geleceğinizi baltaladı ve sonunda kovuldunuz."
+        'Patronunuz sizi sevmiyor. Kovuldunuz.',
+        'Yöneticinizle yaşadığınız sürekli anlaşmazlıklar sonucu işten çıkarıldınız.',
+        'Patronunuzla aranızdaki uyumsuzluk sonunda onun sabrını taşırdı ve işinize son verildi.',
+        'Yöneticinizle kurduğunuz olumsuz ilişki, şirket içindeki geleceğinizi baltaladı ve sonunda kovuldunuz.',
       ],
       bossHigh: [
-        "Patronunuzla kurduğunuz aşırı yakın ilişki, ofis içinde dedikodulara ve çalışma arkadaşlarınızın size karşı güvenini kaybetmesine yol açtı. Diğer çalışanlar kayırıldığınızı düşünmeye başladı ve takım dinamikleri bozuldu. Patronunuz, şirket kültürünü korumak ve diğer çalışanların moralini düzeltmek için, size olan kişisel sempatisine rağmen, pozisyonunuzu sonlandırmak zorunda kaldı.",
+        'Patronunuzla kurduğunuz aşırı yakın ilişki, ofis içinde dedikodulara ve çalışma arkadaşlarınızın size karşı güvenini kaybetmesine yol açtı. Diğer çalışanlar kayırıldığınızı düşünmeye başladı ve takım dinamikleri bozuldu. Patronunuz, şirket kültürünü korumak ve diğer çalışanların moralini düzeltmek için, size olan kişisel sempatisine rağmen, pozisyonunuzu sonlandırmak zorunda kaldı.',
         "Yöneticinizle olan yakınlığınız, diğer çalışanlar arasında adaletsizlik algısı yarattı. Bu durum ofis politikasını olumsuz etkiledi ve sonunda yöneticiniz 'çıkar çatışması' gerekçesiyle sizi işten çıkarmak zorunda kaldı.",
-        "Patronunuzla kurduğunuz samimi ilişki, şirket içi hiyerarşiyi bozdu ve diğer yöneticilerin otoritesini zayıflattı. Şirket politikası gereği pozisyonunuz sonlandırıldı.",
-        "Yöneticinizle fazla yakınlaşmanız, profesyonel sınırları aşmanıza ve şirket içi dengelerin bozulmasına yol açtı. İş ortamındaki bu olumsuz etki nedeniyle işten çıkarıldınız."
-      ]
+        'Patronunuzla kurduğunuz samimi ilişki, şirket içi hiyerarşiyi bozdu ve diğer yöneticilerin otoritesini zayıflattı. Şirket politikası gereği pozisyonunuz sonlandırıldı.',
+        'Yöneticinizle fazla yakınlaşmanız, profesyonel sınırları aşmanıza ve şirket içi dengelerin bozulmasına yol açtı. İş ortamındaki bu olumsuz etki nedeniyle işten çıkarıldınız.',
+      ],
     };
 
     if (resources.motivation <= resources.minValue) {
-      const randomIndex = Math.floor(Math.random() * lossReasons.motivationLow.length);
+      const randomIndex = Math.floor(
+        Math.random() * lossReasons.motivationLow.length
+      );
       reason = lossReasons.motivationLow[randomIndex];
     } else if (resources.motivation >= resources.maxValue) {
-      const randomIndex = Math.floor(Math.random() * lossReasons.motivationHigh.length);
+      const randomIndex = Math.floor(
+        Math.random() * lossReasons.motivationHigh.length
+      );
       reason = lossReasons.motivationHigh[randomIndex];
     } else if (resources.performance <= resources.minValue) {
-      const randomIndex = Math.floor(Math.random() * lossReasons.performanceLow.length);
+      const randomIndex = Math.floor(
+        Math.random() * lossReasons.performanceLow.length
+      );
       reason = lossReasons.performanceLow[randomIndex];
     } else if (resources.performance >= resources.maxValue) {
-      const randomIndex = Math.floor(Math.random() * lossReasons.performanceHigh.length);
+      const randomIndex = Math.floor(
+        Math.random() * lossReasons.performanceHigh.length
+      );
       reason = lossReasons.performanceHigh[randomIndex];
     } else if (resources.colleagues <= resources.minValue) {
-      const randomIndex = Math.floor(Math.random() * lossReasons.colleaguesLow.length);
+      const randomIndex = Math.floor(
+        Math.random() * lossReasons.colleaguesLow.length
+      );
       reason = lossReasons.colleaguesLow[randomIndex];
     } else if (resources.colleagues >= resources.maxValue) {
-      const randomIndex = Math.floor(Math.random() * lossReasons.colleaguesHigh.length);
+      const randomIndex = Math.floor(
+        Math.random() * lossReasons.colleaguesHigh.length
+      );
       reason = lossReasons.colleaguesHigh[randomIndex];
     } else if (resources.boss <= resources.minValue) {
-      const randomIndex = Math.floor(Math.random() * lossReasons.bossLow.length);
+      const randomIndex = Math.floor(
+        Math.random() * lossReasons.bossLow.length
+      );
       reason = lossReasons.bossLow[randomIndex];
     } else if (resources.boss >= resources.maxValue) {
-      const randomIndex = Math.floor(Math.random() * lossReasons.bossHigh.length);
+      const randomIndex = Math.floor(
+        Math.random() * lossReasons.bossHigh.length
+      );
       reason = lossReasons.bossHigh[randomIndex];
     } else {
       // Fallback if somehow called without a specific reason or boundary hit
-      reason = "Oyun sona erdi.";
+      reason = 'Oyun sona erdi.';
     }
   }
 
@@ -783,10 +884,9 @@ function showGameOver(winReason = null) {
   personalBestElement.innerHTML = personalBestMessage;
 
   // Show the game over screen
-  gameOverElement.style.display = "flex";
+  gameOverElement.style.display = 'flex';
   gameOver = true; // IMPORTANT: Ensure the gameOver flag is set here too
 }
-
 
 function queueFollowupCard(followupCards, delay, parentCardId) {
   if (!followupCards) return;
@@ -804,7 +904,10 @@ function queueFollowupCard(followupCards, delay, parentCardId) {
     cardsToQueue.push(followupCards);
   } else {
     // Handle array of followups with probabilities
-    const totalProbability = followupCards.reduce((sum, card) => sum + (card.probability || 0), 0);
+    const totalProbability = followupCards.reduce(
+      (sum, card) => sum + (card.probability || 0),
+      0
+    );
     let selected = false;
 
     // If probabilities are defined and sum > 0, use them
@@ -812,7 +915,7 @@ function queueFollowupCard(followupCards, delay, parentCardId) {
       const random = Math.random() * totalProbability;
       let cumulativeProbability = 0;
       for (const card of followupCards) {
-        cumulativeProbability += (card.probability || 0);
+        cumulativeProbability += card.probability || 0;
         if (random <= cumulativeProbability) {
           // Takip kartına ebeveyn kart ID'sini ekle
           card.parentCardId = parentCardId;
@@ -842,20 +945,22 @@ function queueFollowupCard(followupCards, delay, parentCardId) {
   }
 
   // Add the selected card(s) to the delayed queue or immediate queue
-  cardsToQueue.forEach(card => {
+  cardsToQueue.forEach((card) => {
     // Check for nested followup (like the zam request)
     if (card.followup) {
       // Queue the nested followup to appear after this card
       // Use nested delay if available, otherwise use parent's delay or default
       const nestedDelay = card.followup.delay || card.delay || delay || 1;
       queueFollowupCard(card.followup, nestedDelay, card.id || parentCardId);
-    } else if (card.followups) { // Handle nested array followups
+    } else if (card.followups) {
+      // Handle nested array followups
       const nestedDelay = card.delay || delay || 1; // Use current card's delay if available
       queueFollowupCard(card.followups, nestedDelay, card.id || parentCardId);
     }
 
     // Get the actual delay value
-    const actualDelay = card.delay !== undefined ? card.delay : (delay !== undefined ? delay : 1);
+    const actualDelay =
+      card.delay !== undefined ? card.delay : delay !== undefined ? delay : 1;
 
     if (actualDelay === 0) {
       // If delay is 0, set this card as the next card to show immediately
@@ -868,7 +973,7 @@ function queueFollowupCard(followupCards, delay, parentCardId) {
       delayedCards.push({
         card: card,
         showOnDay: showOnDay,
-        parentCardId: card.parentCardId // Ebeveyn kart ID'sini saklayın
+        parentCardId: card.parentCardId, // Ebeveyn kart ID'sini saklayın
       });
     }
   });
@@ -877,9 +982,8 @@ function queueFollowupCard(followupCards, delay, parentCardId) {
   delayedCards.sort((a, b) => a.showOnDay - b.showOnDay);
 }
 
-
 function restartGame() {
-  console.log("Restarting game...");
+  console.log('Restarting game...');
   // Reset resources
   resources.motivation = 50;
   resources.performance = 50;
@@ -890,7 +994,7 @@ function restartGame() {
   // Re-initialize card-dependent state
   if (cards && cards.length > 0) {
     availableCards = [...cards];
-    cards.forEach(card => {
+    cards.forEach((card) => {
       card.uses = 0; // Reset uses count
     });
     delayedCards = []; // Clear delayed cards
@@ -903,29 +1007,36 @@ function restartGame() {
     showWelcomeCard();
   } else {
     // Handle error case if cards failed to load initially
-    cardTextElement.textContent = "Hata: Kartlar yüklenemediği için yeniden başlatılamıyor.";
-    console.error("Cannot restart, cards array is empty or not loaded.");
+    cardTextElement.textContent =
+      'Hata: Kartlar yüklenemediği için yeniden başlatılamıyor.';
+    console.error('Cannot restart, cards array is empty or not loaded.');
     gameOver = true;
   }
 
   updateUI(); // Update resource display
-  gameOverElement.style.display = "none"; // Hide game over screen
+  gameOverElement.style.display = 'none'; // Hide game over screen
 
   // Reset card visual state explicitly
   cardElement.style.transition = 'none';
-  cardElement.style.transform = "rotate(0) translateX(0)";
-  cardElement.style.opacity = "1";
+  cardElement.style.transform = 'rotate(0) translateX(0)';
+  cardElement.style.opacity = '1';
   // Background reset happens in updateCardUI
 
   // Reset stat icon indicators
-  [motivationIconElement, performanceIconElement, colleaguesIconElement, bossIconElement].forEach(icon => {
+  [
+    motivationIconElement,
+    performanceIconElement,
+    colleaguesIconElement,
+    bossIconElement,
+  ].forEach((icon) => {
     icon.classList.remove('stat-increase', 'stat-decrease');
   });
 
-
   // Reinitialize the stack
   // Remove any existing stack items
-  document.querySelectorAll('.card-stack-item').forEach(item => item.remove());
+  document
+    .querySelectorAll('.card-stack-item')
+    .forEach((item) => item.remove());
 
   // Create two fresh stack items
   const cardArea = document.getElementById('card-area');
@@ -935,11 +1046,13 @@ function restartGame() {
     stackItem.style.transition = 'none'; // No transition for initial setup
 
     // Apply appropriate styling based on position
-    if (i === 0) { // First stack item (middle position)
+    if (i === 0) {
+      // First stack item (middle position)
       stackItem.style.transform = 'translate(4px, 2px)';
       stackItem.style.opacity = '0.9';
       stackItem.style.zIndex = '3';
-    } else { // Second stack item (back position)
+    } else {
+      // Second stack item (back position)
       stackItem.style.transform = 'translate(8px, 4px)';
       stackItem.style.opacity = '0.8';
       stackItem.style.zIndex = '2';
@@ -949,7 +1062,6 @@ function restartGame() {
     cardArea.insertBefore(stackItem, cardArea.firstChild);
   }
 }
-
 
 function addNewCardToStack() {
   const cardArea = document.getElementById('card-area');
@@ -992,7 +1104,7 @@ function animateStackForward() {
   const stackItems = document.querySelectorAll('.card-stack-item');
 
   // Enable transitions on stack items
-  stackItems.forEach(item => {
+  stackItems.forEach((item) => {
     item.style.transition = 'all 0.5s ease';
   });
 
@@ -1023,7 +1135,7 @@ function processCard(isYes) {
 
   // Don't process if card is null or game is already over
   if (!currentCard || gameOver) {
-    console.log("ProcessCard called with null card or game over state.");
+    console.log('ProcessCard called with null card or game over state.');
     // If card is null (calm day), still need to advance day and check game over
     if (!currentCard && !gameOver) {
       // Simulate advancing a day with no effects
@@ -1042,7 +1154,8 @@ function processCard(isYes) {
   const cardToProcess = currentCard; // Keep a reference to the card being processed
 
   // Define the win message for the competitor offer scenario
-  const competitorWinMessage = "Rakip firmadan gelen teklifi kabul ettiniz ve yeni bir başlangıç yaptınız. Oyunu kazandınız!";
+  const competitorWinMessage =
+    'Rakip firmadan gelen teklifi kabul ettiniz ve yeni bir başlangıç yaptınız. Oyunu kazandınız!';
 
   // --- Inner function to handle logic after swipe animation ---
   const processAfterSwipe = () => {
@@ -1062,14 +1175,17 @@ function processCard(isYes) {
 
     // If the game didn't end with the competitor win, proceed with normal logic
     if (!competitorWinTriggered) {
-
       // --- Apply Effects and Queue Followups ---
       if (wasInfoCard) {
         // Apply effects for info-only cards using the stored card reference
         applyInfoCardEffects(cardToProcess.effects); // applyInfoCardEffects now calls updateResources
         // Queue followups for info-only cards
         if (cardToProcess.followup) {
-          queueFollowupCard(cardToProcess.followup, cardToProcess.followup.delay, currentCardId);
+          queueFollowupCard(
+            cardToProcess.followup,
+            cardToProcess.followup.delay,
+            currentCardId
+          );
         } else if (cardToProcess.followups) {
           queueFollowupCard(cardToProcess.followups, null, currentCardId);
         }
@@ -1082,15 +1198,25 @@ function processCard(isYes) {
           if (currentCardId === 'COMPETITOR_JOB_OFFER') {
             // Queue the 'yes' followups for the competitor offer
             if (cardToProcess.yesFollowup) {
-              queueFollowupCard(cardToProcess.yesFollowup, cardToProcess.yesFollowup.delay, currentCardId);
+              queueFollowupCard(
+                cardToProcess.yesFollowup,
+                cardToProcess.yesFollowup.delay,
+                currentCardId
+              );
             } else if (cardToProcess.yesFollowups) {
-              queueFollowupCard(cardToProcess.yesFollowups, null, currentCardId);
+              queueFollowupCard(
+                cardToProcess.yesFollowups,
+                null,
+                currentCardId
+              );
             }
 
             // Check if COUNTEROFFER was NOT queued immediately (delay 0)
             // This implies the player is leaving directly (either COUNTEROFFER has delay > 0,
             // wasn't chosen by probability, or GRASS_NOT_GREENER was chosen instead)
-            const counterOfferQueuedImmediately = window.immediateFollowups && window.immediateFollowups.some(f => f.id === 'COUNTEROFFER');
+            const counterOfferQueuedImmediately =
+              window.immediateFollowups &&
+              window.immediateFollowups.some((f) => f.id === 'COUNTEROFFER');
 
             if (!counterOfferQueuedImmediately) {
               // Trigger custom win because they accepted the offer and aren't getting an immediate counteroffer
@@ -1099,20 +1225,32 @@ function processCard(isYes) {
               return; // Exit early, game is won
             }
             // If counter offer *was* queued immediately, the game continues to that card.
-
           } else {
             // If it wasn't the competitor offer card, queue 'yes' followups normally
             if (cardToProcess.yesFollowup) {
-              queueFollowupCard(cardToProcess.yesFollowup, cardToProcess.yesFollowup.delay, currentCardId);
+              queueFollowupCard(
+                cardToProcess.yesFollowup,
+                cardToProcess.yesFollowup.delay,
+                currentCardId
+              );
             } else if (cardToProcess.yesFollowups) {
-              queueFollowupCard(cardToProcess.yesFollowups, null, currentCardId);
+              queueFollowupCard(
+                cardToProcess.yesFollowups,
+                null,
+                currentCardId
+              );
             }
           }
-        } else { // Player chose 'no'
+        } else {
+          // Player chose 'no'
           updateResources(cardToProcess.noEffects);
           // Queue 'no' followups
           if (cardToProcess.noFollowup) {
-            queueFollowupCard(cardToProcess.noFollowup, cardToProcess.noFollowup.delay, currentCardId);
+            queueFollowupCard(
+              cardToProcess.noFollowup,
+              cardToProcess.noFollowup.delay,
+              currentCardId
+            );
           } else if (cardToProcess.noFollowups) {
             queueFollowupCard(cardToProcess.noFollowups, null, currentCardId);
           }
@@ -1121,14 +1259,14 @@ function processCard(isYes) {
 
       // If the game didn't end via competitor win, continue processing
       if (!competitorWinTriggered) {
-
         // --- Add to Played Cards ---
         if (!window.playedCardIds) {
           window.playedCardIds = [];
         }
         // Only add if it's not an info card that might reappear or if tracking is desired
         // (Adjust this logic based on whether info cards should block future occurrences)
-        if (currentCardId) { // Add the ID of the card just processed
+        if (currentCardId) {
+          // Add the ID of the card just processed
           window.playedCardIds.push(currentCardId);
         }
 
@@ -1153,9 +1291,14 @@ function processCard(isYes) {
           for (let i = 0; i < window.immediateFollowups.length; i++) {
             const followup = window.immediateFollowups[i];
             // Ensure parent card was played if specified (important for branching)
-            if (!followup.parentCardId || (followup.parentCardId && window.playedCardIds.includes(followup.parentCardId))) {
+            if (
+              !followup.parentCardId ||
+              (followup.parentCardId &&
+                window.playedCardIds.includes(followup.parentCardId))
+            ) {
               // Basic requirement check for the followup itself
-              if (checkRequirements(followup.requirements, resources)) { // Pass resources
+              if (checkRequirements(followup.requirements, resources)) {
+                // Pass resources
                 selectedFollowup = followup;
                 selectedFollowupIndex = i;
                 break;
@@ -1169,7 +1312,10 @@ function processCard(isYes) {
             window.immediateFollowups.splice(selectedFollowupIndex, 1);
           }
           // Clean up the global variable if the queue is now empty
-          if (window.immediateFollowups && window.immediateFollowups.length === 0) {
+          if (
+            window.immediateFollowups &&
+            window.immediateFollowups.length === 0
+          ) {
             window.immediateFollowups = null;
           }
         }
@@ -1182,9 +1328,16 @@ function processCard(isYes) {
             const delayedItem = delayedCards[i];
             if (delayedItem.showOnDay <= resources.day) {
               // Ensure parent card was played if specified
-              if (!delayedItem.parentCardId || (delayedItem.parentCardId && window.playedCardIds.includes(delayedItem.parentCardId))) {
+              if (
+                !delayedItem.parentCardId ||
+                (delayedItem.parentCardId &&
+                  window.playedCardIds.includes(delayedItem.parentCardId))
+              ) {
                 // Basic requirement check for the delayed card
-                if (checkRequirements(delayedItem.card.requirements, resources)) { // Pass resources
+                if (
+                  checkRequirements(delayedItem.card.requirements, resources)
+                ) {
+                  // Pass resources
                   nextCardToShow = delayedItem.card;
                   delayedCards.splice(i, 1); // Remove from delayed queue
                   foundDelayedFollowup = true;
@@ -1213,13 +1366,13 @@ function processCard(isYes) {
         // --- Update Game State and UI ---
         currentCard = nextCardToShow; // Update the global currentCard
 
-        if (!gameOver) { // Double-check game isn't over before UI update
+        if (!gameOver) {
+          // Double-check game isn't over before UI update
           updateCardUI(currentCard); // Update UI with the new card (or null/calm day message)
         } else {
           // If somehow gameOver became true between checkGameOver and here, ensure UI doesn't update
           updateCardUI(null); // Or handle appropriately
         }
-
       } // End of check for !competitorWinTriggered (after effects/followups)
     } // End of check for !competitorWinTriggered (before effects/followups)
   }; // --- End of processAfterSwipe function ---
@@ -1228,7 +1381,7 @@ function processCard(isYes) {
   const direction = isYes ? 1 : -1;
   cardElement.style.transition = 'transform 0.5s ease, opacity 0.5s ease'; // Ensure opacity transition
   cardElement.style.transform = `translateX(${direction * (window.innerWidth / 1.5)}px) rotate(${direction * 30}deg)`; // Adjust distance/rotation as needed
-  cardElement.style.opacity = "0";
+  cardElement.style.opacity = '0';
 
   // Animate stack and add new card *during* swipe animation
   animateStackForward();
@@ -1237,7 +1390,6 @@ function processCard(isYes) {
   // --- Wait for animation, then process logic ---
   setTimeout(processAfterSwipe, 500); // Match timeout to animation duration
 }
-
 
 // Card dragging logic
 cardElement.addEventListener('mousedown', startDrag);
@@ -1281,14 +1433,14 @@ function drag(e) {
     if (!currentCard.isInfoOnly) {
       const decisionThreshold = 30; // Show decision text slightly after drag starts
       if (deltaX > decisionThreshold) {
-        yesOptionElement.style.opacity = "1";
-        noOptionElement.style.opacity = "0.3";
+        yesOptionElement.style.opacity = '1';
+        noOptionElement.style.opacity = '0.3';
       } else if (deltaX < -decisionThreshold) {
-        yesOptionElement.style.opacity = "0.3";
-        noOptionElement.style.opacity = "1";
+        yesOptionElement.style.opacity = '0.3';
+        noOptionElement.style.opacity = '1';
       } else {
-        yesOptionElement.style.opacity = "1"; // Show both near center
-        noOptionElement.style.opacity = "1";
+        yesOptionElement.style.opacity = '1'; // Show both near center
+        noOptionElement.style.opacity = '1';
       }
     }
 
@@ -1297,26 +1449,30 @@ function drag(e) {
     const maxGradientOpacity = 0.3; // Limit gradient intensity
     const gradientOpacity = Math.min(absX / 400, maxGradientOpacity); // Calculate opacity based on drag distance
 
-    if (deltaX > 0) { // Swiping Right (Yes)
+    if (deltaX > 0) {
+      // Swiping Right (Yes)
       if (currentCard.isInfoOnly) {
         cardElement.style.background = `linear-gradient(to right, rgb(249, 250, 251), rgba(107, 114, 128, ${gradientOpacity}))`;
       } else {
         cardElement.style.background = `linear-gradient(to right, white, rgba(34, 197, 94, ${gradientOpacity}))`; // Green for Yes
       }
-    } else if (deltaX < 0) { // Swiping Left (No)
+    } else if (deltaX < 0) {
+      // Swiping Left (No)
       if (currentCard.isInfoOnly) {
         cardElement.style.background = `linear-gradient(to left, rgb(249, 250, 251), rgba(107, 114, 128, ${gradientOpacity}))`;
       } else {
         cardElement.style.background = `linear-gradient(to left, white, rgba(239, 68, 68, ${gradientOpacity}))`; // Red for No
       }
-    } else { // Near center
-      cardElement.style.background = currentCard.isInfoOnly ? 'rgb(249, 250, 251)' : 'white';
+    } else {
+      // Near center
+      cardElement.style.background = currentCard.isInfoOnly
+        ? 'rgb(249, 250, 251)'
+        : 'white';
     }
   } else {
     // If currentCard is null, maybe just keep background neutral
     cardElement.style.background = 'rgb(229, 231, 235)';
   }
-
 
   // Prevent default for touch events during drag
   if (e.type.includes('touch')) {
@@ -1340,10 +1496,12 @@ function endDrag(e) {
     cardElement.style.transform = 'rotate(0) translateX(0)';
     // Reset background based on whether there is a card or not
     if (currentCard) {
-      cardElement.style.background = currentCard.isInfoOnly ? 'rgb(249, 250, 251)' : 'white';
+      cardElement.style.background = currentCard.isInfoOnly
+        ? 'rgb(249, 250, 251)'
+        : 'white';
       if (!currentCard.isInfoOnly) {
-        yesOptionElement.style.opacity = "1"; // Reset opacity
-        noOptionElement.style.opacity = "1";
+        yesOptionElement.style.opacity = '1'; // Reset opacity
+        noOptionElement.style.opacity = '1';
       }
     } else {
       cardElement.style.background = 'rgb(229, 231, 235)'; // Reset to the "null card" background

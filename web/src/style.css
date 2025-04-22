@@ -64,7 +64,9 @@ body {
   border: 2px solid rgb(55, 65, 81);
   overflow: hidden;
   background-color: white;
-  transition: border-color 0.3s ease-in-out, border-width 0.3s ease-in-out;
+  transition:
+    border-color 0.3s ease-in-out,
+    border-width 0.3s ease-in-out;
 }
 
 .stat-increase {
@@ -161,7 +163,9 @@ body {
   justify-content: space-between;
   padding: 15px;
   cursor: grab;
-  transition: transform 0.1s, background 0.1s;
+  transition:
+    transform 0.1s,
+    background 0.1s;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
   touch-action: none;
   overflow: hidden;
